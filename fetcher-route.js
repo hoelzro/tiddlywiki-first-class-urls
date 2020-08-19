@@ -51,18 +51,28 @@ POST /plugins/hoelzro/first-class-urls/fetch?url=:url
                     document = document.nextSibling;
                 }
 
-                let allMetadata = {};
+                let promises = [];
 
                 $tw.modules.forEachModuleOfType('$:/plugin/hoelzro/url-metadata-extractor', function(title, module) {
-                    // XXX async
                     let metadata = module.extract(fetchThisURL, actualDocument);
-                    Object.assign(allMetadata, metadata);
+                    if(metadata instanceof Promise) {
+                        promises.push(metadata);
+                    } else {
+                        promises.push(Promise.resolve(metadata));
+                    }
                 });
 
-                response.writeHead(200, 'OK', {
-                    'Content-Type': 'application/json'
+                Promise.all(promises).then(function(results) {
+                    let allMetadata = {};
+                    for(let metadata of results) {
+                        Object.assign(allMetadata, metadata);
+                    }
+
+                    response.writeHead(200, 'OK', {
+                        'Content-Type': 'application/json'
+                    });
+                    response.end(JSON.stringify(allMetadata));
                 });
-                response.end(JSON.stringify(allMetadata));
             }
         });
     };
