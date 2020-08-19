@@ -1,5 +1,7 @@
 {
   "tiddlers": [{
     "file": "fetcher-route.js"
+  }, {
+    "file": "html-extractor.js"
   }]
 }
