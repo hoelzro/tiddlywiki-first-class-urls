@@ -3,5 +3,7 @@
     "file": "fetcher-route.js"
   }, {
     "file": "html-extractor.js"
+  }, {
+    "file": "twitter-card-extractor.js"
   }]
 }
