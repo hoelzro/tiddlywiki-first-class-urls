@@ -5,5 +5,7 @@
     "file": "html-extractor.js"
   }, {
     "file": "twitter-card-extractor.js"
+  }, {
+    "file": "import-handler.js"
   }]
 }
