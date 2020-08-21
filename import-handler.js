@@ -33,12 +33,17 @@ module-type: startup
         });
     }
 
+    function canonicalizeURL(url) {
+        return url;
+    }
+
     exports.startup = function() {
         $tw.wiki.addEventListener('change', function(changes) {
             // XXX transform all modified plugin-type: import tiddlers?
             if('$:/Import' in changes && changes['$:/Import'].modified) {
                 let importTiddler = $tw.wiki.getTiddler('$:/Import');
                 let status = importTiddler.getFieldString('status');
+                let newImportFields = Object.create(null);
                 if(status == 'pending' && importTiddler.getFieldString('already-imported') == '') {
                     let importData = $tw.wiki.getTiddlerData('$:/Import');
                     let promiseTitles = [];
@@ -46,12 +51,23 @@ module-type: startup
                     for(let title in importData.tiddlers) {
                         let text = importData.tiddlers[title].text;
                         if(text.startsWith('http://') || text.startsWith('https://')) {
-                            let p = doRequest(text);
+                            let location = canonicalizeURL(text);
+                            // XXX it would be nice if I could pass location in via a variable or something
+                            if($tw.wiki.filterTiddlers('[field:location[' + location + ']has[url_tiddler]]').length > 0) {
+                                newImportFields['selection-' + title] = 'unchecked';
+                                newImportFields['message-' + title] = 'You already have this URL in your wiki';
+                            } else {
+                                let p = doRequest(text);
 
-                            promiseTitles.push(title);
-                            promises.push(p);
+                                promiseTitles.push(title);
+                                promises.push(p);
+                            }
                         }
                     }
+
+                    $tw.wiki.addTiddler(new $tw.Tiddler(importTiddler, {
+                        'already-imported': 'true', // XXX shitty field name, but whatever (also, doesn't illustrate the state change properly)
+                    }, newImportFields));
 
                     // XXX error handling
                     Promise.all(promises).then(function(results) {
@@ -68,13 +84,18 @@ module-type: startup
                                 result.title = title;
                             }
 
+                            result.type = 'text/vnd.tiddlywiki'; // XXX type: url_tiddler?
+                            result.url_tiddler = 'true';
+
+                            // XXX theoretically we could overwrite an old import
+                            //     datum if it happened to have the same title as
+                            //     what the fetcher gave us
                             newImportData.tiddlers[title] = result;
                         }
 
                         // XXX you could have fun race condition/conflict shit here
                         let importTiddler = $tw.wiki.getTiddler('$:/Import');
                         $tw.wiki.addTiddler(new $tw.Tiddler(importTiddler, {
-                            'already-imported': 'true', // XXX shitty field name, but whatever
                             text: JSON.stringify(newImportData, null, $tw.config.preferences.jsonSpaces)
                         }));
                     });
