@@ -3,7 +3,7 @@ title: $:/plugins/hoelzro/first-class-urls/fetcher-route.js
 type: application/javascript
 module-type: route
 
-POST /plugins/hoelzro/first-class-urls/fetch?url=:url
+GET /plugins/hoelzro/first-class-urls/fetch?url=:url
 
 \*/
 (function() {
@@ -11,7 +11,7 @@ POST /plugins/hoelzro/first-class-urls/fetch?url=:url
     let fs = require('fs');
     let { parseDOM } = require('htmlparser2');
 
-    exports.method = 'POST';
+    exports.method = 'GET';
 
     exports.path = new RegExp(`^/plugins/hoelzro/first-class-urls/fetch`);
 
