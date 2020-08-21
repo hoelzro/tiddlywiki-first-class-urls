@@ -71,8 +71,17 @@ module-type: startup
 
                     // XXX error handling
                     Promise.all(promises).then(function(results) {
+                        let oldImportData = $tw.wiki.getTiddlerData('$:/Import'); // XXX this might have been deleted
                         let newImportData = Object.create(null);
                         newImportData.tiddlers = Object.create(null);
+
+                        for(let oldTitle of promiseTitles) {
+                            delete(oldImportData.tiddlers[oldTitle]);
+                        }
+
+                        for(let title in oldImportData.tiddlers) {
+                            newImportData.tiddlers[title] = oldImportData.tiddlers[title];
+                        }
 
                         for(let i = 0; i < results.length; i++) {
                             let title = promiseTitles[i];
