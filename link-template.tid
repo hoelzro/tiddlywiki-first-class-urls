@@ -1,4 +1,0 @@
-title: $:/plugins/hoelzro/first-class-urls/link-template
-type: text/vnd.tiddlywiki
-
-🔗 <a href=<<location>> class='tc-tiddlylink-external' target='_blank' rel='noopener noreferrer'><$text text=<<currentTiddler>> /></a>

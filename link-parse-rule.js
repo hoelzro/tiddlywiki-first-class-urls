@@ -42,26 +42,32 @@ exports.parse = function() {
             }
         };
 
+        let [matchingURLTiddler] = $tw.wiki.filterTiddlers('[field:location<location>has[url_tiddler]!has[draft.of]]', fauxWidget);
+        if(matchingURLTiddler == null) {
+            // XXX handle it
+        }
+
         return [{
-            type: 'set',
+            type: 'link',
             attributes: {
-                name: {type: 'string', value: 'location'},
-                value: {type: 'string', value: location}
+                to: { type: 'string', value: matchingURLTiddler }
             },
             children: [{
-                type: 'list',
-                isBlock: false, // XXX are you sure?
-                attributes: {
-                    filter: {
-                        type: 'string',
-                        // XXX duplicated functionality from import-handler.js
-                        value: '[field:location<location>has[url_tiddler]!has[draft.of]] ~[<location>]'
-                    },
-                    template: {
-                        type: 'string',
-                        value: '$:/plugins/hoelzro/first-class-urls/link-template'
-                    }
-                }
+                type: 'text',
+                text: '🔗'
+            }]
+        }, {
+            type: 'element',
+            tag: 'a',
+            attributes: {
+                href: {type: 'string', value: location},
+                'class': {type: 'string', value: 'tc-tiddlywiki-external'},
+                target: {type: 'string', value: '_blank'},
+                rel: {type: 'string', value: 'noopener noreferrer'}
+            },
+            children: [{
+                type: 'text',
+                text: matchingURLTiddler ?? location,
             }]
         }];
     }

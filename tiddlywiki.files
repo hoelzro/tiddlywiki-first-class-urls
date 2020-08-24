@@ -9,8 +9,5 @@
     "file": "import-handler.js"
   }, {
     "file": "link-parse-rule.js"
-  }, {
-    "file": "link-template.tid",
-    "isTiddlerFile": true
   }]
 }
