@@ -27,7 +27,7 @@ tiddlywiki.files:
 	echo "modified: $$(TZ=utc git log --format=%ad --date=format:%Y%m%d%H%M%S000 -- $$tid | head -n 1)000" >> $@
 
 %.tid.meta: %.tid
-	echo "title: \$$:/plugins/$$PLUGIN_TITLE/$^" >> $@
+	echo "title: \$$:/plugins/$$PLUGIN_TITLE/$(shell basename "$^" .tid)" >> $@
 	echo "type: text/vnd.tiddlywiki" >> $@
 	echo "created: $$(TZ=utc git log --format=%ad --date=format:%Y%m%d%H%M%S000 -- $$tid | tail -n 1)000" >> $@
 	echo "modified: $$(TZ=utc git log --format=%ad --date=format:%Y%m%d%H%M%S000 -- $$tid | head -n 1)000" >> $@
