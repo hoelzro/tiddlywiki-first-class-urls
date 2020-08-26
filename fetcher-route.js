@@ -1,6 +1,4 @@
 /*\
-title: $:/plugins/hoelzro/first-class-urls/fetcher-route.js
-type: application/javascript
 module-type: route
 
 GET /plugins/hoelzro/first-class-urls/fetch?url=:url

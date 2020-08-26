@@ -1,1 +1,5 @@
 /node_modules/
+*.meta
+license.tid
+plugin.info
+tiddlywiki.files
