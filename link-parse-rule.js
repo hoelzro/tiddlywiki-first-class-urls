@@ -1,6 +1,4 @@
 /*\
-title: $:/plugins/hoelzro/first-class-urls/link-parse-rule.js
-type: application/javascript
 module-type: wikirule
 
 \*/

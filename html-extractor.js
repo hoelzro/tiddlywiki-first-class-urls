@@ -1,6 +1,4 @@
 /*\
-title: $:/plugins/hoelzro/first-class-urls/html-extractor.js
-type: application/javascript
 module-type: $:/plugin/hoelzro/url-metadata-extractor
 
 \*/

@@ -1,6 +1,4 @@
 /*\
-title: $:/plugins/hoelzro/first-class-urls/import-handler.js
-type: application/javascript
 module-type: startup
 
 \*/
