@@ -6,7 +6,7 @@ module-type: startup
 \*/
 
 (function() {
-    exports.name = "commands";
+    exports.name = "import-handler";
     exports.platforms = ["browser"];
     exports.after = ["load-modules"];
     exports.synchronous = false;
