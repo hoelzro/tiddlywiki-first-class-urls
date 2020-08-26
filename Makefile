@@ -1,3 +1,5 @@
+.PHONY: build clean
+
 meta_files := $(patsubst %,%.meta,$(wildcard *.js *.tid))
 
 build: plugin.info tiddlywiki.files $(meta_files)
@@ -5,7 +7,7 @@ build: plugin.info tiddlywiki.files $(meta_files)
 clean:
 	rm -f plugin.info tiddlywiki.files *.meta
 
-plugin.info:
+plugin.info: FORCE
 	echo '{}' | jq \
 	    --arg plugin_title "$$PLUGIN_TITLE" \
 	    --arg plugin_name "$$PLUGIN_NAME" \
@@ -16,9 +18,10 @@ plugin.info:
 	    --arg plugin_source "$$PLUGIN_SOURCE" \
 	    '{title:("$$:/plugins/" + $$plugin_title),name:$$plugin_name,description:$$plugin_description,author:$$plugin_author,version:$$plugin_version,"core-version":$$plugin_core_version,source:$$plugin_source,"plugin-type":"plugin","list":"readme license history"}' > $@
 
-tiddlywiki.files:
+tiddlywiki.files: FORCE
 	echo '{}' | jq '{tiddlers: ($$ARGS.positional | map({file: .}))}' --args *.js *.tid > $@
 
+FORCE:
 
 %.js.meta: %.js
 	echo "title: \$$:/plugins/$$PLUGIN_TITLE/$^" >> $@
