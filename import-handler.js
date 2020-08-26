@@ -9,7 +9,7 @@ module-type: startup
     exports.name = "import-handler";
     exports.platforms = ["browser"];
     exports.after = ["load-modules"];
-    exports.synchronous = false;
+    exports.synchronous = true;
 
     function doRequest(url) {
         console.log('url: ', url);
