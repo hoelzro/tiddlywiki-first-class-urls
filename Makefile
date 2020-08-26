@@ -1,9 +1,9 @@
 meta_files := $(patsubst %,%.meta,$(wildcard *.js *.tid))
 
-build: plugin.info $(meta_files)
+build: plugin.info tiddlywiki.files $(meta_files)
 
 clean:
-	rm -f plugin.info *.meta
+	rm -f plugin.info tiddlywiki.files *.meta
 
 plugin.info:
 	echo '{}' | jq \
@@ -15,6 +15,9 @@ plugin.info:
 	    --arg plugin_core_version "$$PLUGIN_CORE_VERSION" \
 	    --arg plugin_source "$$PLUGIN_SOURCE" \
 	    '{title:("$$:/plugins/" + $$plugin_title),name:$$plugin_name,description:$$plugin_description,author:$$plugin_author,version:$$plugin_version,"core-version":$$plugin_core_version,source:$$plugin_source,"plugin-type":"plugin","list":"readme license history"}' > $@
+
+tiddlywiki.files:
+	echo '{}' | jq '{tiddlers: ($$ARGS.positional | map({file: .}))}' --args *.js *.tid > $@
 
 
 %.js.meta: %.js
