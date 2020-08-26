@@ -27,19 +27,19 @@ license.tid: COPYING
 FORCE:
 
 %.js.meta: %.js
-	echo "title: \$$:/plugins/$$PLUGIN_TITLE/$^" >> $@
+	echo "title: \$$:/plugins/$$PLUGIN_TITLE/$^" > $@
 	echo "type: application/javascript" >> $@
 	echo "created: $$((TZ=utc git log --format=%ad --date=format:%Y%m%d%H%M%S000 --reverse -- $^ ; date --reference $^ --utc +'%Y%m%d%H%M%S000') | head -n 1)000" >> $@
 	echo "modified: $$((TZ=utc git log --format=%ad --date=format:%Y%m%d%H%M%S000 -- $^ ; date --reference $^ --utc +'%Y%m%d%H%M%S000') | head -n 1)000" >> $@
 
 license.tid.meta: license.tid
-	echo "title: \$$:/plugins/$$PLUGIN_TITLE/license" >> $@
+	echo "title: \$$:/plugins/$$PLUGIN_TITLE/license" > $@
 	echo "type: text/plain" >> $@
 	echo "created: $$((TZ=utc git log --format=%ad --date=format:%Y%m%d%H%M%S000 --reverse -- COPYING ; date --reference COPYING --utc +'%Y%m%d%H%M%S000') | head -n 1)000" >> $@
 	echo "modified: $$((TZ=utc git log --format=%ad --date=format:%Y%m%d%H%M%S000 -- COPYING ; date --reference COPYING --utc +'%Y%m%d%H%M%S000') | head -n 1)000" >> $@
 
 %.tid.meta: %.tid
-	echo "title: \$$:/plugins/$$PLUGIN_TITLE/$(shell basename "$^" .tid)" >> $@
+	echo "title: \$$:/plugins/$$PLUGIN_TITLE/$(shell basename "$^" .tid)" > $@
 	echo "type: text/vnd.tiddlywiki" >> $@
 	echo "created: $$((TZ=utc git log --format=%ad --date=format:%Y%m%d%H%M%S000 --reverse -- $^ ; date --reference $^ --utc +'%Y%m%d%H%M%S000') | head -n 1)000" >> $@
 	echo "modified: $$((TZ=utc git log --format=%ad --date=format:%Y%m%d%H%M%S000 -- $^ ; date --reference $^ --utc +'%Y%m%d%H%M%S000') | head -n 1)000" >> $@
