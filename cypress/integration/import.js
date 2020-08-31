@@ -21,6 +21,17 @@ function cyPaste(p, pasteType, pasteData) {
 
 describe('My First Test', () => {
   it('Handles pastes appropriately', () => {
+    cy.server();
+    cy.route({
+      method: 'PUT',
+      url: '/recipes/default/tiddlers/**',
+      status: 204,
+      headers: {
+        etag: '"default/' + encodeURIComponent('$:/StoryList') + '/1:"' // XXX dynamically determine this based on URL
+      },
+      response: ''
+    });
+
     cy.visit('http://localhost:9091');
 
     cyPaste(cy.get('div.tc-site-subtitle'), 'text/plain', 'https://github.com/PuerkitoBio/goquery');
