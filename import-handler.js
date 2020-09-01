@@ -91,6 +91,8 @@ module-type: startup
                                 result.title = title;
                             }
 
+                            title = result.title = $tw.wiki.generateNewTitle(title);
+
                             result.type = 'text/vnd.tiddlywiki'; // XXX type: url_tiddler?
                             result.url_tiddler = 'true';
 
