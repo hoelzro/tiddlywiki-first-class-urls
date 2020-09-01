@@ -19,7 +19,7 @@ function cyPaste(p, pasteType, pasteData) {
 // XXX helpers for which tiddlers are visible, other TW things
 // XXX fail tests if you see the TW exception banner ("Internal JavaScript Error")
 
-describe('My First Test', () => {
+describe('Import functionality', () => {
   it('Handles pastes appropriately', () => {
     cy.server();
     cy.route({
@@ -47,5 +47,32 @@ describe('My First Test', () => {
     cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').get('a.tc-tiddlylink').contains('goquery').click();
 
     // XXX check fields on new tiddler
+  });
+
+  it('Should handle duplicate imports', () => {
+    cy.server();
+    cy.route({
+      method: 'PUT',
+      url: '/recipes/default/tiddlers/**',
+      status: 204,
+      headers: {
+        etag: '"default/' + encodeURIComponent('$:/StoryList') + '/1:"' // XXX dynamically determine this based on URL
+      },
+      response: ''
+    });
+
+    cy.visit('http://localhost:9091');
+
+    cyPaste(cy.get('div.tc-site-subtitle'), 'text/plain', 'https://github.com/PuerkitoBio/goquery');
+
+    cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').get('button').contains('Import').click();
+
+    cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"] button[aria-label="close"]').click();
+
+    cyPaste(cy.get('div.tc-site-subtitle'), 'text/plain', 'https://github.com/PuerkitoBio/goquery');
+
+    cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"] div.tc-import td input[type=checkbox]');
+
+    cy.get('div.tc-import td input[type=checkbox]').should('not.be.checked');
   });
 });
