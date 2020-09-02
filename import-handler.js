@@ -113,8 +113,14 @@ module-type: startup
                     for(let title in importData.tiddlers) {
                         let text = importData.tiddlers[title].text;
                         if(text.startsWith('http://') || text.startsWith('https://')) {
-                            links.push(text);
-                            promiseTitles.push(title);
+                            let canonicalURL = canonicalizeURL(text);
+                            if(weHaveURLTiddler(canonicalURL)) {
+                                newImportFields['selection-' + title] = 'unchecked';
+                                newImportFields['message-' + title] = 'You already have this URL in your wiki';
+                            } else {
+                                links.push(text);
+                                promiseTitles.push(title);
+                            }
                         }
                     }
 
@@ -146,7 +152,6 @@ module-type: startup
                         }
                     };
 
-                    // XXX returning everything as a promise doesn't let us update newImportFields until metadata have returned
                     // XXX error handling
                     onLinksAdded(fauxWikiForImport, links).then(function(results) {
                         let oldImportData = $tw.wiki.getTiddlerData('$:/Import'); // XXX this might have been deleted
