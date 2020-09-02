@@ -14,10 +14,8 @@ exports.init = function(parser) {
     this.matchRegExp = /~?(?:file|http|https|mailto|ftp|irc|news|data|skype):[^\s<>{}\[\]`|"\\^]+(?:\/|\b)/mg;
 };
 
-// XXX duplicated functionality
-function canonicalizeURL(url) {
-    return url;
-}
+let canonicalizeURL = require('$:/plugins/hoelzro/first-class-urls/canonicalize.js')
+let lookupURLTiddler = require('$:/plugins/hoelzro/first-class-urls/url-check.js');
 
 exports.parse = function() {
     // Move past the match
@@ -27,20 +25,7 @@ exports.parse = function() {
         return [{type: 'text', text: this.match[0].substr(1)}];
     } else {
         let location = canonicalizeURL(this.match[0]);
-        let fauxWidget = {
-            getVariable(variableName, options) {
-                if(variableName == 'location') {
-                    return location;
-                }
-                if(options && 'defaultValue' in options) {
-                    return options.defaultValue;
-                } else {
-                    return null;
-                }
-            }
-        };
-
-        let [matchingURLTiddler] = $tw.wiki.filterTiddlers('[field:location<location>has[url_tiddler]!has[draft.of]]', fauxWidget);
+        let matchingURLTiddler = lookupURLTiddler(location);
         if(matchingURLTiddler == null) {
             // XXX handle it
         }
