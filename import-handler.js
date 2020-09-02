@@ -59,7 +59,7 @@ module-type: startup
                         },
 
                         deleteTiddler(title) {
-                            $tw.wiki.deleteTiddler(title);
+                            return $tw.wiki.deleteTiddler(title);
                         },
 
                         generateNewTitle(title) {
