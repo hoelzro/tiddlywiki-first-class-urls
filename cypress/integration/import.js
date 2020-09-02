@@ -19,8 +19,8 @@ function cyPaste(p, pasteType, pasteData) {
 // XXX helpers for which tiddlers are visible, other TW things
 // XXX fail tests if you see the TW exception banner ("Internal JavaScript Error")
 
-describe('Import functionality', () => {
-  it('Handles pastes appropriately', () => {
+describe('Import functionality', function() {
+  it('Handles pastes appropriately', function() {
     cy.server();
     cy.route({
       method: 'PUT',
@@ -49,7 +49,7 @@ describe('Import functionality', () => {
     // XXX check fields on new tiddler
   });
 
-  it('Should handle duplicate imports', () => {
+  it('Should handle duplicate imports', function() {
     cy.server();
     cy.route({
       method: 'PUT',
@@ -76,7 +76,7 @@ describe('Import functionality', () => {
     cy.get('div.tc-import td input[type=checkbox]').should('not.be.checked');
   });
 
-  it('Should not blow away existing tiddlers with the same name', () => {
+  it('Should not blow away existing tiddlers with the same name', function() {
     cy.server();
     cy.route({
       method: 'PUT',
