@@ -68,6 +68,10 @@ module-type: startup
 
                         getCreationFields() {
                             return $tw.wiki.getCreationFields();
+                        },
+
+                        getModificationFields() {
+                            return $tw.wiki.getModificationFields();
                         }
                     };
 

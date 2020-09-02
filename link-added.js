@@ -48,7 +48,7 @@ module-type: library
                     type: 'text/vnd.tiddlywiki',
                     url_tiddler: 'true',
                     url_tiddler_pending_fetch: 'true'
-                }, wiki.getCreationFields());
+                }, wiki.getCreationFields(), wiki.getModificationFields());
 
                 wiki.addTiddler(tiddler);
 
