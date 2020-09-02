@@ -1,150 +1,149 @@
 function cyPaste(p, pasteType, pasteData) {
-  let event = new Event('paste', { bubbles: true, cancelable: true });
-  let items = [{
-    kind: 'string',
-    type: pasteType,
-    getAsString(fn) {
-      fn(pasteData)
-    }
-  }];
-  event.clipboardData = {
-    items: items
-  };
+    let event = new Event('paste', { bubbles: true, cancelable: true });
+    let items = [{
+        kind: 'string',
+        type: pasteType,
+        getAsString(fn) {
+            fn(pasteData)
+        }
+    }];
+    event.clipboardData = {
+        items: items
+    };
 
-  p.then(([elem]) => elem.dispatchEvent(event));
+    p.then(([elem]) => elem.dispatchEvent(event));
 }
 
-// XXX how to start with blank slate?
-//       mock XHR for TW saves?
 // XXX helpers for which tiddlers are visible, other TW things
 // XXX fail tests if you see the TW exception banner ("Internal JavaScript Error")
+// XXX test delays with importing things - make sure we handle racy things ok
 
 describe('Import functionality', function() {
-  it('Handles pastes appropriately', function() {
-    cy.server();
-    cy.route({
-      method: 'PUT',
-      url: '/recipes/default/tiddlers/**',
-      status: 204,
-      headers: {
-        etag: '"default/' + encodeURIComponent('$:/StoryList') + '/1:"' // XXX dynamically determine this based on URL
-      },
-      response: ''
+    it('Handles pastes appropriately', function() {
+        cy.server();
+        cy.route({
+            method: 'PUT',
+            url: '/recipes/default/tiddlers/**',
+            status: 204,
+            headers: {
+                etag: '"default/' + encodeURIComponent('$:/StoryList') + '/1:"' // XXX dynamically determine this based on URL
+            },
+            response: ''
+        });
+
+        cy.visit('http://localhost:9091');
+
+        cyPaste(cy.get('div.tc-site-subtitle'), 'text/plain', 'https://github.com/PuerkitoBio/goquery');
+
+        // XXX helper function to get story list or something
+        cy.window().then(win => win.$tw.wiki.getTiddler('$:/StoryList').fields.list).should('include', '$:/Import');
+
+        // XXX wait for server to respond?
+
+        // XXX helper function to get element within tiddler
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').get('button').contains('Import').click();
+
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').get('a.tc-tiddlylink').contains('goquery').click();
+
+        // XXX check fields on new tiddler
     });
 
-    cy.visit('http://localhost:9091');
+    it('Should handle duplicate imports', function() {
+        cy.server();
+        cy.route({
+            method: 'PUT',
+            url: '/recipes/default/tiddlers/**',
+            status: 204,
+            headers: {
+                etag: '"default/' + encodeURIComponent('$:/StoryList') + '/1:"' // XXX dynamically determine this based on URL
+            },
+            response: ''
+        });
 
-    cyPaste(cy.get('div.tc-site-subtitle'), 'text/plain', 'https://github.com/PuerkitoBio/goquery');
+        cy.visit('http://localhost:9091');
 
-    // XXX helper function to get story list or something
-    cy.window().then(win => win.$tw.wiki.getTiddler('$:/StoryList').fields.list).should('include', '$:/Import');
+        cyPaste(cy.get('div.tc-site-subtitle'), 'text/plain', 'https://github.com/PuerkitoBio/goquery');
 
-    // XXX wait for server to respond?
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').get('button').contains('Import').click();
 
-    // XXX helper function to get element within tiddler
-    cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').get('button').contains('Import').click();
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"] button[aria-label="close"]').click();
 
-    cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').get('a.tc-tiddlylink').contains('goquery').click();
+        cyPaste(cy.get('div.tc-site-subtitle'), 'text/plain', 'https://github.com/PuerkitoBio/goquery');
 
-    // XXX check fields on new tiddler
-  });
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"] div.tc-import td input[type=checkbox]');
 
-  it('Should handle duplicate imports', function() {
-    cy.server();
-    cy.route({
-      method: 'PUT',
-      url: '/recipes/default/tiddlers/**',
-      status: 204,
-      headers: {
-        etag: '"default/' + encodeURIComponent('$:/StoryList') + '/1:"' // XXX dynamically determine this based on URL
-      },
-      response: ''
+        cy.get('div.tc-import td input[type=checkbox]').should('not.be.checked');
     });
 
-    cy.visit('http://localhost:9091');
+    it('Should not blow away existing tiddlers with the same name', function() {
+        cy.server();
+        cy.route({
+            method: 'PUT',
+            url: '/recipes/default/tiddlers/**',
+            status: 204,
+            headers: {
+                etag: '"default/' + encodeURIComponent('$:/StoryList') + '/1:"' // XXX dynamically determine this based on URL
+            },
+            response: ''
+        });
 
-    cyPaste(cy.get('div.tc-site-subtitle'), 'text/plain', 'https://github.com/PuerkitoBio/goquery');
+        cy.visit('http://localhost:9091');
 
-    cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').get('button').contains('Import').click();
+        cy.window().then(win => {
+            win.$tw.wiki.addTiddler(new win.$tw.Tiddler({
+                title: 'GitHub - PuerkitoBio/goquery: A little like that j-thing, only in Go.',
+                type: 'text/vnd.tiddlywiki',
+                text: 'test tiddler content'
+            }));
+        });
 
-    cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"] button[aria-label="close"]').click();
+        cyPaste(cy.get('div.tc-site-subtitle'), 'text/plain', 'https://github.com/PuerkitoBio/goquery');
 
-    cyPaste(cy.get('div.tc-site-subtitle'), 'text/plain', 'https://github.com/PuerkitoBio/goquery');
+        // XXX helper function to get story list or something
+        cy.window().then(win => win.$tw.wiki.getTiddler('$:/StoryList').fields.list).should('include', '$:/Import');
 
-    cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"] div.tc-import td input[type=checkbox]');
+        // XXX wait for server to respond?
 
-    cy.get('div.tc-import td input[type=checkbox]').should('not.be.checked');
-  });
+        // XXX helper function to get element within tiddler
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').get('button').contains('Import').click();
 
-  it('Should not blow away existing tiddlers with the same name', function() {
-    cy.server();
-    cy.route({
-      method: 'PUT',
-      url: '/recipes/default/tiddlers/**',
-      status: 204,
-      headers: {
-        etag: '"default/' + encodeURIComponent('$:/StoryList') + '/1:"' // XXX dynamically determine this based on URL
-      },
-      response: ''
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').get('a.tc-tiddlylink').contains('goquery').click();
+
+        cy.get('div.tc-search input[type="search"]').type('PuerkitoBio');
+
+        cy.get('div.tc-search-results a.tc-tiddlylink').contains('PuerkitoBio').click();
+
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="GitHub - PuerkitoBio/goquery: A little like that j-thing, only in Go."] div.tc-tiddler-body').contains('test tiddler content');
     });
 
-    cy.visit('http://localhost:9091');
+    it('Should handle non-URL pastes', function() {
+        cy.server();
+        cy.route({
+            method: 'PUT',
+            url: '/recipes/default/tiddlers/**',
+            status: 204,
+            headers: {
+                etag: '"default/' + encodeURIComponent('$:/StoryList') + '/1:"' // XXX dynamically determine this based on URL
+            },
+            response: ''
+        });
 
-    cy.window().then(win => {
-      win.$tw.wiki.addTiddler(new win.$tw.Tiddler({
-        title: 'GitHub - PuerkitoBio/goquery: A little like that j-thing, only in Go.',
-        type: 'text/vnd.tiddlywiki',
-        text: 'test tiddler content'
-      }));
+        cy.visit('http://localhost:9091');
+
+        cyPaste(cy.get('div.tc-site-subtitle'), 'text/plain', "Just some text, don't worry about it");
+
+        // XXX helper function to get story list or something
+        cy.window().then(win => win.$tw.wiki.getTiddler('$:/StoryList').fields.list).should('include', '$:/Import');
+
+        // XXX wait for server to respond?
+
+        // XXX helper function to get element within tiddler
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').get('button').contains('Import').click();
+
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').get('a.tc-tiddlylink').contains('Untitled').click();
+
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="Untitled"]').get('div.tc-tiddler-body').contains("Just some text, don't worry about it");
+
+        // XXX check fields on new tiddler
     });
-
-    cyPaste(cy.get('div.tc-site-subtitle'), 'text/plain', 'https://github.com/PuerkitoBio/goquery');
-
-    // XXX helper function to get story list or something
-    cy.window().then(win => win.$tw.wiki.getTiddler('$:/StoryList').fields.list).should('include', '$:/Import');
-
-    // XXX wait for server to respond?
-
-    // XXX helper function to get element within tiddler
-    cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').get('button').contains('Import').click();
-
-    cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').get('a.tc-tiddlylink').contains('goquery').click();
-
-    cy.get('div.tc-search input[type="search"]').type('PuerkitoBio');
-
-    cy.get('div.tc-search-results a.tc-tiddlylink').contains('PuerkitoBio').click();
-
-    cy.get('div.tc-tiddler-frame[data-tiddler-title="GitHub - PuerkitoBio/goquery: A little like that j-thing, only in Go."] div.tc-tiddler-body').contains('test tiddler content');
-  });
-
-  it('Should handle non-URL pastes', function() {
-    cy.server();
-    cy.route({
-      method: 'PUT',
-      url: '/recipes/default/tiddlers/**',
-      status: 204,
-      headers: {
-        etag: '"default/' + encodeURIComponent('$:/StoryList') + '/1:"' // XXX dynamically determine this based on URL
-      },
-      response: ''
-    });
-
-    cy.visit('http://localhost:9091');
-
-    cyPaste(cy.get('div.tc-site-subtitle'), 'text/plain', "Just some text, don't worry about it");
-
-    // XXX helper function to get story list or something
-    cy.window().then(win => win.$tw.wiki.getTiddler('$:/StoryList').fields.list).should('include', '$:/Import');
-
-    // XXX wait for server to respond?
-
-    // XXX helper function to get element within tiddler
-    cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').get('button').contains('Import').click();
-
-    cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').get('a.tc-tiddlylink').contains('Untitled').click();
-
-    cy.get('div.tc-tiddler-frame[data-tiddler-title="Untitled"]').get('div.tc-tiddler-body').contains("Just some text, don't worry about it");
-
-    // XXX check fields on new tiddler
-  });
 });
