@@ -41,9 +41,9 @@ describe('Import functionality', function() {
         // XXX wait for server to respond?
 
         // XXX helper function to get element within tiddler
-        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').get('button').contains('Import').click();
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').find('button').contains('Import').click();
 
-        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').get('a.tc-tiddlylink').contains('goquery').click();
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').find('a.tc-tiddlylink').contains('goquery').click();
 
         // XXX check fields on new tiddler
     });
@@ -64,7 +64,7 @@ describe('Import functionality', function() {
 
         cyPaste(cy.get('div.tc-site-subtitle'), 'text/plain', 'https://github.com/PuerkitoBio/goquery');
 
-        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').get('button').contains('Import').click();
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').find('button').contains('Import').click();
 
         cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"] button[aria-label="close"]').click();
 
@@ -105,9 +105,9 @@ describe('Import functionality', function() {
         // XXX wait for server to respond?
 
         // XXX helper function to get element within tiddler
-        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').get('button').contains('Import').click();
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').find('button').contains('Import').click();
 
-        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').get('a.tc-tiddlylink').contains('goquery').click();
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').find('a.tc-tiddlylink').contains('goquery').click();
 
         cy.get('div.tc-search input[type="search"]').type('PuerkitoBio');
 
@@ -138,11 +138,11 @@ describe('Import functionality', function() {
         // XXX wait for server to respond?
 
         // XXX helper function to get element within tiddler
-        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').get('button').contains('Import').click();
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').find('button').contains('Import').click();
 
-        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').get('a.tc-tiddlylink').contains('Untitled').click();
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').find('a.tc-tiddlylink').contains('Untitled').click();
 
-        cy.get('div.tc-tiddler-frame[data-tiddler-title="Untitled"]').get('div.tc-tiddler-body').contains("Just some text, don't worry about it");
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="Untitled"]').find('div.tc-tiddler-body').contains("Just some text, don't worry about it");
 
         // XXX check fields on new tiddler
     });
