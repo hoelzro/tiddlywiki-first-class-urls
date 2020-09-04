@@ -30,6 +30,7 @@ describe('Render functionality', function() {
         cy.get('div.tc-tiddler-edit-frame iframe.tc-edit-texteditor').its('0.contentDocument').should('exist').its('body').should('not.be.undefined').then(cy.wrap).find('textarea').type('Example link: https://example.com');
         cy.get('div.tc-tiddler-edit-frame span.tc-tiddler-controls button[aria-label="ok"]').click();
 
-        cy.get('div.tc-tiddler-frame[data-tiddler-title="New Tiddler"]').find('div.tc-tiddler-body').contains("Example Domain");
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="New Tiddler"]').find('div.tc-tiddler-body a').contains('Example Domain').should('have.attr', 'href', 'https://example.com');
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="New Tiddler"]').find('div.tc-tiddler-body a').contains('🔗').should('have.attr', 'href', '#Link%3A%20Example%20Domain');
     });
 });
