@@ -10,6 +10,22 @@ module.exports = {
           },
           response: ''
         });
+
+        cy.route({
+            method: 'GET',
+            url: '/plugins/hoelzro/first-class-urls/**',
+            status: 404,
+            response: ''
+        });
+    },
+
+    mockMetadata(url, fields) {
+        cy.route({
+            method: 'GET',
+            url: '/plugins/hoelzro/first-class-urls/fetch?url=' + url,
+            status: 200,
+            response: JSON.stringify(fields)
+        });
     },
 
     addTiddler(fields) {
