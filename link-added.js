@@ -8,6 +8,9 @@ module-type: library
     let canonicalizeURL = require('$:/plugins/hoelzro/first-class-urls/canonicalize.js')
     let weHaveURLTiddler = require('$:/plugins/hoelzro/first-class-urls/url-check.js');
 
+    const ALREADY_HAVE_URL = Symbol('ALREADY_HAVE_URL');
+    const NO_METADATA_TITLE = Symbol('NO_METADATA_TITLE');
+
     function doRequest(url) {
         console.log('url: ', url);
         // XXX what about timeouts?

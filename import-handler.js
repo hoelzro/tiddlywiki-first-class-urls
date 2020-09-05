@@ -9,9 +9,6 @@ module-type: startup
     exports.after = ["load-modules"];
     exports.synchronous = true;
 
-    const ALREADY_HAVE_URL = Symbol('ALREADY_HAVE_URL');
-    const NO_METADATA_TITLE = Symbol('NO_METADATA_TITLE');
-
     let canonicalizeURL = require('$:/plugins/hoelzro/first-class-urls/canonicalize.js')
     let weHaveURLTiddler = require('$:/plugins/hoelzro/first-class-urls/url-check.js');
     let onLinksAdded = require('$:/plugins/hoelzro/first-class-urls/link-added.js');
