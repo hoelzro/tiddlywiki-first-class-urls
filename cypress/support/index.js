@@ -18,3 +18,24 @@ import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+chai.Assertion.addMethod('tw_field', function(fieldName, fieldValue) {
+    let obj = this._obj;
+    // poor man's check for "is this a tiddler?"
+    new chai.Assertion('fields' in obj && 'cache' in obj && 'hasField' in obj);
+
+    this.assert(
+        fieldName in obj.fields,
+        `expected field ${fieldName} to be present`,
+        `expected field ${fieldName} to not be present`);
+
+    if(fieldValue != undefined) {
+        // XXX string decoding?
+        this.assert(
+            obj.fields[fieldName] == fieldValue,
+            `expected field ${fieldName} to be #{exp} but got #{act}`,
+            `expected field ${fieldName} not to be #{exp} but got #{act}`,
+            obj.fields[fieldName],
+            fieldValue);
+    }
+});
