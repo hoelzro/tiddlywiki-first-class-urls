@@ -16,6 +16,7 @@ exports.init = function(parser) {
 
 let canonicalizeURL = require('$:/plugins/hoelzro/first-class-urls/canonicalize.js')
 let lookupURLTiddler = require('$:/plugins/hoelzro/first-class-urls/url-check.js');
+let hash = require('$:/plugins/hoelzro/first-class-urls/sha1.js');
 
 exports.parse = function() {
     // Move past the match
@@ -27,7 +28,9 @@ exports.parse = function() {
         let location = canonicalizeURL(this.match[0]);
         let matchingURLTiddler = lookupURLTiddler(location);
         if(matchingURLTiddler == null) {
-            // XXX handle it
+            // XXX should lookupURLTiddler handle this?
+            let urlHash = hash(location);
+            matchingURLTiddler = `Link: ${urlHash}`;
         }
 
         return [{
