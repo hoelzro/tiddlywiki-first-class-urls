@@ -42,6 +42,23 @@ module.exports = {
         return cy.get(`div.tc-tiddler-frame[data-tiddler-title="${title}"]`).find('div.tc-tiddler-body');
     },
 
+    getTiddler(title) {
+        return cy.window().then(win => {
+            function something(resolve) {
+                let tiddler = win.$tw.wiki.getTiddler(title);
+                console.log('returning tiddler', title, tiddler);
+
+                if(tiddler != null) {
+                    resolve(tiddler);
+                } else {
+                    setTimeout(something, 200, resolve);
+                }
+            }
+
+            return new Promise(something);
+        });
+    },
+
     editToolbarControls: {
         save() {
             return cy.get('div.tc-tiddler-edit-frame span.tc-tiddler-controls button[aria-label="ok"]');
