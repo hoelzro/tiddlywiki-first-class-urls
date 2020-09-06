@@ -11,6 +11,8 @@ module-type: startup
 
     // XXX you *could* look for tiddlers that contain the location of the URL tiddler to know what to invalidate
     exports.startup = function() {
+        let currentURLTiddlers = new Set($tw.wiki.filterTiddlers('[has[url_tiddler]]'));
+
         // XXX we only really care if…
         //   * a URL tiddler was changed
         //   * its title was changed
@@ -23,14 +25,23 @@ module-type: startup
                 //     that here - but I don't know how to handle that situation
                 //     anyway, so let's just skip everything
                 if(!tiddler) {
+                    if(currentURLTiddlers.has(title)) {
+                        // XXX how do we _really_ handle this? like, it's fine if it's a pending URL tiddler
+                        currentURLTiddlers.delete(title);
+                    }
                     continue;
                 }
 
                 if(!tiddler.fields.url_tiddler) {
+                    if(currentURLTiddlers.has(title)) {
+                        currentURLTiddlers.delete(title);
+                    }
                     continue;
                 }
 
-                console.log('changed URL tiddler');
+                if(!currentURLTiddlers.has(title)) {
+                    currentURLTiddlers.add(title);
+                }
             }
         });
     };
