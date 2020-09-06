@@ -22,7 +22,7 @@ module.exports = {
     mockMetadata(url, fields) {
         cy.route({
             method: 'GET',
-            delay: 10, // XXX play with this
+            delay: 1000, // XXX play with this
             url: '/plugins/hoelzro/first-class-urls/fetch?url=' + url,
             status: 200,
             response: JSON.stringify(fields)
