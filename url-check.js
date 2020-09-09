@@ -18,6 +18,6 @@ module.exports = function(location) {
         }
     };
 
-    let [tiddler] = $tw.wiki.filterTiddlers('[field:location[' + location + ']has[url_tiddler]!has[draft.of]]', fauxWidget);
+    let [tiddler] = $tw.wiki.filterTiddlers('[field:location<location>has[url_tiddler]!has[draft.of]]', fauxWidget);
     return tiddler;
 };
