@@ -49,6 +49,7 @@ module-type: library
                 let tiddler = new $tw.Tiddler({
                     title: placeholderTitle,
                     type: 'text/vnd.tiddlywiki',
+                    location: link, // XXX or canonicalURL?
                     url_tiddler: 'true',
                     url_tiddler_pending_fetch: 'true'
                 }, wiki.getCreationFields(), wiki.getModificationFields());
