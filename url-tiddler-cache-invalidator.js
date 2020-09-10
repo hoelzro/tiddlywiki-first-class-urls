@@ -13,12 +13,13 @@ module-type: startup
     exports.startup = function() {
         let currentURLTiddlers = new Set($tw.wiki.filterTiddlers('[has[url_tiddler]]'));
 
-        function forceRefresh() {
-            // XXX DEBUG
-            $tw.wiki.clearCache('New Tiddler');
-            $tw.wiki.dispatchEvent('change', {
-                'New Tiddler': { modified: true, faked: true }
-            });
+        function forceRefresh(invalidateMe) {
+            let fauxChanges = Object.create(null);
+            for(let title of invalidateMe) {
+                $tw.wiki.clearCache(title);
+                fauxChanges[title] = { modified: true, faked: true };
+            }
+            $tw.wiki.dispatchEvent('change', fauxChanges);
         }
 
         // XXX we only really care if…
@@ -26,9 +27,17 @@ module-type: startup
         //   * …its title was changed
         //   * …and there are backlinks to it
         $tw.wiki.addEventListener('change', function(changes) {
-            let dirty = false;
+            let invalidateMe = new Set();
 
             for(let title of Object.keys(changes)) {
+                if(currentURLTiddlers.has(title)) {
+                    // XXX will this work with backlinks indexer in 5.1.22?
+                    let urlBacklinks = $tw.wiki.getTiddlerBacklinks(title);
+                    for(let title of urlBacklinks) {
+                        invalidateMe.add(title);
+                    }
+                }
+
                 let tiddler = $tw.wiki.getTiddler(title);
 
                 // XXX if it *was* a URL tiddler and was deleted, we don't know
@@ -38,8 +47,6 @@ module-type: startup
                     if(currentURLTiddlers.has(title)) {
                         // XXX how do we _really_ handle this? like, it's fine if it's a pending URL tiddler
                         currentURLTiddlers.delete(title);
-                        // XXX DEBUG
-                        dirty = true;
                     }
                     continue;
                 }
@@ -47,22 +54,19 @@ module-type: startup
                 if(!tiddler.fields.url_tiddler) {
                     if(currentURLTiddlers.has(title)) {
                         currentURLTiddlers.delete(title);
-                        // XXX dirty?
+
+                        // XXX how do we handle this?
                     }
                     continue;
                 }
 
                 if(!currentURLTiddlers.has(title)) {
                     currentURLTiddlers.add(title);
-                } else {
                 }
-
-                // XXX DEBUG
-                dirty = true;
             }
-            if(dirty) {
-                // XXX DEBUG
-                forceRefresh();
+
+            if(invalidateMe.size > 0) {
+                forceRefresh(invalidateMe)
             }
         });
     };
