@@ -77,4 +77,28 @@ describe('Render functionality', function() {
 
         twCypress.getStoryListTiddlerBodyElement('New Tiddler').find('a[href="https://example.com"]').contains("https://example.com");
     });
+
+    it("Displays the site's title rather than link text when rendering a link for a non-pending URL tiddler in a draft", function() {
+        twCypress.makeServer();
+        cy.visit('http://localhost:9091');
+
+        // Add a URL tiddler
+        twCypress.addTiddler({
+            title: 'Link: Example Domain',
+            type: 'text/vnd.tiddlywiki',
+            created: '20200902023415000',
+            modified: '20200902023415000',
+            location: 'https://example.com',
+            url_tiddler: 'true',
+        });
+
+        // Add a new tiddler that links to that URL
+        twCypress.pageControls.newTiddler().click();
+        twCypress.editor().type('Example link: https://example.com');
+
+        twCypress.editToolbarControls.showPreviewButton().click();
+
+        twCypress.editorPreview().find('a[href="https://example.com"]').contains('Example Domain');
+    });
+
 });
