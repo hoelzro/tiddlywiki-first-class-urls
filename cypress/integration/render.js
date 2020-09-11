@@ -63,4 +63,18 @@ describe('Render functionality', function() {
 
         twCypress.editorPreview().find('a[href="https://example.com"]').contains('https://example.com');
     });
+
+    it("Displays the URL itself if a URL tiddler's fetch state is pending", function() {
+        twCypress.makeServer();
+        twCypress.mockMetadata('https://example.com', {});
+
+        cy.visit('http://localhost:9091');
+
+        // Add a new tiddler that links to that URL
+        twCypress.pageControls.newTiddler().click();
+        twCypress.editor().type('Example link: https://example.com');
+        twCypress.editTitlebarControls.save().click();
+
+        twCypress.getStoryListTiddlerBodyElement('New Tiddler').find('a[href="https://example.com"]').contains("https://example.com");
+    });
 });
