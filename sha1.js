@@ -13,6 +13,8 @@ module-type: library
 
 (function() {
 
+let sjcl = $tw.node ? require('./sjcl.js') : window.sjcl;
+
 /**
  * Context for a SHA-1 operation in progress.
  * @constructor
