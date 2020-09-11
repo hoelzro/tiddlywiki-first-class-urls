@@ -18,7 +18,7 @@ describe('Render functionality', function() {
         // Add a new tiddler that links to that URL
         twCypress.pageControls.newTiddler().click();
         twCypress.editor().type('Example link: https://example.com');
-        twCypress.editToolbarControls.save().click();
+        twCypress.editTitlebarControls.save().click();
         twCypress.getStoryListTiddlerBodyElement('New Tiddler').find('a').contains('Example Domain').should('have.attr', 'href', 'https://example.com');
         twCypress.getStoryListTiddlerBodyElement('New Tiddler').find('a').contains('🔗').should('have.attr', 'href', '#Link%3A%20Example%20Domain');
     });
@@ -35,7 +35,7 @@ describe('Render functionality', function() {
         // Add a new tiddler that links to that URL
         twCypress.pageControls.newTiddler().click();
         twCypress.editor().type('Example link: https://example.com');
-        twCypress.editToolbarControls.save().click();
+        twCypress.editTitlebarControls.save().click();
 
         twCypress.getTiddler('Link: Example Site').should('have.tw_field', 'description', 'This is an example');
         twCypress.getTiddler('Link: Example Site').should('have.tw_field', 'url_tiddler', 'true');

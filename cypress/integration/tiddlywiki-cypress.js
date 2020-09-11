@@ -60,7 +60,7 @@ module.exports = {
         });
     },
 
-    editToolbarControls: {
+    editTitlebarControls: {
         save() {
             return cy.get('div.tc-tiddler-edit-frame span.tc-tiddler-controls button[aria-label="ok"]');
         }
