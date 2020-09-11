@@ -39,6 +39,10 @@ module.exports = {
         return cy.get('div.tc-tiddler-edit-frame iframe.tc-edit-texteditor').its('0.contentDocument').should('exist').its('body').should('not.be.undefined').then(cy.wrap).find('textarea');
     },
 
+    editorPreview() {
+        return cy.get('div.tc-tiddler-edit-frame div.tc-tiddler-preview-preview');
+    },
+
     getStoryListTiddlerBodyElement(title) {
         return cy.get(`div.tc-tiddler-frame[data-tiddler-title="${title}"]`).find('div.tc-tiddler-body');
     },
@@ -63,6 +67,12 @@ module.exports = {
     editTitlebarControls: {
         save() {
             return cy.get('div.tc-tiddler-edit-frame span.tc-tiddler-controls button[aria-label="ok"]');
+        }
+    },
+
+    editToolbarControls: {
+        showPreviewButton() {
+            return cy.get('div.tc-editor-toolbar span[data-tw-keyboard-shortcut="((preview))"]').parents('button');
         }
     },
 

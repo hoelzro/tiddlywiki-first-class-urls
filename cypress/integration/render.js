@@ -45,4 +45,22 @@ describe('Render functionality', function() {
         twCypress.getStoryListTiddlerBodyElement('New Tiddler').find('a').contains('Example Site').should('have.attr', 'href', 'https://example.com');
         twCypress.getStoryListTiddlerBodyElement('New Tiddler').find('a').contains('🔗').should('have.attr', 'href', '#Link%3A%20Example%20Site');
     });
+
+    it("Displays the URL itself if a URL tiddler doesn't yet exist", function() {
+        twCypress.makeServer();
+        twCypress.mockMetadata('https://example.com', {
+            title: 'Example Site',
+            description: 'This is an example'
+        });
+
+        cy.visit('http://localhost:9091');
+
+        // Add a new tiddler that links to that URL
+        twCypress.pageControls.newTiddler().click();
+        twCypress.editor().type('Example link: https://example.com');
+
+        twCypress.editToolbarControls.showPreviewButton().click();
+
+        twCypress.editorPreview().find('a[href="https://example.com"]').contains('https://example.com');
+    });
 });
