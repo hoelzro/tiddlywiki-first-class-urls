@@ -26,17 +26,26 @@ exports.parse = function() {
         return [{type: 'text', text: this.match[0].substr(1)}];
     } else {
         let location = canonicalizeURL(this.match[0]);
-        let matchingURLTiddler = lookupURLTiddler(location);
-        if(matchingURLTiddler == null) {
+        let linkText;
+        let matchingURLTiddlerTitle = lookupURLTiddler(location);
+        if(matchingURLTiddlerTitle == null) {
             // XXX should lookupURLTiddler handle this?
             let urlHash = hash(location);
-            matchingURLTiddler = `Link: ${urlHash}`;
+            matchingURLTiddlerTitle = `Link: ${urlHash}`;
+            linkText = this.match[0];
+        } else {
+            let matchingURLTiddler = $tw.wiki.getTiddler(matchingURLTiddlerTitle);
+            if(matchingURLTiddler.fields.url_tiddler_pending_fetch) {
+                linkText = this.match[0];
+            } else {
+                linkText = matchingURLTiddlerTitle;
+            }
         }
 
         return [{
             type: 'link',
             attributes: {
-                to: { type: 'string', value: matchingURLTiddler }
+                to: { type: 'string', value: matchingURLTiddlerTitle }
             },
             children: [{
                 type: 'text',
@@ -53,7 +62,7 @@ exports.parse = function() {
             },
             children: [{
                 type: 'text',
-                text: matchingURLTiddler ?? location,
+                text: linkText,
             }]
         }];
     }
