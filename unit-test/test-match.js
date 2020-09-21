@@ -119,6 +119,16 @@ function testSpecificityTie() {
     }
 }
 
+function testDoubleWildcardOnly() {
+    let url = 'https://github.com/hoelzro/tiddlywiki-first-class-urls/issues/47';
+    let patterns = [
+        '**',
+    ];
+
+    let bestMatch = match(patterns, url);
+    assert.strictEqual(bestMatch, 0);
+}
+
 // XXX what about URL query? URL fragment?
 
 let tests = [
@@ -128,6 +138,7 @@ let tests = [
     testTrailingSlashDoesntMatter,
     testSpecificity,
     testSpecificityTie,
+    testDoubleWildcardOnly,
 ];
 
 for(let test of tests) {
