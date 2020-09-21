@@ -59,9 +59,14 @@ module-type: library
                 p = doRequest(link).then(function(metadata) {
                     if('title' in metadata) {
                         let title = wiki.generateNewTitle(`Link: ${metadata.title}`);
+                        let text = link;
+                        if('description' in metadata) {
+                            text += '\n\n' + metadata.description;
+                        }
                         // XXX set field for latest fetch time?
                         wiki.addTiddler(new $tw.Tiddler(
                             tiddler,
+                            { text },
                             metadata,
                             {
                                 title: title,
