@@ -7,6 +7,9 @@ module-type: $:/plugin/hoelzro/url-metadata-extractor
     let { selectAll } = require('css-select');
     let { getText } = require('domutils');
 
+    // XXX we have no good way to delegate to html-extractor.js
+    exports.pattern = '**';
+
     exports.extract = function(url, dom) {
         let metaTags = selectAll('meta[name^="twitter:"]', dom);
         let metadata = {};

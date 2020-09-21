@@ -10,6 +10,8 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
     let https = require('https');
     let { parseDOM } = require('htmlparser2');
 
+    let match = require('$:/plugins/hoelzro/first-class-urls/match.js');
+
     exports.method = 'GET';
 
     exports.path = new RegExp(`^/plugins/hoelzro/first-class-urls/fetch`);
@@ -67,27 +69,25 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
                     document = document.nextSibling;
                 }
 
-                let promises = [];
+                let extractors = [];
 
-                $tw.modules.forEachModuleOfType('$:/plugin/hoelzro/url-metadata-extractor', function(title, module) {
-                    let metadata = module.extract(fetchThisURL, actualDocument);
-                    if(metadata instanceof Promise) {
-                        promises.push(metadata);
-                    } else {
-                        promises.push(Promise.resolve(metadata));
-                    }
-                });
+                $tw.modules.forEachModuleOfType('$:/plugin/hoelzro/url-metadata-extractor', (_, module) => extractors.push(module));
 
-                Promise.all(promises).then(function(results) {
-                    let allMetadata = {};
-                    for(let metadata of results) {
-                        Object.assign(allMetadata, metadata);
-                    }
+                let extractorPatterns = extractors.map(e => e.pattern);
 
+                let bestMatch = match(extractorPatterns, fetchThisURL);
+                let bestExtractor = extractors[bestMatch];
+
+                let result = bestExtractor.extract(fetchThisURL, actualDocument);
+                if(!(result instanceof Promise)) {
+                    result = Promise.resolve(result);
+                }
+
+                result.then(function(metadata) {
                     response.writeHead(200, 'OK', {
                         'Content-Type': 'application/json'
                     });
-                    response.end(JSON.stringify(allMetadata));
+                    response.end(JSON.stringify(metadata));
                 });
             }
         });
