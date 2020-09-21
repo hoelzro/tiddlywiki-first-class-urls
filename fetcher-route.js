@@ -6,22 +6,40 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
 \*/
 (function() {
     let { URL } = require('url');
-    let fs = require('fs');
+    let http = require('http');
+    let https = require('https');
     let { parseDOM } = require('htmlparser2');
 
     exports.method = 'GET';
 
     exports.path = new RegExp(`^/plugins/hoelzro/first-class-urls/fetch`);
 
-    // XXX DEBUG
     function performFetch(url, callback) {
-        fs.readFile('sample.html', {encoding:'utf-8'}, function(error, data) {
-            if(error != null) {
-                callback(error);
+        url = new URL(url);
+        let get;
+        if(url.protocol == 'https:') {
+            get = https.get;
+        } else {
+            get = http.get;
+        }
+        let req = get(url, function(res) {
+            if(res.statusCode >= 200 && res.statusCode < 300) {
+                res.setEncoding('utf8');
+                let chunks = [];
+                res.on('data', (chunk) => chunks.push(chunk));
+                res.on('end', function() {
+                    callback(null, chunks.join(''));
+                });
             } else {
-                callback(null, data);
+                callback(new Exception(`non-2xx HTTP response ${res.statusCode}`));
             }
         });
+
+        req.on('error', function(error) {
+            callback(error);
+        });
+
+        req.end();
     }
 
     exports.handler = function(request, response, state) {
