@@ -87,6 +87,7 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
                     response.writeHead(200, 'OK', {
                         'Content-Type': 'application/json'
                     });
+                    metadata.url_extractor = bestExtractor.name ?? '';
                     response.end(JSON.stringify(metadata));
                 });
             }
