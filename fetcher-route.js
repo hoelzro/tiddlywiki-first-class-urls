@@ -33,7 +33,7 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
                     callback(null, chunks.join(''));
                 });
             } else {
-                callback(new Exception(`non-2xx HTTP response ${res.statusCode}`));
+                callback(new Error(`non-2xx HTTP response ${res.statusCode}`));
             }
         });
 
