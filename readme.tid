@@ -1,0 +1,17 @@
+! First Class URLs
+
+This was originally a plugin to make //all// URLs referenced by tiddlers behave more like tiddlers themselves - offering things like backlinks, but I think that was overly ambitious.
+
+! Installation
+
+In addition to installing the plugin file, you'll need to install a few Node modules:
+
+  * css-select
+  * htmlparser2
+
+! Usage
+
+To use this plugin, simply install it, and then import URLs through one of the following methods:
+
+  * Paste a URL into your wiki - you'll see the URL show up in the $:/Import tiddler.  You might need to wait a second for the metadata to populate.
+  * PUT a URL to your wiki like so: `http://MY_WIKI/plugins/hoelzro/first-class-urls/import?url=MY_URL`.

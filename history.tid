@@ -1,0 +1,4 @@
+! 1.0.0
+
+  * Allow users to import tiddlers by pasting them into their wiki, or by submitting them to a route
+  * Fetch metadata for URLs based on "extractors" - only current implementations are GitHub and a fallback one
