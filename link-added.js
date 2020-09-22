@@ -58,7 +58,7 @@ module-type: library
 
                 p = doRequest(link, httpRequest ?? $tw.utils.httpRequest).then(function(metadata) {
                     if('title' in metadata) {
-                        let title = wiki.generateNewTitle(`Link: ${metadata.title}`);
+                        let title = wiki.generateNewTitle(metadata.title);
                         let text = link;
                         if('description' in metadata) {
                             text += '\n\n' + metadata.description;
