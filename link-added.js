@@ -75,6 +75,8 @@ module-type: library
                             }
                         ));
                         wiki.deleteTiddler(placeholderTitle);
+
+                        return title;
                     } else {
                         return NO_METADATA_TITLE;
                     }
