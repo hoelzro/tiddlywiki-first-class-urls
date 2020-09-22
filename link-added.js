@@ -11,11 +11,11 @@ module-type: library
     const ALREADY_HAVE_URL = Symbol('ALREADY_HAVE_URL');
     const NO_METADATA_TITLE = Symbol('NO_METADATA_TITLE');
 
-    function doRequest(url) {
+    function doRequest(url, httpRequest) {
         console.log('url: ', url);
         // XXX what about timeouts?
         return new Promise(function(resolve, reject) {
-            $tw.utils.httpRequest({
+            httpRequest({
                 url: '/plugins/hoelzro/first-class-urls/fetch?url=' + encodeURIComponent(url),
                 callback: function(error, responseText) {
                     if(error != null) {
@@ -33,7 +33,7 @@ module-type: library
         });
     }
 
-    module.exports = function(wiki, links) {
+    module.exports = function(wiki, links, httpRequest) {
         let promises = [];
 
         for(let link of links) {
@@ -56,7 +56,7 @@ module-type: library
 
                 wiki.addTiddler(tiddler);
 
-                p = doRequest(link).then(function(metadata) {
+                p = doRequest(link, httpRequest ?? $tw.utils.httpRequest).then(function(metadata) {
                     if('title' in metadata) {
                         let title = wiki.generateNewTitle(`Link: ${metadata.title}`);
                         let text = link;
