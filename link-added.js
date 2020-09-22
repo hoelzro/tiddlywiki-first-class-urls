@@ -90,4 +90,8 @@ module-type: library
 
         return Promise.all(promises);
     };
+
+    module.exports.onLinksAdded = module.exports;
+    module.exports.NO_METADATA_TITLE = NO_METADATA_TITLE;
+    module.exports.ALREADY_HAVE_URL = ALREADY_HAVE_URL;
 })();
