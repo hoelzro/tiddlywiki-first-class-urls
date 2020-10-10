@@ -1,3 +1,5 @@
+let twCypress = require('./tiddlywiki-cypress');
+
 function cyPaste(p, pasteType, pasteData) {
     let event = new Event('paste', { bubbles: true, cancelable: true });
     let items = [{
@@ -20,15 +22,11 @@ function cyPaste(p, pasteType, pasteData) {
 
 describe('Import functionality', function() {
     it('Handles pastes appropriately', function() {
-        cy.server();
-        cy.route({
-            method: 'PUT',
-            url: '/recipes/default/tiddlers/**',
-            status: 204,
-            headers: {
-                etag: '"default/' + encodeURIComponent('$:/StoryList') + '/1:"' // XXX dynamically determine this based on URL
-            },
-            response: ''
+        twCypress.makeServer();
+
+        twCypress.mockMetadata('https://github.com/PuerkitoBio/goquery', {
+            title: 'goquery',
+            description: 'A little like that j-thing, only in Go'
         });
 
         cy.visit('http://localhost:9091');
@@ -39,6 +37,7 @@ describe('Import functionality', function() {
         cy.window().then(win => win.$tw.wiki.getTiddler('$:/StoryList').fields.list).should('include', '$:/Import');
 
         // XXX wait for server to respond?
+        cy.wait(5000);
 
         // XXX helper function to get element within tiddler
         cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').find('button').contains('Import').click();
@@ -49,15 +48,11 @@ describe('Import functionality', function() {
     });
 
     it('Should handle duplicate imports', function() {
-        cy.server();
-        cy.route({
-            method: 'PUT',
-            url: '/recipes/default/tiddlers/**',
-            status: 204,
-            headers: {
-                etag: '"default/' + encodeURIComponent('$:/StoryList') + '/1:"' // XXX dynamically determine this based on URL
-            },
-            response: ''
+        twCypress.makeServer();
+
+        twCypress.mockMetadata('https://github.com/PuerkitoBio/goquery', {
+            title: 'goquery',
+            description: 'A little like that j-thing, only in Go'
         });
 
         cy.visit('http://localhost:9091');
@@ -76,15 +71,11 @@ describe('Import functionality', function() {
     });
 
     it('Should not blow away existing tiddlers with the same name', function() {
-        cy.server();
-        cy.route({
-            method: 'PUT',
-            url: '/recipes/default/tiddlers/**',
-            status: 204,
-            headers: {
-                etag: '"default/' + encodeURIComponent('$:/StoryList') + '/1:"' // XXX dynamically determine this based on URL
-            },
-            response: ''
+        twCypress.makeServer();
+
+        twCypress.mockMetadata('https://github.com/PuerkitoBio/goquery', {
+            title: 'goquery',
+            description: 'A little like that j-thing, only in Go'
         });
 
         cy.visit('http://localhost:9091');
@@ -103,6 +94,7 @@ describe('Import functionality', function() {
         cy.window().then(win => win.$tw.wiki.getTiddler('$:/StoryList').fields.list).should('include', '$:/Import');
 
         // XXX wait for server to respond?
+        cy.wait(5000);
 
         // XXX helper function to get element within tiddler
         cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').find('button').contains('Import').click();
@@ -117,15 +109,11 @@ describe('Import functionality', function() {
     });
 
     it('Should handle non-URL pastes', function() {
-        cy.server();
-        cy.route({
-            method: 'PUT',
-            url: '/recipes/default/tiddlers/**',
-            status: 204,
-            headers: {
-                etag: '"default/' + encodeURIComponent('$:/StoryList') + '/1:"' // XXX dynamically determine this based on URL
-            },
-            response: ''
+        twCypress.makeServer();
+
+        twCypress.mockMetadata('https://github.com/PuerkitoBio/goquery', {
+            title: 'goquery',
+            description: 'A little like that j-thing, only in Go'
         });
 
         cy.visit('http://localhost:9091');
@@ -136,6 +124,7 @@ describe('Import functionality', function() {
         cy.window().then(win => win.$tw.wiki.getTiddler('$:/StoryList').fields.list).should('include', '$:/Import');
 
         // XXX wait for server to respond?
+        cy.wait(5000);
 
         // XXX helper function to get element within tiddler
         cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').find('button').contains('Import').click();
