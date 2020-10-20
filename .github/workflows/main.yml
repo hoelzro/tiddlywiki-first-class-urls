@@ -10,6 +10,6 @@ jobs:
     - uses: actions/checkout@v2
     - uses: cypress-io/github-action@v2
       with:
-        build: npm run build
-        start: npm run start
+        build: ./build
+        start: ./serve
         wait-on: http://localhost:9091

@@ -1,8 +1,4 @@
 {
-    "scripts": {
-      "build": "npm install --production && npx tiddlywiki /tmp/test-wiki --init server",
-      "start": "npx tiddlywiki /tmp/test-wiki --listen port=9091"
-    },
     "dependencies": {
         "css-select": "2.1.0",
         "htmlparser2": "4.1.0",

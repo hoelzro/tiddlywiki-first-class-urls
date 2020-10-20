@@ -1,0 +1,3 @@
+#!/bin/bash
+
+tiddlywiki ++$(pwd) /tmp/test-wiki --listen port=9091
