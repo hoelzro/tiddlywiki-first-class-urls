@@ -10,6 +10,6 @@ jobs:
     - uses: actions/checkout@v2
     - uses: cypress-io/github-action@v2
       with:
-        build: sh -c 'npm install --production && npx tiddlywiki /tmp/test-wiki --init server'
-        start: npx tiddlywiki /tmp/test-wiki --listen port=9091
+        build: npm run build
+        start: npm run start
         wait-on: http://localhost:9091
