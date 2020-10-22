@@ -135,4 +135,62 @@ describe('Import functionality', function() {
 
         // XXX check fields on new tiddler
     });
+
+    it('handles dragging a URL from the address bar (x-moz-url)', function() {
+        twCypress.makeServer();
+
+        twCypress.mockMetadata('https://github.com/PuerkitoBio/goquery', {
+            title: 'goquery',
+            description: 'A little like that j-thing, only in Go'
+        });
+
+        cy.visit('http://localhost:9091');
+
+        cyPaste(cy.get('div.tc-site-subtitle'), 'text/x-moz-url', 'https://github.com/PuerkitoBio/goquery\nPuerkitoBio/goquery: A little like that j-thing, only in Go.');
+
+        // XXX helper function to get story list or something
+        cy.window().then(win => win.$tw.wiki.getTiddler('$:/StoryList').fields.list).should('include', '$:/Import');
+
+        // XXX wait for server to respond?
+        cy.wait(5000);
+
+        // XXX helper function to get element within tiddler
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').find('button').contains('Import').click();
+
+
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').find('a.tc-tiddlylink').contains('goquery').click();
+
+        // XXX check fields on new tiddler
+    });
+
+    it('handles dragging a URL from the address bar (x-uri-list)', function() {
+        twCypress.makeServer();
+
+        twCypress.mockMetadata('https://github.com/PuerkitoBio/goquery', {
+            title: 'goquery',
+            description: 'A little like that j-thing, only in Go'
+        });
+
+        cy.visit('http://localhost:9091');
+
+        cyPaste(cy.get('div.tc-site-subtitle'), 'text/x-uri-list', 'https://github.com/PuerkitoBio/goquery\n#PuerkitoBio/goquery: A little like that j-thing, only in Go.');
+
+        // XXX helper function to get story list or something
+        cy.window().then(win => win.$tw.wiki.getTiddler('$:/StoryList').fields.list).should('include', '$:/Import');
+
+        // XXX wait for server to respond?
+        cy.wait(5000);
+
+        // XXX helper function to get element within tiddler
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').find('button').contains('Import').click();
+
+
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').find('a.tc-tiddlylink').contains('goquery').click();
+
+        // XXX check fields on new tiddler
+    });
+
+    // XXX handle multiple links, in either text/uri-list or text/x-moz-url format?
+    // XXX handle tiddlers
+    // XXX handle plugin tiddlers
 });

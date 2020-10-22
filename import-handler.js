@@ -28,13 +28,22 @@ module-type: startup
 
                     for(let title in importData.tiddlers) {
                         let text = importData.tiddlers[title].text;
-                        if(text.startsWith('http://') || text.startsWith('https://')) {
-                            let canonicalURL = canonicalizeURL(text);
+                        let lines = text.split('\n');
+
+                        let url;
+                        try {
+                            url = new URL(lines[0]);
+                        } catch(e) {
+                            // we didn't get a URL, so treat this text as regular
+                        }
+
+                        if(url != null && (url.protocol == 'http:' || url.protocol == 'https:')) {
+                            let canonicalURL = canonicalizeURL(lines[0]);
                             if(weHaveURLTiddler(canonicalURL)) {
                                 newImportFields['selection-' + title] = 'unchecked';
                                 newImportFields['message-' + title] = 'You already have this URL in your wiki';
                             } else {
-                                links.push(text);
+                                links.push(lines[0]);
                                 promiseTitles.push(title);
                             }
                         }
