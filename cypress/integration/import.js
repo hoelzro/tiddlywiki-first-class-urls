@@ -16,6 +16,31 @@ function cyPaste(p, pasteType, pasteData) {
     p.then(([elem]) => elem.dispatchEvent(event));
 }
 
+function cyDrop(p, dataType, data) {
+    let event = new Event('drop', { bubbles: true, cancelable: true });
+    event.dataTransfer = {
+        types: [dataType],
+        items: [{
+            kind: 'string',
+            type: dataType,
+            getAsString(fn) {
+                fn(data);
+            }
+        }],
+
+        getData(type) {
+            if(type == dataType) {
+                return data;
+            } else {
+                return '';
+            }
+        }
+    };
+    event.dataTransfer.types = [dataType];
+
+    p.then(([elem]) => elem.dispatchEvent(event));
+}
+
 // XXX helpers for which tiddlers are visible, other TW things
 // XXX fail tests if you see the TW exception banner ("Internal JavaScript Error")
 // XXX test delays with importing things - make sure we handle racy things ok
@@ -190,7 +215,45 @@ describe('Import functionality', function() {
         // XXX check fields on new tiddler
     });
 
+    it('handles installing a plugin', function() {
+        twCypress.makeServer();
+
+        cy.visit('http://localhost:9091');
+
+        let testPlugin = JSON.stringify({
+            "dependents": "",
+            "description": "Test Plugin",
+            "list": "readme",
+            "name": "Test Plugin",
+            "plugin-type": "plugin",
+            "text": JSON.stringify({
+                "tiddlers": {
+                    "$:/plugins/hoelzro/test/readme": {
+                        "text": "! A test plugin",
+                        "title": "$:/plugins/hoelzro/test/readme"
+                    },
+                    "$:/plugins/hoelzro/test/noop": {
+                        "text": "Does nothing",
+                        "title": "$:/plugins/hoelzro/test/noop"
+                    }
+                }
+            }),
+            "title": "$:/plugins/hoelzro/test",
+            "type": "application/json",
+            "version": "5.1.22"
+        });
+
+        cyDrop(cy.get('div.tc-dropzone'), 'text/vnd.tiddler', testPlugin);
+
+        // XXX helper function to get story list or something
+        cy.window().then(win => win.$tw.wiki.getTiddler('$:/StoryList').fields.list).should('include', '$:/Import');
+
+        // XXX helper function to get element within tiddler
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').find('button').contains('Import').click();
+
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').find('a.tc-tiddlylink').contains('$:/plugins/hoelzro/test').click();
+    });
+
     // XXX handle multiple links, in either text/uri-list or text/x-moz-url format?
     // XXX handle tiddlers
-    // XXX handle plugin tiddlers
 });
