@@ -18,6 +18,10 @@ PUT /plugins/hoelzro/first-class-urls/import?url=:url
     exports.handler = function(request, response, state) {
         let requestURL = new URL('http://localhost' + request.url);
         let fetchThisURL = requestURL.searchParams.get('url');
+        let extraFields = {};
+        try {
+            extraFields = JSON.parse(state.data);
+        } catch(e) {}
 
         let fetchStatusCode;
         let fetchStatus;
@@ -46,7 +50,7 @@ PUT /plugins/hoelzro/first-class-urls/import?url=:url
             fetchHandler(request, fauxResponse, state);
         }
 
-        onLinksAdded($tw.wiki, [fetchThisURL], fauxFetch).then(function([importedTitle]) {
+        onLinksAdded($tw.wiki, [fetchThisURL], extraFields, fauxFetch).then(function([importedTitle]) {
             if(importedTitle == ALREADY_HAVE_URL) {
                 response.writeHead(409, 'Conflict', {
                     'Content-Type': 'application/json'

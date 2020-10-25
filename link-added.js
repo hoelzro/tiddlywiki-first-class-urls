@@ -33,7 +33,8 @@ module-type: library
         });
     }
 
-    module.exports = function(wiki, links, httpRequest) {
+    module.exports = function(wiki, links, extraFields, httpRequest) {
+        extraFields = extraFields ?? {};
         let promises = [];
 
         for(let link of links) {
@@ -65,6 +66,7 @@ module-type: library
                         }
                         // XXX set field for latest fetch time?
                         wiki.addTiddler(new $tw.Tiddler(
+                            extraFields,
                             tiddler,
                             { text },
                             metadata,
