@@ -1,7 +1,7 @@
 /*\
 module-type: route
 
-GET /plugins/hoelzro/first-class-urls/import?url=:url
+PUT /plugins/hoelzro/first-class-urls/import?url=:url
 
 \*/
 
