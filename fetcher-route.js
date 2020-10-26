@@ -24,7 +24,10 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
         } else {
             get = http.get;
         }
-        let req = get(url, function(res) {
+        let headers = {
+            'User-Agent': 'TiddlyWikiFirstClassURLs/1.0.0',
+        };
+        let req = get(url, {headers}, function(res) {
             if(res.statusCode >= 200 && res.statusCode < 300) {
                 res.setEncoding('utf8');
                 let chunks = [];
