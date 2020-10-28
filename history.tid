@@ -1,3 +1,15 @@
+! 1.0.1
+
+!! Bug Fixes
+
+  * Handle dragging URLs into a wiki
+  * Don't error out when installing plugins or importing tiddlers
+  * Set a `User-Agent` header when fetching page metadata (some sites take the lack of `User-Agent` as a signal for shenanigans)
+
+!! Features
+
+  * Allow adding extra fields to tiddlers imported by `PUT /plugins/hoelzro/first-class-urls/import` via a JSON-encoded object in the request body
+
 ! 1.0.0
 
   * Allow users to import tiddlers by pasting them into their wiki, or by submitting them to a route
