@@ -16,3 +16,4 @@ build:
 
 clean:
 	make -f tw-plugin-builder/Makefile clean
+	rm -f index.html first-class-urls.tid
