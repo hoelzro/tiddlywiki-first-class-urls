@@ -5,7 +5,7 @@ export PLUGIN_AUTHOR=RobHoelz
 export PLUGIN_CORE_VERSION=5.1.21
 export PLUGIN_SOURCE=https://github.com/hoelzro/tw-first-class-urls
 
-index.html:
+index.html: build
 	bash build-index-html
 
 first-class-urls.tid:
