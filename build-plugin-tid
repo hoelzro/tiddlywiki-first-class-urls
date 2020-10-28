@@ -1,0 +1,3 @@
+#!/bin/bash
+
+./node_modules/.bin/tiddlywiki --load index.html --output . --rendertiddler '$:/core/templates/exporters/TidFile' first-class-urls.tid text/plain "" exportFilter '$:/plugins/hoelzro/first-class-urls'

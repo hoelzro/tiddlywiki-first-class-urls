@@ -1,0 +1,7 @@
+#!/bin/bash
+
+tempdir=$(mktemp -d)
+trap 'rm -rf "$tempdir"' EXIT
+
+./node_modules/.bin/tiddlywiki "$tempdir" --init empty
+./node_modules/.bin/tiddlywiki ++"$(pwd)" "$tempdir" --output . --build index
