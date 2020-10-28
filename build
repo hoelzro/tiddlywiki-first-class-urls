@@ -1,3 +1,0 @@
-#!/bin/bash
-
-npm install --production && npx tiddlywiki /tmp/test-wiki --init server && chmod 500 /tmp/test-wiki/tiddlers
