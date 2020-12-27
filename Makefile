@@ -17,3 +17,6 @@ build:
 clean:
 	make -f tw-plugin-builder/Makefile clean
 	rm -f index.html first-class-urls.tid
+
+test:
+	node unit-test/test-match.js
