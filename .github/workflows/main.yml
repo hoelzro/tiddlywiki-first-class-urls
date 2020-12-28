@@ -8,8 +8,4 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
-    - uses: cypress-io/github-action@v2
-      with:
-        build: ./build
-        start: ./serve
-        wait-on: http://localhost:9091
+    - run: make test
