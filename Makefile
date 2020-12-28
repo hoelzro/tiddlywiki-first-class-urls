@@ -20,3 +20,4 @@ clean:
 
 test:
 	node unit-test/test-match.js
+	node unit-test/test-put-route.js
