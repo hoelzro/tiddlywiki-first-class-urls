@@ -125,9 +125,31 @@ async function testOpenGraph() {
     });
 }
 
+async function testTwitterCard() {
+    let url = mockURL('/twitter-card.html');
+    let [res, body] = await importURL(url);
+
+    let payload = JSON.parse(body);
+
+    assert.strictEqual(res.statusCode, 201);
+    objectsMatch(payload, {
+        title: 'Twitter Card Test',
+    });
+
+    let tiddler = await getTiddler('Twitter Card Test');
+    objectsMatch(tiddler, {
+        description: 'This is a test that Twitter card meta elements work',
+        location: url,
+        text: `${url}\n\nThis is a test that Twitter card meta elements work`,
+        title: 'Twitter Card Test',
+        url_tiddler: 'true',
+    });
+}
+
 let testFunctions = [
     testBasic,
     testOpenGraph,
+    testTwitterCard,
 ];
 
 async function asyncMain() {
