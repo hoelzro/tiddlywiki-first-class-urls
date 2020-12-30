@@ -68,7 +68,8 @@ let server = http.createServer((req, res) => {
         });
     }
 
-    let filePath = path.join(process.cwd(), 'unit-test', 'mock-data', req.url);
+    let filePath = (new URL(req.url, 'http://localhost/')).pathname;
+    filePath = path.join(process.cwd(), 'unit-test', 'mock-data', filePath);
     retrieveFile(filePath);
 });
 
