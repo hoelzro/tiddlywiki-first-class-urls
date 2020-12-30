@@ -167,11 +167,37 @@ async function testExtraFields() {
     });
 }
 
+async function testGitHubExtractor() {
+    let url = mockURL('/github.html');
+    let [res, body] = await importURL(url, {
+        _url: 'https://github.com/hoelzro/tiddlywiki-first-class-urls',
+    });
+
+    let payload = JSON.parse(body);
+
+    assert.strictEqual(res.statusCode, 201);
+    objectsMatch(payload, {
+        title: 'tiddlywiki-first-class-urls',
+    });
+
+    let tiddler = await getTiddler(payload.title);
+    objectsMatch(tiddler, {
+        github_author: 'hoelzro',
+        github_project: 'tiddlywiki-first-class-urls',
+        location: url,
+        text: `${url}\n\nAn experimental plugin to make importing tiddlers easier - hoelzro/tiddlywiki-first-class-urls`,
+        title: payload.title,
+        url_extractor: 'github',
+        url_tiddler: 'true',
+    });
+}
+
 let testFunctions = [
     testBasic,
     testOpenGraph,
     testTwitterCard,
     testExtraFields,
+    testGitHubExtractor,
 ];
 
 async function asyncMain() {
