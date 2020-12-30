@@ -50,6 +50,7 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
     exports.handler = function(request, response, state) {
         let requestURL = new URL('http://localhost' + request.url);
         let fetchThisURL = requestURL.searchParams.get('url');
+        let matchThisURL = requestURL.searchParams.get('_url') ?? fetchThisURL;
 
         performFetch(fetchThisURL, function(error, html) {
             if(error != null) {
@@ -78,7 +79,7 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
 
                 let extractorPatterns = extractors.map(e => e.pattern);
 
-                let bestMatch = match(extractorPatterns, fetchThisURL);
+                let bestMatch = match(extractorPatterns, matchThisURL);
                 let bestExtractor = extractors[bestMatch];
 
                 let result = bestExtractor.extract(fetchThisURL, actualDocument);

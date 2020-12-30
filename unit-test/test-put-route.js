@@ -238,6 +238,10 @@ async function importURL(urlToImport, extraFields) {
     url.searchParams.append('url', urlToImport);
     let body;
     if(extraFields != null) {
+        if('_url' in extraFields) {
+            url.searchParams.append('_url', extraFields._url);
+            delete extraFields._url;
+        }
         body = JSON.stringify(extraFields);
     }
 
