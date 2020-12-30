@@ -29,7 +29,7 @@ function parseHTTPResponse(data) {
         headers[m[1]] = m[2];
     }
 
-    let body = lines.slice(i + 1).join('\n');
+    let body = Buffer.from(lines.slice(i + 1).join('\n'), 'utf-8');
 
     headers['Content-Length'] = body.length.toString();
 
