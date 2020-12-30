@@ -146,10 +146,32 @@ async function testTwitterCard() {
     });
 }
 
+async function testExtraFields() {
+    // XXX using the query param to throw off duplicate detection
+    let url = mockURL('/basic.html?_=testExtraFields');
+    let [res, body] = await importURL(url, {
+        tags: 'Foo Bar',
+    });
+
+    let payload = JSON.parse(body);
+
+    assert.strictEqual(res.statusCode, 201);
+
+    let tiddler = await getTiddler(payload.title);
+    objectsMatch(tiddler, {
+        location: url,
+        tags: 'Foo Bar',
+        text: url,
+        title: payload.title,
+        url_tiddler: 'true',
+    });
+}
+
 let testFunctions = [
     testBasic,
     testOpenGraph,
     testTwitterCard,
+    testExtraFields,
 ];
 
 async function asyncMain() {
