@@ -178,7 +178,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function request(method, url) {
+function request(method, url, body) {
     return new Promise((resolve, reject) => {
         let req = http.request(url, {
             method,
@@ -187,6 +187,8 @@ function request(method, url) {
                 'X-Requested-With': 'TiddlyWiki',
             },
         });
+
+        req.write(body ?? '');
         req.end();
 
         let chunks = [];
@@ -209,11 +211,15 @@ function request(method, url) {
     });
 }
 
-async function importURL(urlToImport) {
+async function importURL(urlToImport, extraFields) {
     let url = new URL(`http://localhost:${TIDDLYWIKI_PORT}/plugins/hoelzro/first-class-urls/import`);
     url.searchParams.append('url', urlToImport);
+    let body;
+    if(extraFields != null) {
+        body = JSON.stringify(extraFields);
+    }
 
-    return await request('PUT', url);
+    return await request('PUT', url, body);
 }
 
 async function getTiddler(title) {
