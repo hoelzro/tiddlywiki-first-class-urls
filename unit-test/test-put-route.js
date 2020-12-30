@@ -78,15 +78,30 @@ asyncMain().then(() => {
     process.exit(1);
 });
 
+function objectsMatch(got, expected) {
+    for(let key of Object.keys(expected)) {
+        assert.strictEqual(got[key], expected[key]);
+    }
+}
+
 async function testBasic() {
-    let [res, body] = await importURL(mockURL('/basic.html'));
+    let url = mockURL('/basic.html');
+    let [res, body] = await importURL(url);
 
     let payload = JSON.parse(body);
 
     assert.strictEqual(res.statusCode, 201);
-    assert.strictEqual(payload.title, 'Blog');
+    objectsMatch(payload, {
+        title: 'Blog',
+    });
 
-    // XXX get the underlying tiddler and check it?
+    let tiddler = await getTiddler('Blog');
+    objectsMatch(tiddler, {
+        location: url,
+        text: url,
+        title: 'Blog',
+        url_tiddler: 'true',
+    });
 }
 
 let testFunctions = [
@@ -155,6 +170,15 @@ async function importURL(urlToImport) {
     url.searchParams.append('url', urlToImport);
 
     return await request('PUT', url);
+}
+
+async function getTiddler(title) {
+    let url = new URL(`http://localhost:${TIDDLYWIKI_PORT}/recipes/default/tiddlers/${title}`);
+    let [_, body] = await request('GET', url);
+    let t = JSON.parse(body);
+    Object.assign(t, t.fields);
+    delete t.fields;
+    return t;
 }
 
 function mockURL(path) {
