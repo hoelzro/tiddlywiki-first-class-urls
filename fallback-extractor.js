@@ -23,6 +23,10 @@ module-type: $:/plugin/hoelzro/url-metadata-extractor
             let name = meta.attribs.name ?? meta.attribs.property;
 
             switch(name) {
+                case 'twitter:title':
+                case 'og:title':
+                    metadata.title = meta.attribs.content;
+                    break;
                 case 'twitter:description':
                 case 'og:description':
                     metadata.description = meta.attribs.content;
