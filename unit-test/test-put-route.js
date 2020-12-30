@@ -104,8 +104,30 @@ async function testBasic() {
     });
 }
 
+async function testOpenGraph() {
+    let url = mockURL('/opengraph.html');
+    let [res, body] = await importURL(url);
+
+    let payload = JSON.parse(body);
+
+    assert.strictEqual(res.statusCode, 201);
+    objectsMatch(payload, {
+        title: 'OpenGraph Test',
+    });
+
+    let tiddler = await getTiddler('OpenGraph Test');
+    objectsMatch(tiddler, {
+        description: 'This is a test that opengraph meta elements work',
+        location: url,
+        text: `${url}\n\nThis is a test that opengraph meta elements work`,
+        title: 'OpenGraph Test',
+        url_tiddler: 'true',
+    });
+}
+
 let testFunctions = [
     testBasic,
+    testOpenGraph,
 ];
 
 async function asyncMain() {
