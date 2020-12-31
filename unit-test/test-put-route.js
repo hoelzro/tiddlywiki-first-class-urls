@@ -192,12 +192,33 @@ async function testGitHubExtractor() {
     });
 }
 
+async function test3xxRedirect() {
+    let url = mockURL('/3xx.html');
+    let [res, body] = await importURL(url);
+
+    let payload = JSON.parse(body);
+
+    assert.strictEqual(res.statusCode, 201);
+    objectsMatch(payload, {
+        title: 'Blog',
+    });
+
+    let tiddler = await getTiddler('Blog');
+    objectsMatch(tiddler, {
+        location: url,
+        text: url,
+        title: 'Blog',
+        url_tiddler: 'true',
+    });
+}
+
 let testFunctions = [
     testBasic,
     testOpenGraph,
     testTwitterCard,
     testExtraFields,
     testGitHubExtractor,
+    test3xxRedirect,
 ];
 
 async function asyncMain() {
