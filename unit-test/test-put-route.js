@@ -102,8 +102,7 @@ async function testTwitterCard() {
 }
 
 async function testExtraFields() {
-    // XXX using the query param to throw off duplicate detection
-    let url = mockURL('/basic.html?_=testExtraFields');
+    let url = mockURL('/basic.html');
     let [res, body] = await importURL(url, {
         tags: 'Foo Bar',
     });
