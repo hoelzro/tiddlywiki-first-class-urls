@@ -179,14 +179,17 @@ let testFunctions = [
 
 async function asyncMain() {
     let mockServer = await setUpMockServer();
-    let twServer = await setUpTiddlyWikiServer();
 
     try {
         for(let test of testFunctions) {
-            await test();
+            let twServer = await setUpTiddlyWikiServer();
+            try {
+                await test();
+            } finally {
+                await twServer.teardown();
+            }
         }
     } finally {
-        await twServer.teardown();
         await mockServer.teardown();
     }
 }
