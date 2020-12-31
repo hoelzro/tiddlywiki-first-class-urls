@@ -5,6 +5,8 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
 
 \*/
 (function() {
+    const MAX_REDIRECTS = 5;
+
     let { URL } = require('url');
     let http = require('http');
     let https = require('https');
@@ -16,7 +18,9 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
 
     exports.path = new RegExp(`^/plugins/hoelzro/first-class-urls/fetch`);
 
-    function performFetch(url, callback) {
+    function performFetch(url, callback, numRedirects) {
+        numRedirects ??= MAX_REDIRECTS;
+
         url = new URL(url);
         let get;
         if(url.protocol == 'https:') {
@@ -35,6 +39,13 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
                 res.on('end', function() {
                     callback(null, chunks.join(''));
                 });
+            } else if(res.statusCode >= 300 && res.statusCode < 400) {
+                if(numRedirects > 0) {
+                    let newURL = new URL(res.headers.location, url);
+                    performFetch(newURL, callback, numRedirects - 1);
+                } else {
+                    callback(new Error('too many redirects'));
+                }
             } else {
                 callback(new Error(`non-2xx HTTP response ${res.statusCode}`));
             }
