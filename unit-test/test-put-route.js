@@ -25,51 +25,6 @@ function dumpChildOutput(label, data) {
     }
 }
 
-let wikiDir = fs.mkdtempSync(path.join(os.tmpdir(), 'tw-first-class-url-tests-'));
-
-childProcess.spawnSync('npx', ['tiddlywiki', wikiDir, '--init', 'server']);
-
-let twServer = childProcess.spawn('npx', ['tiddlywiki', '++' + process.cwd(), wikiDir, '--listen', 'port=' + TIDDLYWIKI_PORT]);
-
-twServer.on('close', (code) => {
-    // XXX exit non-zero if code != 0?
-    console.log(`tiddlywiki exited with code ${code}`);
-});
-
-twServer.stdout.on('data', (data) => {
-    dumpChildOutput('tw out', data);
-});
-
-twServer.stderr.on('data', (data) => {
-    dumpChildOutput('tw err', data);
-});
-
-let mockServer = childProcess.spawn('node', ['unit-test/mock-server.js', MOCK_SERVER_PORT.toString()]);
-
-mockServer.on('close', (code) => {
-    // XXX exit non-zero if code != 0?
-    console.log(`mock server exited with code ${code}`);
-});
-
-mockServer.stdout.on('data', (data) => {
-    dumpChildOutput('mock out', data);
-});
-
-mockServer.stderr.on('data', (data) => {
-    dumpChildOutput('mock err', data);
-});
-
-process.on('exit', () => {
-    try {
-        fs.rmdirSync(wikiDir, {
-            recursive: true,
-        });
-        twServer.kill();
-        mockServer.kill();
-    } catch(_) {} // ignore exceptions to make sure we exit cleanly with the
-                  // right status code
-});
-
 asyncMain().then(() => {
     // XXX exit conditional on test results
     process.exit(0);
@@ -221,19 +176,69 @@ let testFunctions = [
     test3xxRedirect,
 ];
 
-async function asyncMain() {
-    await waitForServerReady();
 
-    for(let test of testFunctions) {
-        await test();
+async function asyncMain() {
+    let mockServer = await setUpMockServer();
+    let twServer = await setUpTiddlyWikiServer();
+
+    try {
+        for(let test of testFunctions) {
+            await test();
+        }
+    } finally {
+        await twServer.teardown();
+        await mockServer.teardown();
     }
 }
 
-async function waitForServerReady() {
+function TiddlyWikiServer(childProcess, wikiDir) {
+    this.childProcess = childProcess;
+    this.wikiDir = wikiDir;
+}
+
+TiddlyWikiServer.prototype.teardown = function() {
+    let self = this;
+
+    // XXX exit non-zero if code != 0?
+    let cleanUpChildPromise = new Promise((resolve) => {
+        if((self.childProcess.exitCode ?? self.childProcess.signalCode) != null) {
+            resolve();
+        } else {
+            self.childProcess.on('exit', (code, signal) => {
+                console.log(`tiddlywiki exited with code ${code ?? signal}`);
+                resolve();
+            });
+
+            self.childProcess.kill();
+        }
+    });
+
+    return cleanUpChildPromise.finally(function() {
+        fs.rmdirSync(self.wikiDir, {
+            recursive: true,
+        });
+    });
+}
+
+async function setUpTiddlyWikiServer() {
+    let wikiDir = fs.mkdtempSync(path.join(os.tmpdir(), 'tw-first-class-url-tests-'));
+
+    childProcess.spawnSync('npx', ['tiddlywiki', wikiDir, '--init', 'server']);
+
+    let twServer = childProcess.spawn('npx', ['tiddlywiki', '++' + process.cwd(), wikiDir, '--listen', 'port=' + TIDDLYWIKI_PORT]);
+
+    twServer.stdout.on('data', (data) => {
+        dumpChildOutput('tw out', data);
+    });
+
+    twServer.stderr.on('data', (data) => {
+        dumpChildOutput('tw err', data);
+    });
+
     while(true) {
         try {
             await request('GET', `http://localhost:${TIDDLYWIKI_PORT}/status`);
-            return;
+            return new TiddlyWikiServer(twServer, wikiDir);
         } catch(e) {
             if(e.code != 'ECONNREFUSED') {
                 throw e;
@@ -241,6 +246,43 @@ async function waitForServerReady() {
         }
         await sleep(1000);
     }
+}
+
+function MockServer(childProcess) {
+    this.childProcess = childProcess;
+}
+
+MockServer.prototype.teardown = function() {
+    let self = this;
+
+    return new Promise((resolve) => {
+        if((self.childProcess.exitCode ?? self.childProcess.signalCode) != null) {
+            resolve();
+        } else {
+            self.childProcess.on('exit', (code, signal) => {
+                console.log(`mock server exited with code ${code ?? signal}`);
+                resolve();
+            });
+
+            self.childProcess.kill();
+        }
+    });
+};
+
+async function setUpMockServer() {
+    let mockServer = childProcess.spawn('node', ['unit-test/mock-server.js', MOCK_SERVER_PORT.toString()]);
+
+    mockServer.stdout.on('data', (data) => {
+        dumpChildOutput('mock out', data);
+    });
+
+    mockServer.stderr.on('data', (data) => {
+        dumpChildOutput('mock err', data);
+    });
+
+    // XXX wait for it to be ready too
+
+    return new MockServer(mockServer);
 }
 
 function sleep(ms) {
