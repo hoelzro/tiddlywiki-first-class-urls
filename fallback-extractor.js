@@ -15,6 +15,10 @@ module-type: $:/plugin/hoelzro/url-metadata-extractor
         let twitterCardMetaTags = selectAll('meta[name^="twitter:"], meta[property^="twitter:"]', dom);
         let openGraphMetaTags = selectAll('meta[name^="og:"], meta[property^="og:"]', dom);
 
+        if(titleElement == null) {
+            return {};
+        }
+
         let metadata = {
             title: getText(titleElement),
         };
