@@ -1,3 +1,11 @@
+! 1.0.2
+
+!! Bug Fixes
+
+  * Follow 3xx redirects to fetch page data
+  * Use title metadata from Twitter Card/OpenGraph data if available
+  * Don't crash if `<title>` isn't available
+
 ! 1.0.1
 
 !! Bug Fixes
