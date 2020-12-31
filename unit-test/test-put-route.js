@@ -167,6 +167,31 @@ async function test3xxRedirect() {
     });
 }
 
+async function testAlreadyHaveURLTiddler() {
+    let url = mockURL('/basic.html');
+    let [res, body] = await importURL(url);
+
+    let payload = JSON.parse(body);
+
+    assert.strictEqual(res.statusCode, 201);
+    objectsMatch(payload, {
+        title: 'Blog',
+    });
+
+    let tiddler = await getTiddler('Blog');
+    objectsMatch(tiddler, {
+        location: url,
+        text: url,
+        title: 'Blog',
+        url_tiddler: 'true',
+    });
+
+    [res, body] = await importURL(url);
+    payload = JSON.parse(body);
+
+    assert.strictEqual(res.statusCode, 409);
+}
+
 let testFunctions = [
     testBasic,
     testOpenGraph,
@@ -174,6 +199,7 @@ let testFunctions = [
     testExtraFields,
     testGitHubExtractor,
     test3xxRedirect,
+    testAlreadyHaveURLTiddler,
 ];
 
 
