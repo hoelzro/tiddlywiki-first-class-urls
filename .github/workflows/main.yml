@@ -3,12 +3,14 @@ on:
   push:
     branches:
     - main
+    - ci-test
 jobs:
   test:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
     - run: |-
+        node --version
         git submodule init
         git submodule update
         npm install
