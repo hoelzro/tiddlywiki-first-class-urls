@@ -7,11 +7,14 @@ jobs:
   test:
     runs-on: ubuntu-20.04
     timeout-minutes: 1
+    strategy:
+      matrix:
+        node: [15]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
       with:
-        node-version: 15
+        node-version: ${{ matrix.node }}
     - run: |-
         git submodule init
         git submodule update
