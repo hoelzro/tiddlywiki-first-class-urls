@@ -57,6 +57,7 @@ module-type: startup
 
                     let fauxWikiForImport = {
                         addTiddler(tiddler) {
+                            // XXX shouldn't this be inverted? the fact that deleteTiddler below doesn't consider addedTiddlers makes me think my thoughts were consistent at the time?
                             if(tiddler.fields.url_tiddler_pending_fetch) {
                                 return $tw.wiki.addTiddler(tiddler);
                             } else {
@@ -65,6 +66,7 @@ module-type: startup
                         },
 
                         deleteTiddler(title) {
+                            // XXX shouldn't you delete from addedTiddlers if appropriate?
                             return $tw.wiki.deleteTiddler(title);
                         },
 

@@ -1,4 +1,4 @@
-const DEBUG = false;
+const DEBUG = true;
 
 const TIDDLYWIKI_PORT  = 40001;
 const MOCK_SERVER_PORT = 40002;
@@ -239,6 +239,14 @@ let testFunctions = [
     testTitleAlreadyExists,
 ];
 
+// XXX test what happens when you specify "title" as an extra PUT field
+// XXX test 4xx errors from importee site
+// XXX test 5xx errors from importee site
+// XXX look at commits to identify tests
+// XXX test what happens when we have no title
+// XXX test <meta> redirect
+// XXX look at which non-alpha characters are often used as separators in titles
+// XXX https://medium.com/@jmarhee/running-gitea-on-kubernetes-d1ca5bcf0a4e breaks $:/Import (the title is "Running Gitea on Kubernetes. Gitea is one of several notable… by Joseph D. Marhee | Medium", so the pipe character screws things up). TiddlyWiki HEAD may have fixed this, but it's more fuel to the "massage titles" task, plus the "write my own import tiddler" task
 
 async function asyncMain() {
     let mockServer = await setUpMockServer();

@@ -15,9 +15,11 @@ module-type: library
         console.log('url: ', url);
         // XXX what about timeouts?
         return new Promise(function(resolve, reject) {
+            console.log('making HTTP request');
             httpRequest({
                 url: '/plugins/hoelzro/first-class-urls/fetch?url=' + encodeURIComponent(url),
                 callback: function(error, responseText) {
+                    console.log('got response', error, responseText);
                     if(error != null) {
                         reject(error);
                     } else {
@@ -59,6 +61,7 @@ module-type: library
 
                 p = doRequest(link, httpRequest ?? $tw.utils.httpRequest).then(function(metadata) {
                     if('title' in metadata) {
+                        // XXX test me ↓
                         let title = wiki.generateNewTitle(metadata.title.replace(/[\[\]\{\}\|]/, ''));
                         let text = link;
                         if('description' in metadata) {

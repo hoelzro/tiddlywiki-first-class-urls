@@ -47,6 +47,7 @@ PUT /plugins/hoelzro/first-class-urls/import?url=:url
                 },
             };
 
+            // XXX wouldn't it be better just to extract the common logic out?
             fetchHandler(request, fauxResponse, state);
         }
 
