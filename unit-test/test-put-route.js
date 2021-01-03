@@ -2,6 +2,7 @@ const DEBUG = false;
 
 const TIDDLYWIKI_PORT  = 40001;
 const MOCK_SERVER_PORT = 40002;
+const NUM_ATTEMPTS     = 10;
 
 const assert       = require('assert');
 const childProcess = require('child_process');
@@ -302,7 +303,7 @@ async function setUpTiddlyWikiServer() {
         dumpChildOutput('tw err', data);
     });
 
-    while(true) {
+    for(let i = 0; i < NUM_ATTEMPTS; i++) {
         try {
             let [_, body] = await request('GET', `http://localhost:${TIDDLYWIKI_PORT}/status`);
             let status = JSON.parse(body);
@@ -316,6 +317,7 @@ async function setUpTiddlyWikiServer() {
         }
         await sleep(1000);
     }
+    throw new Error(`unable to reach tiddlywiki server after ${NUM_ATTEMPTS} attempts`);
 }
 
 function MockServer(childProcess) {
