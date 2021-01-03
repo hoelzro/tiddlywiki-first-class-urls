@@ -310,8 +310,15 @@ async function setUpTiddlyWikiServer() {
     twServer.stderr.on('data', (data) => {
         dumpChildOutput('tw err', data);
     });
+    let exitCode;
+    twServer.on('exit', (code, signal) => {
+        exitCode = code ?? signal;
+    });
 
     for(let i = 0; i < NUM_ATTEMPTS; i++) {
+        if(exitCode != null) {
+            throw new Error(`tiddlywiki server exited with code ${exitCode}`);
+        }
         try {
             let [_, body] = await request('GET', `http://localhost:${TIDDLYWIKI_PORT}/status`);
             let status = JSON.parse(body);
