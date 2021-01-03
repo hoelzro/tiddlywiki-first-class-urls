@@ -292,7 +292,7 @@ async function setUpTiddlyWikiServer() {
     childProcess.spawnSync('npx', ['tiddlywiki', wikiDir, '--init', 'server']);
 
     let username = path.basename(wikiDir);
-    let twServer = childProcess.spawn('npx', ['tiddlywiki', '++' + process.cwd(), wikiDir, '--listen', 'port=' + TIDDLYWIKI_PORT, 'anon-username=' + username]);
+    let twServer = childProcess.spawn('./node_modules/.bin/tiddlywiki', ['++' + process.cwd(), wikiDir, '--listen', 'port=' + TIDDLYWIKI_PORT, 'anon-username=' + username]);
 
     twServer.stdout.on('data', (data) => {
         dumpChildOutput('tw out', data);
