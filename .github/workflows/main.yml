@@ -13,9 +13,10 @@ jobs:
         - 14
         - 15
         tiddlywiki:
-        - 5.1.21
-        - 5.1.22
-        - 5.1.23
+        - tiddlywiki@5.1.21
+        - tiddlywiki@5.1.22
+        - tiddlywiki@5.1.23
+        - https://github.com/Jermolene/TiddlyWiki5.git
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
@@ -25,6 +26,6 @@ jobs:
         git submodule init
         git submodule update
         npm install
-        npm install tiddlywiki@${{ matrix.tiddlywiki }}
+        npm install ${{ matrix.tiddlywiki }}
         make build
         make test
