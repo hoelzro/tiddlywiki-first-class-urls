@@ -6,7 +6,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-20.04
-    timeout-minutes: 1
+    timeout-minutes: 3
     strategy:
       matrix:
         node:
