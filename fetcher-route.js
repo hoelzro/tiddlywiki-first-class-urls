@@ -19,7 +19,7 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
     exports.path = new RegExp(`^/plugins/hoelzro/first-class-urls/fetch`);
 
     function performFetch(url, callback, numRedirects) {
-        numRedirects ??= MAX_REDIRECTS;
+        numRedirects = numRedirects ?? MAX_REDIRECTS;
 
         url = new URL(url);
         let get;
