@@ -299,7 +299,8 @@ async function setUpTiddlyWikiServer() {
 
     childProcess.spawnSync('npx', ['tiddlywiki', wikiDir, '--init', 'server']);
 
-    let twServer = childProcess.spawn('npx', ['tiddlywiki', '++' + process.cwd(), wikiDir, '--listen', 'port=' + TIDDLYWIKI_PORT]);
+    let username = path.basename(wikiDir);
+    let twServer = childProcess.spawn('npx', ['tiddlywiki', '++' + process.cwd(), wikiDir, '--listen', 'port=' + TIDDLYWIKI_PORT, 'anon-username=' + username]);
 
     twServer.stdout.on('data', (data) => {
         dumpChildOutput('tw out', data);
@@ -311,8 +312,11 @@ async function setUpTiddlyWikiServer() {
 
     while(true) {
         try {
-            await request('GET', `http://localhost:${TIDDLYWIKI_PORT}/status`);
-            return new TiddlyWikiServer(twServer, wikiDir);
+            let [_, body] = await request('GET', `http://localhost:${TIDDLYWIKI_PORT}/status`);
+            let status = JSON.parse(body);
+            if(status.username == username) {
+                return new TiddlyWikiServer(twServer, wikiDir);
+            }
         } catch(e) {
             if(e.code != 'ECONNREFUSED') {
                 throw e;
