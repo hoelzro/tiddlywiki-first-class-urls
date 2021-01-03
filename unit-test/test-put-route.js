@@ -272,7 +272,9 @@ TiddlyWikiServer.prototype.teardown = function() {
             resolve();
         } else {
             self.childProcess.on('exit', (code, signal) => {
-                console.log(`tiddlywiki exited with code ${code ?? signal}`);
+                if((signal ?? '') != 'SIGTERM') {
+                    console.log(`tiddlywiki exited with code ${code ?? signal}`);
+                }
                 resolve();
             });
 
@@ -339,7 +341,9 @@ MockServer.prototype.teardown = function() {
             resolve();
         } else {
             self.childProcess.on('exit', (code, signal) => {
-                console.log(`mock server exited with code ${code ?? signal}`);
+                if((signal ?? '') != 'SIGTERM') {
+                    console.log(`mock server exited with code ${code ?? signal}`);
+                }
                 resolve();
             });
 
