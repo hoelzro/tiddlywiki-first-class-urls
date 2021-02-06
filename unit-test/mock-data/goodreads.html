@@ -1,0 +1,29 @@
+HTTP/1.1 200 OK
+Content-Type: text/html
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Random Title: A Subtitle by Robert Hoelz</title>
+    <meta content='books.book' property='og:type'>
+    <meta content='Random Title' property='og:title'>
+    <meta content='foo bar ...' property='og:description'>
+  </head>
+  <body>
+    <div id='descriptionContainer'>
+      <div id='description' class='readable stacked' style='right:0'>
+        <span id='freeTextContainer123456789123456'>foo bar</span>
+        <span id='freeText123456789123456' style='display:none'>foo bar baz</span>
+        <a data-text-id='123456789123456' href='#' onclick='swapContent($(this));; return false;'>...more</a>
+      </div>
+    </div>
+    <div id='bookAuthors' class=''>
+      <span class='by'>by</span>
+      <span itemprop='author' itemscope='' itemtype='http://schema.org/Person'>
+        <div class='authorName__container'>
+          <a class='authorName' itemprop='url' href='https://www.goodreads.com/author/show/12345.Robert_Hoelz'><span itemprop='name'>Robert Hoelz</span></a>
+        </div>
+      </span>
+    </div>
+  </body>
+</html>

@@ -229,6 +229,31 @@ async function testTitleAlreadyExists() {
     });
 }
 
+async function testGoodreadsExtractor() {
+    let url = mockURL('/goodreads.html');
+    let [res, body] = await importURL(url, {
+        _url: 'https://www.goodreads.com/book/show/12345.Random_Title',
+    });
+
+    let payload = JSON.parse(body);
+
+    assert.strictEqual(res.statusCode, 201);
+    objectsMatch(payload, {
+        title: 'Random Title',
+    });
+
+    let tiddler = await getTiddler(payload.title);
+    objectsMatch(tiddler, {
+        goodreads_authors: '[[Robert Hoelz]]',
+        description: 'foo bar baz',
+        location: url,
+        title: payload.title,
+        url_extractor: 'goodreads',
+        url_tiddler: 'true',
+        text: `${url}\n\nfoo bar baz`,
+    });
+}
+
 let testFunctions = [
     testBasic,
     testOpenGraph,
@@ -238,6 +263,7 @@ let testFunctions = [
     test3xxRedirect,
     testAlreadyHaveURLTiddler,
     testTitleAlreadyExists,
+    testGoodreadsExtractor,
 ];
 
 
