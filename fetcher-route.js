@@ -18,6 +18,28 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
 
     exports.path = new RegExp(`^/plugins/hoelzro/first-class-urls/fetch`);
 
+    function HTTPError(res) {
+        this.res = res;
+    }
+
+    HTTPError.prototype = new Error();
+
+    Object.defineProperty(HTTPError.prototype, 'message', {
+        get() {
+            return `non-2xx HTTP response ${this.statusCode}`;
+        },
+    });
+
+    HTTPError.prototype.toString = function() {
+        return this.message;
+    };
+
+    Object.defineProperty(HTTPError.prototype, 'statusCode', {
+        get() {
+            return this.res.statusCode;
+        },
+    });
+
     function performFetch(url, callback, numRedirects) {
         numRedirects = numRedirects ?? MAX_REDIRECTS;
 
@@ -47,7 +69,7 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
                     callback(new Error('too many redirects'));
                 }
             } else {
-                callback(new Error(`non-2xx HTTP response ${res.statusCode}`));
+                callback(new HTTPError(res));
             }
         });
 
@@ -65,11 +87,18 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
 
         performFetch(fetchThisURL, function(error, html) {
             if(error != null) {
-                console.log(error);
-                response.writeHead(500, 'Internal Server Error', {
-                    'Content-Type': 'application/json'
-                });
-                response.end('{}');
+                if(error instanceof HTTPError && error.statusCode == 404) {
+                    response.writeHead(400, 'Page Not Found', {
+                        'Content-Type': 'application/json'
+                    });
+                    response.end('{}');
+                } else {
+                    console.log(error.toString());
+                    response.writeHead(500, 'Internal Server Error', {
+                        'Content-Type': 'application/json'
+                    });
+                    response.end('{}');
+                }
             } else {
                 let [document] = parseDOM(html);
 
