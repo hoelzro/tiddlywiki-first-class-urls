@@ -261,6 +261,13 @@ async function testPDF() {
     assert.strictEqual(res.statusCode, 400);
 }
 
+async function test404() {
+    let url = mockURL('/doesnt-exist/');
+    let [res, _] = await importURL(url);
+
+    assert.strictEqual(res.statusCode, 400);
+}
+
 let testFunctions = [
     testBasic,
     testOpenGraph,
@@ -272,6 +279,7 @@ let testFunctions = [
     testTitleAlreadyExists,
     testGoodreadsExtractor,
     testPDF,
+    test404,
 ];
 
 
