@@ -254,6 +254,13 @@ async function testGoodreadsExtractor() {
     });
 }
 
+async function testPDF() {
+    let url = mockURL('/blank.pdf');
+    let [res, _] = await importURL(url);
+
+    assert.strictEqual(res.statusCode, 400);
+}
+
 let testFunctions = [
     testBasic,
     testOpenGraph,
@@ -264,6 +271,7 @@ let testFunctions = [
     testAlreadyHaveURLTiddler,
     testTitleAlreadyExists,
     testGoodreadsExtractor,
+    testPDF,
 ];
 
 
