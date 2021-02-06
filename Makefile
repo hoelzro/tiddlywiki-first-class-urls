@@ -11,6 +11,9 @@ index.html: build
 first-class-urls.tid:
 	bash build-plugin-tid
 
+server:
+	bash serve-temp-wiki
+
 build:
 	make -f tw-plugin-builder/Makefile build
 
