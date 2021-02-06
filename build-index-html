@@ -4,4 +4,8 @@ tempdir=$(mktemp -d)
 trap 'rm -rf "$tempdir"' EXIT
 
 ./node_modules/.bin/tiddlywiki "$tempdir" --init empty
-./node_modules/.bin/tiddlywiki ++"$(pwd)" "$tempdir" --output . --build index
+./node_modules/.bin/tiddlywiki ++"$(pwd)" "$tempdir" --verbose --import /dev/stdin application/x-tiddler --output . --build index <<END_TIDDLYWIKI
+title: \$:/DefaultTiddlers
+
+\$:/plugins/hoelzro/first-class-urls
+END_TIDDLYWIKI
