@@ -84,6 +84,14 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
                     document = document.nextSibling;
                 }
 
+                if(!actualDocument) {
+                    response.writeHead(200, 'OK', {
+                        'Content-Type': 'application/json'
+                    });
+                    response.end('{}');
+                    return;
+                }
+
                 let extractors = [];
 
                 $tw.modules.forEachModuleOfType('$:/plugin/hoelzro/url-metadata-extractor', (_, module) => extractors.push(module));
