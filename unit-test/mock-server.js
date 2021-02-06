@@ -10,7 +10,22 @@ if(process.argv.length > 2) {
 }
 
 function parseHTTPResponse(data) {
-    let [statusLine, ...lines] = data.toString().split('\n');
+    let previousNewlineIndex = 0;
+    let nextNewlineIndex;
+    let preludeLines = [];
+    while((nextNewlineIndex = data.indexOf(10, previousNewlineIndex)) >= 0 && nextNewlineIndex > (previousNewlineIndex + 1)) {
+        preludeLines.push(data.slice(previousNewlineIndex, nextNewlineIndex).toString());
+        previousNewlineIndex = nextNewlineIndex + 1;
+    }
+
+    let body;
+    if(nextNewlineIndex == -1) {
+        body = Buffer.from([]);
+    } else {
+        body = data.slice(nextNewlineIndex + 1);
+    }
+
+    let [statusLine, ...lines] = preludeLines;
 
     let m = /^HTTP\/\d[.]\d\s+(\d+)/.exec(statusLine);
     if(!m) {
@@ -20,16 +35,13 @@ function parseHTTPResponse(data) {
 
     let headers = {};
 
-    let i;
-    for(i = 0; i < lines.length && lines[i] != ''; i++) {
-        let m = /^(\S+)\s*:\s*(.*)$/.exec(lines[i]);
+    for(let line of lines) {
+        let m = /^(\S+)\s*:\s*(.*)$/.exec(line);
         if(!m) {
             throw new Error('invalid HTTP response');
         }
         headers[m[1]] = m[2];
     }
-
-    let body = Buffer.from(lines.slice(i + 1).join('\n'), 'utf-8');
 
     headers['Content-Length'] = body.length.toString();
 
