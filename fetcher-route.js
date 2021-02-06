@@ -10,6 +10,8 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
     let { URL } = require('url');
     let http = require('http');
     let https = require('https');
+    let zlib = require('zlib');
+
     let { parseDOM } = require('htmlparser2');
 
     let match = require('$:/plugins/hoelzro/first-class-urls/match.js');
@@ -55,11 +57,25 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
         };
         let req = get(url, {headers}, function(res) {
             if(res.statusCode >= 200 && res.statusCode < 300) {
-                res.setEncoding('utf8');
                 let chunks = [];
                 res.on('data', (chunk) => chunks.push(chunk));
                 res.on('end', function() {
-                    callback(null, chunks.join(''));
+                    let responseBody = Buffer.concat(chunks);
+                    if('content-encoding' in res.headers) {
+                        let encoding = res.headers['content-encoding'];
+                        let decompress;
+                        switch(encoding) {
+                            case 'gzip':
+                                decompress = zlib.gunzip;
+                                break;
+                            default:
+                                callback(new Error(`unsupported Content-Encoding: ${encoding}`));
+                                return;
+                        }
+                        decompress(responseBody, callback);
+                        return;
+                    }
+                    callback(null, responseBody.toString('utf8'));
                 });
             } else if(res.statusCode >= 300 && res.statusCode < 400) {
                 if(numRedirects > 0) {
