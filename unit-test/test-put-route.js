@@ -268,6 +268,26 @@ async function test404() {
     assert.strictEqual(res.statusCode, 400);
 }
 
+async function testCompressedResponse() {
+    let url = mockURL('/basic-compressed.html');
+    let [res, body] = await importURL(url);
+
+    let payload = JSON.parse(body);
+
+    assert.strictEqual(res.statusCode, 201);
+    objectsMatch(payload, {
+        title: 'Blog',
+    });
+
+    let tiddler = await getTiddler('Blog');
+    objectsMatch(tiddler, {
+        location: url,
+        text: url,
+        title: 'Blog',
+        url_tiddler: 'true',
+    });
+}
+
 let testFunctions = [
     testBasic,
     testOpenGraph,
@@ -280,6 +300,7 @@ let testFunctions = [
     testGoodreadsExtractor,
     testPDF,
     test404,
+    testCompressedResponse,
 ];
 
 
