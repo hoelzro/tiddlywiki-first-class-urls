@@ -53,19 +53,15 @@ module-type: startup
                         'already-imported': 'true', // XXX shitty field name, but whatever (also, doesn't illustrate the state change properly)
                     }, newImportFields));
 
-                    let addedTiddlers = {};
+                    let addedTiddlers = new Map();
 
                     let fauxWikiForImport = {
                         addTiddler(tiddler) {
-                            if(tiddler.fields.url_tiddler_pending_fetch) {
-                                return $tw.wiki.addTiddler(tiddler);
-                            } else {
-                                addedTiddlers[tiddler.fields.title] = tiddler;
-                            }
+                            addedTiddlers.set(tiddler.fields.title, tiddler);
                         },
 
                         deleteTiddler(title) {
-                            return $tw.wiki.deleteTiddler(title);
+                            addedTiddlers.delete(title);
                         },
 
                         generateNewTitle(title) {
@@ -99,7 +95,7 @@ module-type: startup
                         }
 
                         Object.assign(newImportData.tiddlers, oldImportData.tiddlers);
-                        for(let [title, tiddler] of Object.entries(addedTiddlers)) {
+                        for(let [title, tiddler] of addedTiddlers.entries()) {
                             let fields = {};
                             for(let field of Object.keys(tiddler.fields)) {
                                 fields[field] = tiddler.getFieldString(field);
@@ -109,7 +105,7 @@ module-type: startup
                         }
                         $tw.wiki.addTiddler(new $tw.Tiddler(
                             $tw.wiki.getTiddler('$:/Import'),
-                            { text: JSON.stringify(newImportData), 'already-imported': 'true' }));
+                            { text: JSON.stringify(newImportData) }));
                     }, function(error) {
                         $tw.utils.error(error);
                     });
