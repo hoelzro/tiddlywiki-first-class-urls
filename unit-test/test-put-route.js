@@ -280,6 +280,13 @@ async function testCompressedResponse() {
     });
 }
 
+async function test410() {
+    let url = mockURL('/410.html');
+    let [res, _] = await importURL(url);
+
+    assert.strictEqual(res.statusCode, 400);
+}
+
 let testFunctions = [
     testBasic,
     testOpenGraph,
@@ -293,6 +300,7 @@ let testFunctions = [
     testPDF,
     test404,
     testCompressedResponse,
+    test410,
 ];
 
 
