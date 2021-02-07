@@ -39,9 +39,10 @@ module-type: startup
 
                         if(url != null && (url.protocol == 'http:' || url.protocol == 'https:')) {
                             let canonicalURL = canonicalizeURL(lines[0]);
-                            if(weHaveURLTiddler(canonicalURL)) {
+                            let existingTiddler = weHaveURLTiddler(canonicalURL);
+                            if(existingTiddler) {
                                 newImportFields['selection-' + title] = 'unchecked';
-                                newImportFields['message-' + title] = 'You already have this URL in your wiki';
+                                newImportFields['message-' + title] = `You already have this URL in your wiki (${existingTiddler})`;
                             } else {
                                 links.push(lines[0]);
                                 promiseTitles.push(title);

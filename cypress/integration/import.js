@@ -99,6 +99,8 @@ describe('Import functionality', function() {
         cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"] div.tc-import td input[type=checkbox]');
 
         cy.get('div.tc-import td input[type=checkbox]').should('not.be.checked');
+
+        cy.get('div.tc-import td:nth-child(3)').should('contain', 'goquery');
     });
 
     it('Should not blow away existing tiddlers with the same name', function() {
