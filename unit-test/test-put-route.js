@@ -26,14 +26,6 @@ function dumpChildOutput(label, data) {
     }
 }
 
-asyncMain().then(() => {
-    // XXX exit conditional on test results
-    process.exit(0);
-}, e => {
-    console.log('oh shit', e);
-    process.exit(1);
-});
-
 function objectsMatch(got, expected) {
     for(let key of Object.keys(expected)) {
         assert.strictEqual(got[key], expected[key]);
@@ -496,3 +488,11 @@ async function getTiddler(title) {
 function mockURL(path) {
     return `http://localhost:${MOCK_SERVER_PORT}${path}`;
 }
+
+asyncMain().then(() => {
+    // XXX exit conditional on test results
+    process.exit(0);
+}, e => {
+    console.log('oh shit', e);
+    process.exit(1);
+});
