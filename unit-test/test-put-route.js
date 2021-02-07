@@ -304,6 +304,13 @@ async function asyncMain() {
             let twServer = await setUpTiddlyWikiServer();
             try {
                 await test();
+            } catch(e) {
+                console.log('Test failed: ', e)
+                console.log('--- TiddlyWiki standard output ---\n');
+                console.log(Buffer.concat(twServer.stdout).toString().replace(/^/gm, '  '));
+                console.log('--- TiddlyWiki standard error ---\n');
+                console.log(Buffer.concat(twServer.stderr).toString().replace(/^/gm, '  '));
+                throw e;
             } finally {
                 await twServer.teardown();
             }
@@ -313,9 +320,11 @@ async function asyncMain() {
     }
 }
 
-function TiddlyWikiServer(childProcess, wikiDir) {
+function TiddlyWikiServer(childProcess, wikiDir, stdout, stderr) {
     this.childProcess = childProcess;
     this.wikiDir = wikiDir;
+    this.stdout = stdout;
+    this.stderr = stderr;
 }
 
 TiddlyWikiServer.prototype.teardown = function() {
@@ -352,11 +361,16 @@ async function setUpTiddlyWikiServer() {
     let username = path.basename(wikiDir);
     let twServer = childProcess.spawn('./node_modules/.bin/tiddlywiki', ['++' + process.cwd(), wikiDir, '--listen', 'port=' + TIDDLYWIKI_PORT, 'anon-username=' + username]);
 
+    let twServerStdout = [];
+    let twServerStderr = [];
+
     twServer.stdout.on('data', (data) => {
+        twServerStdout.push(data);
         dumpChildOutput('tw out', data);
     });
 
     twServer.stderr.on('data', (data) => {
+        twServerStderr.push(data);
         dumpChildOutput('tw err', data);
     });
     let exitCode;
@@ -373,7 +387,7 @@ async function setUpTiddlyWikiServer() {
             let status = JSON.parse(body);
             console.log('TiddlyWiki version: ', status.tiddlywiki_version);
             if(status.username == username) {
-                return new TiddlyWikiServer(twServer, wikiDir);
+                return new TiddlyWikiServer(twServer, wikiDir, twServerStdout, twServerStderr);
             }
         } catch(e) {
             if(e.code != 'ECONNREFUSED') {
