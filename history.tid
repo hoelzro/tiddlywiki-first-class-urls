@@ -1,3 +1,18 @@
+! 1.0.4
+
+!! Features
+
+  * When importing a duplicate URL, show which tiddler already has that URL
+
+!! Bug Fixes
+
+  * Importing of PDFs should no longer crash the server daemon
+  * Fewer errors in general should crash the server daemon
+  * 404 and 410 responses are handled more gracefully
+  * gzip-compressed responses are properly handled now
+  * Imported entries without title metadata are no longer cleared out of the import UI
+  * Fix bug where to-be-imported tiddlers for links with metadata got created before the user clicks "Import"
+
 ! 1.0.3
 
 !! Features
