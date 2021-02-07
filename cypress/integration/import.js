@@ -254,6 +254,32 @@ describe('Import functionality', function() {
         cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').find('a.tc-tiddlylink').contains('$:/plugins/hoelzro/test').click();
     });
 
+    it('handles links with no title', function() {
+        twCypress.makeServer();
+
+        cy.visit('http://localhost:9091');
+
+        twCypress.mockMetadata('https://no-title.com/index.html', {
+            description: 'no title'
+        });
+
+        cyPaste(cy.get('div.tc-site-subtitle'), 'text/plain', 'https://no-title.com/index.html');
+
+        // XXX helper function to get story list or something
+        cy.window().then(win => win.$tw.wiki.getTiddler('$:/StoryList').fields.list).should('include', '$:/Import');
+
+        // XXX wait for server to respond?
+        cy.wait(5000);
+
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"] div.tc-import tr').should('have.length.greaterThan', 1);
+
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').find('button').contains('Import').click();
+
+        cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').find('a.tc-tiddlylink').contains('Untitled').click();
+
+        twCypress.getTiddler('Untitled').should('have.property', 'fields').should('have.property', 'text', 'https://no-title.com/index.html');
+    });
+
     // XXX handle multiple links, in either text/uri-list or text/x-moz-url format?
     // XXX handle tiddlers
 });
