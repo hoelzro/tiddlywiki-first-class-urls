@@ -109,7 +109,7 @@ module-type: startup
                         }
                         $tw.wiki.addTiddler(new $tw.Tiddler(
                             $tw.wiki.getTiddler('$:/Import'),
-                            { text: JSON.stringify(newImportData) }));
+                            { text: JSON.stringify(newImportData), 'already-imported': 'true' }));
                     }, function(error) {
                         $tw.utils.error(error);
                     });

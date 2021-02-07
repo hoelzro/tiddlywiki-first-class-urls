@@ -84,9 +84,15 @@ describe('Import functionality', function() {
 
         cyPaste(cy.get('div.tc-site-subtitle'), 'text/plain', 'https://github.com/PuerkitoBio/goquery');
 
+        // XXX wait for server to respond?
+        cy.wait(5000);
+
         cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"]').find('button').contains('Import').click();
 
         cy.get('div.tc-tiddler-frame[data-tiddler-title="$:/Import"] button[aria-label="close"]').click();
+
+        // XXX wait for UI to settle?
+        cy.wait(2000);
 
         cyPaste(cy.get('div.tc-site-subtitle'), 'text/plain', 'https://github.com/PuerkitoBio/goquery');
 
