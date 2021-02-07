@@ -103,7 +103,7 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
 
         performFetch(fetchThisURL, function(error, html) {
             if(error != null) {
-                if(error instanceof HTTPError && error.statusCode == 404) {
+                if(error instanceof HTTPError && (error.statusCode == 404 || error.statusCode == 410)) {
                     response.writeHead(400, 'Page Not Found', {
                         'Content-Type': 'application/json'
                     });
