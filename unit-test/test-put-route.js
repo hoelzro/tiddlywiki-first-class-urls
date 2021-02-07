@@ -385,7 +385,6 @@ async function setUpTiddlyWikiServer() {
         try {
             let [_, body] = await request('GET', `http://localhost:${TIDDLYWIKI_PORT}/status`);
             let status = JSON.parse(body);
-            console.log('TiddlyWiki version: ', status.tiddlywiki_version);
             if(status.username == username) {
                 return new TiddlyWikiServer(twServer, wikiDir, twServerStdout, twServerStderr);
             }
