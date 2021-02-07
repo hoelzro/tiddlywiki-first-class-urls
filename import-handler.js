@@ -87,8 +87,15 @@ module-type: startup
                         let newImportData = Object.create(null);
                         newImportData.tiddlers = Object.create(null);
 
-                        for(let oldTitle of promiseTitles) {
-                            delete(oldImportData.tiddlers[oldTitle]);
+                        for(let i = 0; i < promiseTitles.length; i++) {
+                            let oldTitle = promiseTitles[i];
+                            let result = results[i];
+
+                            // XXX kind of a shitty error check
+                            // XXX maybe update status-$title$ to reflect what happened?
+                            if(typeof(result) == 'string') {
+                                delete(oldImportData.tiddlers[oldTitle]);
+                            }
                         }
 
                         Object.assign(newImportData.tiddlers, oldImportData.tiddlers);
