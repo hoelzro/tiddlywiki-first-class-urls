@@ -14,6 +14,7 @@ module-type: $:/plugin/hoelzro/url-metadata-extractor
         let metadata = {};
 
         let matchers = [
+            ['title', '#bookTitle', elems => getText(elems[0]).trim()],
             ['title', 'meta[property="og:title"]', elems => elems[0].attribs.content],
             ['goodreads_authors', 'div#bookAuthors a.authorName span[itemprop="name"]', elems => $tw.utils.stringifyList(elems.map(e => getText(e)))],
             ['description', 'div#descriptionContainer div#description span[id^="freeText"]:not([id^="freeTextContainer"])', elems => getText(elems[0]).trim()],
