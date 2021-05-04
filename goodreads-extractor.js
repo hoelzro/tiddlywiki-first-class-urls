@@ -23,6 +23,7 @@ module-type: $:/plugin/hoelzro/url-metadata-extractor
             ['isbn', '#bookDataBox .infoBoxRowItem[itemprop="isbn"]', elems => getText(elems[0]).trim()],
             ['goodreads_series', '#bookSeries', elems => getText(elems[0]).trim()],
             ['goodreads_rating', 'span[itemprop="ratingValue"]', elems => getText(elems[0]).trim()],
+            ['goodreads_pages', 'span[itemprop="numberOfPages"]', elems => getText(elems[0]).trim().replace(/\s+pages$/, '')],
         ];
 
         for(let [metadataField, selector, extractContent] of matchers) {
