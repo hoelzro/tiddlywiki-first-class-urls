@@ -19,6 +19,8 @@ module-type: $:/plugin/hoelzro/url-metadata-extractor
             ['goodreads_authors', 'div#bookAuthors a.authorName span[itemprop="name"]', elems => $tw.utils.stringifyList(elems.map(e => getText(e)))],
             ['description', 'div#descriptionContainer div#description span[id^="freeText"]:not([id^="freeTextContainer"])', elems => getText(elems[0]).trim()],
             ['description', 'div#descriptionContainer div#description span[id^="freeText"]', elems => getText(elems[0]).trim()],
+            ['isbn', 'meta[property="books:isbn"]', elems => elems[0].attribs.content],
+            ['isbn', '#bookDataBox .infoBoxRowItem[itemprop="isbn"]', elems => getText(elems[0]).trim()],
         ];
 
         for(let [metadataField, selector, extractContent] of matchers) {
