@@ -27,6 +27,9 @@ module-type: $:/plugin/hoelzro/url-metadata-extractor
         metadata.goodreads_authors = $tw.utils.stringifyList(authorElements.map(e => getText(e)));
 
         let descriptionElement = selectOne('div#descriptionContainer div#description span[id^="freeText"]:not([id^="freeTextContainer"])', dom);
+        if(descriptionElement === null) {
+            descriptionElement = selectOne('div#descriptionContainer div#description span[id^="freeText"]', dom);
+        }
 
         metadata.description = getText(descriptionElement).trim();
 
