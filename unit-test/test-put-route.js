@@ -26,9 +26,15 @@ function dumpChildOutput(label, data) {
     }
 }
 
+const Missing = {};
+
 function objectsMatch(got, expected) {
     for(let key of Object.keys(expected)) {
-        assert.strictEqual(got[key], expected[key]);
+        if(expected[key] == Missing) {
+            assert.ok(!got.hasOwnProperty(key));
+        } else {
+            assert.strictEqual(got[key], expected[key]);
+        }
     }
 }
 
