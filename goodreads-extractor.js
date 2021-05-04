@@ -25,6 +25,7 @@ module-type: $:/plugin/hoelzro/url-metadata-extractor
             ['goodreads_rating', 'span[itemprop="ratingValue"]', elems => getText(elems[0]).trim()],
             ['goodreads_pages', 'span[itemprop="numberOfPages"]', elems => getText(elems[0]).trim().replace(/\s+pages$/, '')],
             ['goodreads_original_title', '#bookDataBox .infoBoxRowTitle:contains("Original Title") ~ .infoBoxRowItem', elems => getText(elems[0]).trim()],
+            ['goodreads_location', '#bookDataBox .infoBoxRowTitle:contains("URL") ~ .infoBoxRowItem', elems => getText(elems[0]).trim()],
         ];
 
         for(let [metadataField, selector, extractContent] of matchers) {
