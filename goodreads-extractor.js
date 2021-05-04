@@ -31,7 +31,10 @@ module-type: $:/plugin/hoelzro/url-metadata-extractor
 
             let matchingElements = selectAll(selector, dom);
             if(matchingElements.length > 0) {
-                metadata[metadataField] = extractContent(matchingElements);
+                let value = extractContent(matchingElements);
+                if(value !== null && value !== '') {
+                    metadata[metadataField] = value;
+                }
             }
         }
 
