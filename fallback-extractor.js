@@ -20,7 +20,7 @@ module-type: $:/plugin/hoelzro/url-metadata-extractor
         }
 
         let metadata = {
-            title: getText(titleElement),
+            title: getText(titleElement).trim(),
         };
 
         for(let meta of twitterCardMetaTags.concat(openGraphMetaTags)) {
@@ -29,11 +29,11 @@ module-type: $:/plugin/hoelzro/url-metadata-extractor
             switch(name) {
                 case 'twitter:title':
                 case 'og:title':
-                    metadata.title = meta.attribs.content;
+                    metadata.title = meta.attribs.content.trim();
                     break;
                 case 'twitter:description':
                 case 'og:description':
-                    metadata.description = meta.attribs.content;
+                    metadata.description = meta.attribs.content.trim();
                     break;
             }
         }
