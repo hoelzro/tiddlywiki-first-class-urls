@@ -1,3 +1,14 @@
+! 1.0.5
+
+!! Features
+
+  * The Goodreads extractor extracts more information
+
+!! Bug Fixes
+
+  * Extra error handling was added to prevent server daemon crashes
+  * Extracted fields get leading and trailing whitespace trimmed, since it's (probably) not semantically relevant
+
 ! 1.0.4
 
 !! Features
