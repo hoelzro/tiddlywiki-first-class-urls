@@ -26,6 +26,7 @@ module-type: $:/plugin/hoelzro/url-metadata-extractor
             ['goodreads_pages', 'span[itemprop="numberOfPages"]', elems => getText(elems[0]).trim().replace(/\s+pages$/, '')],
             ['goodreads_original_title', '#bookDataBox .infoBoxRowTitle:contains("Original Title") ~ .infoBoxRowItem', elems => getText(elems[0]).trim()],
             ['goodreads_location', '#bookDataBox .infoBoxRowTitle:contains("URL") ~ .infoBoxRowItem', elems => getText(elems[0]).trim()],
+            ['goodreads_genres', 'a.bookPageGenreLink[href^="/genres/"]', elems => $tw.utils.stringifyList(Array.from(new Set(elems.map(e => getText(e)))).sort())],
         ];
 
         for(let [metadataField, selector, extractContent] of matchers) {
