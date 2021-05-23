@@ -69,6 +69,9 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
                                 case 'gzip':
                                     decompress = zlib.gunzip;
                                     break;
+                                case 'br':
+                                    decompress = zlib.brotliDecompress;
+                                    break;
                                 default:
                                     callback(new Error(`unsupported Content-Encoding: ${encoding}`));
                                     return;
