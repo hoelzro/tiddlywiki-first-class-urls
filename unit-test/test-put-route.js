@@ -286,6 +286,26 @@ async function testCompressedResponse() {
     });
 }
 
+async function testCompressedResponseBrotli() {
+    let url = mockURL('/basic-compress-brotli.html');
+    let [res, body] = await importURL(url);
+
+    let payload = JSON.parse(body);
+
+    assert.strictEqual(res.statusCode, 201);
+    objectsMatch(payload, {
+        title: 'Blog',
+    });
+
+    let tiddler = await getTiddler('Blog');
+    objectsMatch(tiddler, {
+        location: url,
+        text: url,
+        title: 'Blog',
+        url_tiddler: 'true',
+    });
+}
+
 async function test410() {
     let url = mockURL('/410.html');
     let [res, _] = await importURL(url);
@@ -306,6 +326,7 @@ let testFunctions = [
     testPDF,
     test404,
     testCompressedResponse,
+    testCompressedResponseBrotli,
     test410,
 ];
 
