@@ -1,4 +1,4 @@
-let twCypress = require('./tiddlywiki-cypress');
+let twCypress = require('../support/tiddlywiki-cypress');
 
 function cyPaste(p, pasteType, pasteData) {
     let event = new Event('paste', { bubbles: true, cancelable: true });
