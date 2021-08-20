@@ -2,9 +2,9 @@
 tw_pid=$!
 sleep 1
 
-encoded_url=$(perl -MURL::Encode=url_encode -le 'print url_encode($ARGV[0])' "$1")
+params=$(node -e 'console.log("%s", new URLSearchParams({url: require("process").argv[1]}))' "$1")
 
-curl -v -H 'X-Requested-With: TiddlyWiki' http://localhost:9091/plugins/hoelzro/first-class-urls/fetch?url=$encoded_url
+curl -v -H 'X-Requested-With: TiddlyWiki' http://localhost:9091/plugins/hoelzro/first-class-urls/fetch?$params
 
 kill $tw_pid
 wait $tw_pid
