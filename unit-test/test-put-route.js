@@ -382,7 +382,7 @@ TiddlyWikiServer.prototype.teardown = function() {
     });
 
     return cleanUpChildPromise.finally(function() {
-        fs.rmdirSync(self.wikiDir, {
+        fs.rmSync(self.wikiDir, {
             recursive: true,
         });
     });
