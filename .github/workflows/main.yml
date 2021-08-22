@@ -12,6 +12,7 @@ jobs:
         node:
         - 14
         - 15
+        - 16
         tiddlywiki:
         - tiddlywiki@5.1.21
         - tiddlywiki@5.1.22
@@ -37,6 +38,7 @@ jobs:
         node:
         - 14
         - 15
+        - 16
         tiddlywiki:
         - tiddlywiki@5.1.21
         - tiddlywiki@5.1.22
