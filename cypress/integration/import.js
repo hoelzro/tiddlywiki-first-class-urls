@@ -1,5 +1,7 @@
 let twCypress = require('../support/tiddlywiki-cypress');
 
+let tiddlywikiURL = `http://${Cypress.env('TIDDLYWIKI_HOST')}:9091`;
+
 function cyPaste(p, pasteType, pasteData) {
     let event = new Event('paste', { bubbles: true, cancelable: true });
     let items = [{
@@ -54,7 +56,7 @@ describe('Import functionality', function() {
             description: 'A little like that j-thing, only in Go'
         });
 
-        cy.visit('http://localhost:9091');
+        cy.visit(tiddlywikiURL);
 
         cyPaste(cy.get('div.tc-site-subtitle'), 'text/plain', 'https://github.com/PuerkitoBio/goquery');
 
@@ -80,7 +82,7 @@ describe('Import functionality', function() {
             description: 'A little like that j-thing, only in Go'
         });
 
-        cy.visit('http://localhost:9091');
+        cy.visit(tiddlywikiURL);
 
         cyPaste(cy.get('div.tc-site-subtitle'), 'text/plain', 'https://github.com/PuerkitoBio/goquery');
 
@@ -111,7 +113,7 @@ describe('Import functionality', function() {
             description: 'A little like that j-thing, only in Go'
         });
 
-        cy.visit('http://localhost:9091');
+        cy.visit(tiddlywikiURL);
 
         cy.window().then(win => {
             win.$tw.wiki.addTiddler(new win.$tw.Tiddler({
@@ -149,7 +151,7 @@ describe('Import functionality', function() {
             description: 'A little like that j-thing, only in Go'
         });
 
-        cy.visit('http://localhost:9091');
+        cy.visit(tiddlywikiURL);
 
         cyPaste(cy.get('div.tc-site-subtitle'), 'text/plain', "Just some text, don't worry about it");
 
@@ -177,7 +179,7 @@ describe('Import functionality', function() {
             description: 'A little like that j-thing, only in Go'
         });
 
-        cy.visit('http://localhost:9091');
+        cy.visit(tiddlywikiURL);
 
         cyPaste(cy.get('div.tc-site-subtitle'), 'text/x-moz-url', 'https://github.com/PuerkitoBio/goquery\nPuerkitoBio/goquery: A little like that j-thing, only in Go.');
 
@@ -204,7 +206,7 @@ describe('Import functionality', function() {
             description: 'A little like that j-thing, only in Go'
         });
 
-        cy.visit('http://localhost:9091');
+        cy.visit(tiddlywikiURL);
 
         cyPaste(cy.get('div.tc-site-subtitle'), 'text/x-uri-list', 'https://github.com/PuerkitoBio/goquery\n#PuerkitoBio/goquery: A little like that j-thing, only in Go.');
 
@@ -226,7 +228,7 @@ describe('Import functionality', function() {
     it('handles installing a plugin', function() {
         twCypress.makeServer();
 
-        cy.visit('http://localhost:9091');
+        cy.visit(tiddlywikiURL);
 
         let testPlugin = JSON.stringify({
             "dependents": "",
@@ -265,7 +267,7 @@ describe('Import functionality', function() {
     it('handles links with no title', function() {
         twCypress.makeServer();
 
-        cy.visit('http://localhost:9091');
+        cy.visit(tiddlywikiURL);
 
         twCypress.mockMetadata('https://no-title.com/index.html', {
             description: 'no title'

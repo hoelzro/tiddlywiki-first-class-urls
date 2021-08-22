@@ -29,3 +29,36 @@ jobs:
         npm install ${{ matrix.tiddlywiki }}
         make build
         make test
+  cypress-test:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 3
+    strategy:
+      matrix:
+        node:
+        - 14
+        tiddlywiki:
+        - tiddlywiki@5.1.21
+    steps:
+    - name: install-jq
+      run: |-
+        mkdir -p $HOME/bin
+        curl -s -Lo $HOME/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
+        chmod 755 $HOME/bin/jq
+        echo "$HOME/bin" >> $GITHUB_PATH
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node }}
+    - name: run-server
+      run: |-
+        git submodule init
+        git submodule update
+        npm install
+        npm install ${{ matrix.tiddlywiki }}
+        make build
+        ip addr show docker0 | perl -nle 'if(my ( $addr ) = /inet\s+([.\d]+)/) { print "TIDDLYWIKI_HOST=$addr"; last }' >> $GITHUB_ENV
+        TIDDLYWIKI_HOST=0.0.0.0 bash serve-temp-wiki &
+    - name: run-tests
+      uses: docker://cypress/included:5.6.0
+      with:
+        entrypoint: ./run-cypress-tests.sh
