@@ -4,4 +4,4 @@ tempdir=$(mktemp -d)
 trap 'rm -rf "$tempdir"' EXIT
 
 ./node_modules/.bin/tiddlywiki "$tempdir" --init server
-./node_modules/.bin/tiddlywiki ++"$(pwd)" "$tempdir" --listen port=9091
+./node_modules/.bin/tiddlywiki ++"$(pwd)" "$tempdir" --listen port=9091 host=${TIDDLYWIKI_HOST:-127.0.0.1}
