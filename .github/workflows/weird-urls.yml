@@ -22,5 +22,7 @@ jobs:
         TIDDLYWIKI_HOST=0.0.0.0 bash serve-temp-wiki &
     - name: gather-the-weird
       uses: docker://cypress/included:5.6.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         entrypoint: ./run-weird-urls
