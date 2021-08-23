@@ -2,6 +2,9 @@
 
 set -e
 
+# XXX use refs/weird if you can down the line
+WEIRD_REF=refs/heads/weird
+
 for (( i=0; i<20; i++ )) ; do
   curl -s -o /dev/null http://$TIDDLYWIKI_HOST:9091 && break
   sleep 1
@@ -12,11 +15,29 @@ if [[ $i -eq 20 ]] ; then
     exit 1
 fi
 
+temp_repo=$(mktemp -d)
+trap 'rm -rf "$temp_repo"' EXIT
+
+git init "$temp_repo"
+git -C "$temp_repo" fetch https://github.com/$GITHUB_REPOSITORY $WEIRD_REF:tmp-ref
+git -C "$temp_repo" checkout tmp-ref
+
 export ELECTRON_ENABLE_LOGGING=1
 cat weird-urls.txt | while read url ; do
-    # XXX if we already have a record for $url, skip
+    record_id=$(echo -n "$url" | base64 -)
+    if [[ -e "$temp_repo/$record_id" ]] ; then
+        continue
+    fi
+
+    mkdir "$temp_repo/$record_id"
+
     # XXX enable debug logging in the client/server
     CYPRESS_TIDDLYWIKI_TARGET_URL="$url" CYPRESS_TIDDLYWIKI_HOST=$TIDDLYWIKI_HOST cypress run &> report.txt
-    ls cypress/videos/
-    # XXX move video/logs into record for $url, commit to long-term storage
+    cp cypress/videos/index.js.mp4 "$temp_repo/$record_id/recording.mp4"
+    cp report.txt "$temp_repo/$record_id/report.txt"
+
+    git -C "$temp_repo" add "$record_id"
+    git -c user.name=Actions -c user.email=noreply@nodomain.com -C "$temp_repo" commit -m "Added debug information for $url"
 done
+
+git -C "$temp_repo" push "https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY" HEAD:$WEIRD_REF
