@@ -32,8 +32,8 @@ cat weird-urls.txt | while read url ; do
     mkdir "$temp_repo/$record_id"
 
     # XXX enable debug logging in the client/server
-    CYPRESS_TIDDLYWIKI_TARGET_URL="$url" CYPRESS_TIDDLYWIKI_HOST=$TIDDLYWIKI_HOST cypress run &> report.txt
-    cp cypress/videos/index.js.mp4 "$temp_repo/$record_id/recording.mp4"
+    CYPRESS_TIDDLYWIKI_TARGET_URL="$url" CYPRESS_TIDDLYWIKI_HOST=$TIDDLYWIKI_HOST cypress run --config-file weird-urls-cypress.json &> report.txt
+    cp weird-urls-cypress/videos/index.js.mp4 "$temp_repo/$record_id/recording.mp4"
     cp report.txt "$temp_repo/$record_id/report.txt"
 
     git -C "$temp_repo" add "$record_id"

@@ -1,0 +1,9 @@
+{
+    "downloadsFolder": "weird-urls-cypress/downloads",
+    "fixturesFolder": "weird-urls-cypress/fixtures",
+    "integrationFolder": "weird-urls-cypress/integration",
+    "pluginsFile": "weird-urls-cypress/plugins/index.js",
+    "screenshotsFolder": "weird-urls-cypress/screenshots",
+    "supportFile": "weird-urls-cypress/support/index.js",
+    "videosFolder": "weird-urls-cypress/videos"
+}
