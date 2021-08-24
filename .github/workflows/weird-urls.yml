@@ -2,27 +2,15 @@ name: weird-urls
 on:
   push:
     branches:
-    - main
+    - perm-experiment
 jobs:
   gather-the-weird:
+    permissions:
+      contents: none
     runs-on: ubuntu-20.04
     timeout-minutes: 10
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 16
-    - name: run-server
-      run: |-
-        git submodule init
-        git submodule update
-        npm install --production
-        make build
-        ip addr show docker0 | perl -nle 'if(my ( $addr ) = /inet\s+([.\d]+)/) { print "TIDDLYWIKI_HOST=$addr"; last }' >> $GITHUB_ENV
-        TIDDLYWIKI_HOST=0.0.0.0 bash serve-temp-wiki &
-    - name: gather-the-weird
-      uses: docker://cypress/included:5.6.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        entrypoint: ./run-weird-urls
+    - name: try-push
+      run:
+        git push origin HEAD:test-target
