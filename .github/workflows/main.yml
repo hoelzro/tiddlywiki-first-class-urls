@@ -5,6 +5,8 @@ on:
     - main
 jobs:
   test:
+    permissions:
+      contents: none
     runs-on: ubuntu-20.04
     timeout-minutes: 3
     strategy:
@@ -31,6 +33,8 @@ jobs:
         make build
         make test
   cypress-test:
+    permissions:
+      contents: none
     runs-on: ubuntu-20.04
     timeout-minutes: 3
     strategy:
