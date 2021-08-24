@@ -6,7 +6,7 @@ on:
 jobs:
   gather-the-weird:
     permissions:
-      contents: write
+      statuses: write
     runs-on: ubuntu-20.04
     timeout-minutes: 10
     steps:
