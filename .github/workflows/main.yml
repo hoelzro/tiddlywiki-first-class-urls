@@ -36,7 +36,7 @@ jobs:
     permissions:
       contents: none
     runs-on: ubuntu-20.04
-    timeout-minutes: 3
+    timeout-minutes: 5
     strategy:
       matrix:
         node:
