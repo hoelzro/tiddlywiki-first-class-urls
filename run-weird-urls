@@ -29,7 +29,7 @@ cat weird-urls.txt | while read url ; do
         continue
     fi
 
-    mkdir "$temp_repo/$record_id"
+    mkdir -p "$temp_repo/$record_id"
 
     # XXX enable debug logging in the client/server
     CYPRESS_TIDDLYWIKI_TARGET_URL="$url" CYPRESS_TIDDLYWIKI_HOST=$TIDDLYWIKI_HOST cypress run --config-file weird-urls-cypress.json 2>&1 | tee report.txt
