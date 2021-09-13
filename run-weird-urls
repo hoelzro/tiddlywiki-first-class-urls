@@ -24,7 +24,7 @@ git -C "$temp_repo" checkout tmp-ref
 
 export ELECTRON_ENABLE_LOGGING=1
 cat weird-urls.txt | while read url ; do
-    record_id=$(echo -n "$url" | base64 -)
+    record_id=$(echo -n "$url" | base64 --wrap=0 -)
     if [[ -e "$temp_repo/$record_id" ]] ; then
         continue
     fi
