@@ -1,0 +1,3 @@
+sha1.js
+*cypress/**/*.js
+/unit-test/**/*.js
