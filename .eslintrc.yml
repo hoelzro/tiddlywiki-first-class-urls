@@ -101,7 +101,7 @@ rules:
     - error
     - except-parens
   no-confusing-arrow: error
-  no-console: 'off'
+  no-console: error
   no-constructor-return: error
   no-continue: 'off'
   no-div-regex: error
