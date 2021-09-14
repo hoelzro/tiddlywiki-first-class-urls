@@ -7,12 +7,13 @@ module-type: library
     let hash = require('$:/plugins/hoelzro/first-class-urls/sha1.js');
     let canonicalizeURL = require('$:/plugins/hoelzro/first-class-urls/canonicalize.js')
     let weHaveURLTiddler = require('$:/plugins/hoelzro/first-class-urls/url-check.js');
+    let logger = require('$:/plugins/hoelzro/first-class-urls/logger.js');
 
     const ALREADY_HAVE_URL = Symbol('ALREADY_HAVE_URL');
     const NO_METADATA_TITLE = Symbol('NO_METADATA_TITLE');
 
     function doRequest(url, httpRequest) {
-        console.log('url: ', url);
+        logger.log('url: ', url);
         // XXX what about timeouts?
         return new Promise(function(resolve, reject) {
             httpRequest({

@@ -15,6 +15,7 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
     let { parseDOM } = require('htmlparser2');
 
     let match = require('$:/plugins/hoelzro/first-class-urls/match.js');
+    let logger = require('$:/plugins/hoelzro/first-class-urls/logger.js');
 
     exports.method = 'GET';
 
@@ -117,7 +118,7 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
                         });
                         response.end('{}');
                     } else {
-                        console.log(error.toString());
+                        logger.log(error.toString());
                         response.writeHead(500, 'Internal Server Error', {
                             'Content-Type': 'application/json'
                         });
@@ -168,7 +169,7 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
                     });
                 }
             } catch(e) {
-                console.error(e);
+                logger.error(e);
                 response.writeHead(500, 'Internal Server Error', {
                     'Content-Type': 'application/json'
                 });
