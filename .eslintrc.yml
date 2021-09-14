@@ -264,3 +264,6 @@ rules:
   yoda:
     - error
     - never
+  no-unused-vars: 'off'
+  no-useless-escape: 'off'
+  no-prototype-builtins: 'off'
