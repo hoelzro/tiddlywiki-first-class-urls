@@ -23,5 +23,21 @@ module-type: library
 
     logger.error = logger.log; // XXX for now
 
+    logger.getBuffer = function() {
+        if(!innerLogger) {
+            return '';
+        }
+
+        return innerLogger.getBuffer();
+    };
+
+    logger.setBuffer = function(buffer) {
+        if(!innerLogger) {
+            return;
+        }
+
+        innerLogger.saveBufferLogger.buffer = buffer;
+    };
+
     module.exports = logger;
 })();
