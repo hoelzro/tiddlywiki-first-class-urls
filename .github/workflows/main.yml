@@ -16,7 +16,6 @@ jobs:
         - 15
         - 16
         tiddlywiki:
-        - tiddlywiki@5.1.21
         - tiddlywiki@5.1.22
         - tiddlywiki@5.1.23
         - https://github.com/Jermolene/TiddlyWiki5.git
@@ -44,7 +43,6 @@ jobs:
         - 15
         - 16
         tiddlywiki:
-        - tiddlywiki@5.1.21
         - tiddlywiki@5.1.22
         - tiddlywiki@5.1.23
         - https://github.com/Jermolene/TiddlyWiki5.git
