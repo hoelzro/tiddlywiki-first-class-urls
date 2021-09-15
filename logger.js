@@ -22,7 +22,14 @@ module-type: library
     };
 
     logger.error = logger.log; // XXX for now
-    logger.debug = logger.log; // XXX for now
+
+    logger.debug = function(...args) {
+        let debuggingEnabled = ($tw.wiki.getTiddlerText('$:/plugins/hoelzro/first-class-urls/config/debugging') ?? '').trim() === 'yes';
+        if(!debuggingEnabled) {
+            return;
+        }
+        return logger.log(...args);
+    };
 
     logger.getBuffer = function() {
         if(!innerLogger) {
