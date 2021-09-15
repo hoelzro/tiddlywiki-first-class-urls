@@ -173,7 +173,7 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
                     }
 
                     result.then(function(metadata) {
-                        logger.debug(`got metadata for ${fetchThisURL}:`, metadata);
+                        logger.debug(`got metadata for ${fetchThisURL}:`, JSON.stringify(metadata));
                         response.writeHead(200, 'OK', {
                             'Content-Type': 'application/json'
                         });

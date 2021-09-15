@@ -112,7 +112,7 @@ module-type: startup
                             for(let field of Object.keys(tiddler.fields)) {
                                 fields[field] = tiddler.getFieldString(field);
                             }
-                            logger.debug(`import data for ${title}:`, fields);
+                            logger.debug(`import data for ${title}:`, JSON.stringify(fields));
                             // XXX do we run the risk of blowing shit away?
                             newImportData.tiddlers[title] = fields;
                         }
