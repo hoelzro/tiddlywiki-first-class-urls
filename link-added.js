@@ -47,6 +47,7 @@ module-type: library
             } else {
                 let urlHash = hash(canonicalURL);
                 let placeholderTitle = `Link: ${urlHash}`;
+                logger.debug(`temporary title for ${canonicalURL} while we fetch metadata: ${placeholderTitle}`);
 
                 let tiddler = new $tw.Tiddler({
                     title: placeholderTitle,
@@ -65,6 +66,7 @@ module-type: library
                         if('description' in metadata) {
                             text += '\n\n' + metadata.description;
                         }
+                        logger.debug(`Successful fetch for ${canonicalURL}; adding tiddler ${title}`);
                         // XXX set field for latest fetch time?
                         wiki.addTiddler(new $tw.Tiddler(
                             extraFields,
@@ -77,6 +79,7 @@ module-type: library
                                 location: link // XXX or canonicalURL?
                             }
                         ));
+                        logger.debug(`Deleting ${placeholderTitle}`);
                         wiki.deleteTiddler(placeholderTitle);
 
                         return title;

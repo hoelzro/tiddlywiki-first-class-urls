@@ -109,10 +109,12 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
         let fetchThisURL = requestURL.searchParams.get('url');
         let matchThisURL = requestURL.searchParams.get('_url') ?? fetchThisURL;
 
+        logger.debug(`fetching URL ${fetchThisURL}`);
         performFetch(fetchThisURL, function(error, html) {
             try {
                 if(error != null) {
                     if(error instanceof HTTPError && (error.statusCode == 404 || error.statusCode == 410)) {
+                        logger.debug(`failed to fetch URL ${fetchThisURL} - status = ${error.statusCode}`);
                         response.writeHead(400, 'Page Not Found', {
                             'Content-Type': 'application/json'
                         });
@@ -125,7 +127,10 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
                         response.end('{}');
                     }
                 } else {
+                    logger.debug(`successfully fetched ${fetchThisURL}`);
                     let [document] = parseDOM(html);
+
+                    logger.debug(`successfully parsed DOM for ${fetchThisURL}`);
 
                     let actualDocument;
 
@@ -139,6 +144,7 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
                     }
 
                     if(!actualDocument) {
+                        logger.debug(`no document node found for ${fetchThisURL}`);
                         response.writeHead(200, 'OK', {
                             'Content-Type': 'application/json'
                         });
@@ -150,10 +156,16 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
 
                     $tw.modules.forEachModuleOfType('$:/plugin/hoelzro/url-metadata-extractor', (_, module) => extractors.push(module));
 
+                    logger.debug("available extractors:", extractors.map(e => e.name));
+
                     let extractorPatterns = extractors.map(e => e.pattern);
+
+                    logger.debug(`matching extractors against ${matchThisURL}`);
 
                     let bestMatch = match(extractorPatterns, matchThisURL);
                     let bestExtractor = extractors[bestMatch];
+
+                    logger.debug(`${bestExtractor.name} is best extractor for ${matchThisURL}`);
 
                     let result = bestExtractor.extract(fetchThisURL, actualDocument);
                     if(!(result instanceof Promise)) {
@@ -161,6 +173,7 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
                     }
 
                     result.then(function(metadata) {
+                        logger.debug(`got metadata for ${fetchThisURL}:`, metadata);
                         response.writeHead(200, 'OK', {
                             'Content-Type': 'application/json'
                         });

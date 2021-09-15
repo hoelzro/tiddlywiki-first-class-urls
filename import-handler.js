@@ -13,12 +13,16 @@ module-type: startup
     let weHaveURLTiddler = require('$:/plugins/hoelzro/first-class-urls/url-check.js');
     let onLinksAdded = require('$:/plugins/hoelzro/first-class-urls/link-added.js');
 
+    let logger = require('$:/plugins/hoelzro/first-class-urls/logger.js');
+
     exports.startup = function() {
         $tw.wiki.addEventListener('change', function(changes) {
             // XXX transform all modified plugin-type: import tiddlers?
             if('$:/Import' in changes && changes['$:/Import'].modified) {
+                logger.debug('import tiddler changed');
                 let importTiddler = $tw.wiki.getTiddler('$:/Import');
                 let status = importTiddler.getFieldString('status');
+                logger.debug(`import tiddler status: ${status}`);
                 let newImportFields = Object.create(null);
                 if(status == 'pending' && importTiddler.getFieldString('already-imported') == '') {
                     let importData = $tw.wiki.getTiddlerData('$:/Import');
@@ -27,6 +31,7 @@ module-type: startup
                     let promiseTitles = [];
 
                     for(let title in importData.tiddlers) {
+                        logger.debug(`found ${title} in import data`);
                         let text = importData.tiddlers[title].text;
                         let lines = text.split('\n');
 
@@ -38,12 +43,16 @@ module-type: startup
                         }
 
                         if(url != null && (url.protocol == 'http:' || url.protocol == 'https:')) {
+                            logger.debug(`found URL data for ${title}`);
                             let canonicalURL = canonicalizeURL(lines[0]);
+                            logger.debug(`canonical URL: ${canonicalURL}`);
                             let existingTiddler = weHaveURLTiddler(canonicalURL);
                             if(existingTiddler) {
+                                logger.debug(`Found existing tiddler for ${canonicalURL} (${existingTiddler})`);
                                 newImportFields['selection-' + title] = 'unchecked';
                                 newImportFields['message-' + title] = `You already have this URL in your wiki (${existingTiddler})`;
                             } else {
+                                logger.debug(`No existing tiddler found for ${canonicalURL} - fetching`);
                                 links.push(lines[0]);
                                 promiseTitles.push(title);
                             }
@@ -88,6 +97,8 @@ module-type: startup
                             let oldTitle = promiseTitles[i];
                             let result = results[i];
 
+                            logger.debug(`Processing fetch result for ${oldTitle} - ${result}`);
+
                             // XXX kind of a shitty error check
                             // XXX maybe update status-$title$ to reflect what happened?
                             if(typeof(result) == 'string') {
@@ -101,6 +112,7 @@ module-type: startup
                             for(let field of Object.keys(tiddler.fields)) {
                                 fields[field] = tiddler.getFieldString(field);
                             }
+                            logger.debug(`import data for ${title}:`, fields);
                             // XXX do we run the risk of blowing shit away?
                             newImportData.tiddlers[title] = fields;
                         }
@@ -108,6 +120,7 @@ module-type: startup
                             $tw.wiki.getTiddler('$:/Import'),
                             { text: JSON.stringify(newImportData) }));
                     }, function(error) {
+                        logger.error(error);
                         $tw.utils.error(error);
                     });
                 }

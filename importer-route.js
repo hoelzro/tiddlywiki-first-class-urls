@@ -11,6 +11,8 @@ PUT /plugins/hoelzro/first-class-urls/import?url=:url
     let {handler: fetchHandler} = require('$:/plugins/hoelzro/first-class-urls/fetcher-route.js');
     let {onLinksAdded, ALREADY_HAVE_URL, NO_METADATA_TITLE} = require('$:/plugins/hoelzro/first-class-urls/link-added.js');
 
+    let logger = require('$:/plugins/hoelzro/first-class-urls/logger.js');
+
     exports.method = 'PUT';
 
     exports.path = new RegExp(`^/plugins/hoelzro/first-class-urls/import`);
@@ -52,16 +54,19 @@ PUT /plugins/hoelzro/first-class-urls/import?url=:url
 
         onLinksAdded($tw.wiki, [fetchThisURL], extraFields, fauxFetch).then(function([importedTitle]) {
             if(importedTitle == ALREADY_HAVE_URL) {
+                logger.debug(`already have URL ${fetchThisURL} - returning 409 Conflict`);
                 response.writeHead(409, 'Conflict', {
                     'Content-Type': 'application/json'
                 });
                 response.end('{}');
             } else if(importedTitle == NO_METADATA_TITLE) {
+                logger.debug(`no title found in metadata for ${fetchThisURL} - returning 400 Bad Request`);
                 response.writeHead(400, 'Bad Request', {
                     'Content-Type': 'application/json'
                 });
                 response.end('{}');
             } else {
+                logger.debug(`Created new tiddler for ${fetchThisURL} with title ${importedTitle}`);
                 response.writeHead(201, 'Created', {
                     'Content-Type': 'application/json'
                 });
