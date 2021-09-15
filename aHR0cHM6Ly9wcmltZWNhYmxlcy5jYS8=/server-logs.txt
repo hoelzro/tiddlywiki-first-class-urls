@@ -1,0 +1,7 @@
+2021 9 15 19:39:18.525: fetching URL https://primecables.ca/
+2021 9 15 19:39:19.060: successfully fetched https://primecables.ca/
+2021 9 15 19:39:19.062: successfully parsed DOM for https://primecables.ca/
+2021 9 15 19:39:19.074: available extractors: fallback,github,goodreads
+2021 9 15 19:39:19.075: matching extractors against https://primecables.ca/
+2021 9 15 19:39:19.076: fallback is best extractor for https://primecables.ca/
+2021 9 15 19:39:19.078: got metadata for https://primecables.ca/: {}
