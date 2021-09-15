@@ -37,6 +37,8 @@ cat weird-urls.txt | while read url ; do
     CYPRESS_TIDDLYWIKI_TARGET_URL="$url" CYPRESS_TIDDLYWIKI_HOST=$TIDDLYWIKI_HOST cypress run --config-file weird-urls-cypress.json 2>&1 | tee report.txt
     cp weird-urls-cypress/videos/index.js.mp4 "$temp_repo/$record_id/recording.mp4"
     cp report.txt "$temp_repo/$record_id/report.txt"
+    curl -s -o "$temp_repo/$record_id/server-logs.txt" "http://$TIDDLYWIKI_HOST:9091/plugins/hoelzro/first-class-urls/logs"
+    curl -s -X POST -o /dev/null -H 'X-Requested-With: TiddlyWiki' "http://$TIDDLYWIKI_HOST:9091/plugins/hoelzro/first-class-urls/logs/reset"
 
     git -C "$temp_repo" add "$record_id"
     git -c user.name=Actions -c user.email=noreply@nodomain.com -C "$temp_repo" commit -m "Added debug information for $url"
