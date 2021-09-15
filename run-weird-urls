@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e -x
+set -e -x -u
 
 # XXX use refs/weird if you can down the line
 WEIRD_REF=refs/heads/weird
