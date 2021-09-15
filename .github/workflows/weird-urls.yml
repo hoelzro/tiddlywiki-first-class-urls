@@ -21,7 +21,7 @@ jobs:
         npm install --production
         make build
         ip addr show docker0 | perl -nle 'if(my ( $addr ) = /inet\s+([.\d]+)/) { print "TIDDLYWIKI_HOST=$addr"; last }' >> $GITHUB_ENV
-        TIDDLYWIKI_HOST=0.0.0.0 bash serve-temp-wiki &
+        DEBUG=1 TIDDLYWIKI_HOST=0.0.0.0 bash serve-temp-wiki &
     - name: gather-the-weird
       uses: docker://cypress/included:5.6.0
       env:
