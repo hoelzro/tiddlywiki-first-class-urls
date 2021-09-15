@@ -22,6 +22,7 @@ module-type: library
     };
 
     logger.error = logger.log; // XXX for now
+    logger.debug = logger.log; // XXX for now
 
     logger.getBuffer = function() {
         if(!innerLogger) {
