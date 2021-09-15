@@ -120,7 +120,7 @@ GET /plugins/hoelzro/first-class-urls/fetch?url=:url
                         });
                         response.end('{}');
                     } else {
-                        logger.log(error.toString());
+                        logger.error(error.toString());
                         response.writeHead(500, 'Internal Server Error', {
                             'Content-Type': 'application/json'
                         });
