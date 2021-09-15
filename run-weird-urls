@@ -2,6 +2,8 @@
 
 set -e -x -u
 
+GITHUB_REPOSITORY=${GITHUB_REPOSITORY:-hoelzro/tiddlywiki-first-class-urls}
+
 # XXX use refs/weird if you can down the line
 WEIRD_REF=refs/heads/weird
 
@@ -40,4 +42,6 @@ cat weird-urls.txt | while read url ; do
     git -c user.name=Actions -c user.email=noreply@nodomain.com -C "$temp_repo" commit -m "Added debug information for $url"
 done
 
-git -C "$temp_repo" push "https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY" HEAD:$WEIRD_REF
+if [[ -n ${GITHUB_TOKEN:-} ]]; then
+    git -C "$temp_repo" push "https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY" HEAD:$WEIRD_REF
+fi
