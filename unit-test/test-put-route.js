@@ -138,7 +138,7 @@ async function testGitHubExtractor() {
         github_author: 'hoelzro',
         github_project: 'tiddlywiki-first-class-urls',
         location: url,
-        text: `${url}\n\nAn experimental plugin to make importing tiddlers easier - hoelzro/tiddlywiki-first-class-urls`,
+        text: `${url}\n\nAn experimental plugin to make importing tiddlers easier`,
         title: payload.title,
         url_extractor: 'github',
         url_tiddler: 'true',
