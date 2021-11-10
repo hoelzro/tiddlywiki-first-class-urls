@@ -18,6 +18,7 @@ jobs:
         tiddlywiki:
         - tiddlywiki@5.1.22
         - tiddlywiki@5.1.23
+        - tiddlywiki@5.2
         - https://github.com/Jermolene/TiddlyWiki5.git
     steps:
     - uses: actions/checkout@v2
@@ -45,6 +46,7 @@ jobs:
         tiddlywiki:
         - tiddlywiki@5.1.22
         - tiddlywiki@5.1.23
+        - tiddlywiki@5.2
         - https://github.com/Jermolene/TiddlyWiki5.git
     steps:
     - name: install-jq
