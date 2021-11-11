@@ -1,0 +1,88 @@
+[43:1111/131310.404157:ERROR:bus.cc(393)] Failed to connect to the bus: Failed to connect to socket /var/run/dbus/system_bus_socket: No such file or directory
+
+[90m====================================================================================================[39m
+
+[0m  ([4m[1mRun Starting[22m[24m)[0m
+
+[90m  ┌[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m┐[39m
+[90m  │[39m [90mCypress:[39m    5.6.0                                                                              [90m│[39m
+[90m  │[39m [90mBrowser:[39m    Electron 85 [90m(headless)[39m                                                             [90m│[39m
+[90m  │[39m [90mSpecs:[39m      [0m1 found (index.js)[0m                                                                 [90m│[39m
+[90m  └[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m┘[39m
+
+
+[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m
+                                                                                                    
+  Running:  [90mindex.js[39m                                                                        [90m(1 of 1)[39m
+[43:1111/131314.269245:ERROR:bus.cc(393)] Failed to connect to the bus: Address does not contain a colon
+Browserslist: caniuse-lite is outdated. Please run:
+npx browserslist@latest --update-db
+
+Why you should do it regularly:
+https://github.com/browserslist/browserslist#browsers-data-updating
+
+[0m[0m
+[0m  testing https://twitter.com/johnnyrodgersis/status/1458144306884083713[0m
+[43:1111/131318.368176:INFO:CONSOLE(52)] " performance: Execute $tw.perf.log(); to see filter execution timings ", source: $:/core/modules/utils/logger.js (52)
+[43:1111/131318.436433:INFO:CONSOLE(52)] " TiddlyWebAdaptor: Getting status ", source: $:/core/modules/utils/logger.js (52)
+[43:1111/131318.730691:INFO:CONSOLE(52)] " TiddlyWebAdaptor: Status: {"username":"","anonymous":true,"read_only":false,"space":{"recipe":"default"},"tiddlywiki_version":"5.1.22"} ", source: $:/core/modules/utils/logger.js (52)
+[43:1111/131318.731872:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Retrieving skinny tiddler list ", source: $:/core/modules/utils/logger.js (52)
+[43:1111/131318.762977:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Dispatching 'save' task: $:/StoryList ", source: $:/core/modules/utils/logger.js (52)
+[43:1111/131318.833511:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Checking dirty status ", source: $:/core/modules/utils/logger.js (52)
+[43:1111/131318.834870:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Checking dirty status ", source: $:/core/modules/utils/logger.js (52)
+[43:1111/131318.835829:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Dispatching 'load' task: $:/HistoryList ", source: $:/core/modules/utils/logger.js (52)
+[43:1111/131318.907121:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Checking dirty status ", source: $:/core/modules/utils/logger.js (52)
+[43:1111/131318.911559:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Checking dirty status ", source: $:/core/modules/utils/logger.js (52)
+[43:1111/131318.919598:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Checking dirty status ", source: $:/core/modules/utils/logger.js (52)
+[43:1111/131318.955574:INFO:CONSOLE(52)] " first-class-urls: import tiddler changed ", source: $:/core/modules/utils/logger.js (52)
+[43:1111/131318.956803:INFO:CONSOLE(52)] " first-class-urls: import tiddler status: pending ", source: $:/core/modules/utils/logger.js (52)
+[43:1111/131318.956931:INFO:CONSOLE(52)] " first-class-urls: found Untitled in import data ", source: $:/core/modules/utils/logger.js (52)
+[43:1111/131318.956978:INFO:CONSOLE(52)] " first-class-urls: found URL data for Untitled ", source: $:/core/modules/utils/logger.js (52)
+[43:1111/131318.958274:INFO:CONSOLE(52)] " first-class-urls: canonical URL: https://twitter.com/johnnyrodgersis/status/1458144306884083713 ", source: $:/core/modules/utils/logger.js (52)
+[43:1111/131318.959817:INFO:CONSOLE(52)] " first-class-urls: No existing tiddler found for https://twitter.com/johnnyrodgersis/status/1458144306884083713 - fetching ", source: $:/core/modules/utils/logger.js (52)
+[43:1111/131318.961333:INFO:CONSOLE(52)] " first-class-urls: temporary title for https://twitter.com/johnnyrodgersis/status/1458144306884083713 while we fetch metadata: Link: bfb2473cfde98e974f563ab87b3b73f070d64dd3 ", source: $:/core/modules/utils/logger.js (52)
+[43:1111/131318.962462:INFO:CONSOLE(52)] " first-class-urls: url:  https://twitter.com/johnnyrodgersis/status/1458144306884083713 ", source: $:/core/modules/utils/logger.js (52)
+[43:1111/131319.006359:INFO:CONSOLE(52)] " first-class-urls: import tiddler changed ", source: $:/core/modules/utils/logger.js (52)
+[43:1111/131319.006804:INFO:CONSOLE(52)] " first-class-urls: import tiddler status: pending ", source: $:/core/modules/utils/logger.js (52)
+[43:1111/131319.248055:INFO:CONSOLE(101)] "Uncaught (in promise) TypeError: Cannot convert a Symbol value to a string", source: $:/plugins/hoelzro/first-class-urls/import-handler.js (101)
+[43:1111/131319.912574:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Dispatching 'save' task: $:/StoryList ", source: $:/core/modules/utils/logger.js (52)
+[43:1111/131319.932107:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Checking dirty status ", source: $:/core/modules/utils/logger.js (52)
+[43:1111/131319.932569:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Checking dirty status ", source: $:/core/modules/utils/logger.js (52)
+  [32m  ✓[0m[90m shenanigans[0m[31m (6024ms)[0m
+
+
+[92m [0m[32m 1 passing[0m[90m (7s)[0m
+
+
+[32m  ([4m[1mResults[22m[24m)[39m
+
+[90m  ┌[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m┐[39m
+[90m  │[39m [90mTests:[39m        [32m1[39m                                                                                [90m│[39m
+[90m  │[39m [90mPassing:[39m      [32m1[39m                                                                                [90m│[39m
+[90m  │[39m [90mFailing:[39m      [32m0[39m                                                                                [90m│[39m
+[90m  │[39m [90mPending:[39m      [32m0[39m                                                                                [90m│[39m
+[90m  │[39m [90mSkipped:[39m      [32m0[39m                                                                                [90m│[39m
+[90m  │[39m [90mScreenshots:[39m  [32m0[39m                                                                                [90m│[39m
+[90m  │[39m [90mVideo:[39m        [32mtrue[39m                                                                             [90m│[39m
+[90m  │[39m [90mDuration:[39m     [32m7 seconds[39m                                                                        [90m│[39m
+[90m  │[39m [90mSpec Ran:[39m     [32m[32mindex.js[32m[39m                                                                         [90m│[39m
+[90m  └[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m┘[39m
+
+
+[36m  ([4m[1mVideo[22m[24m)[39m
+
+[90m [39m [90m-[39m  [90mStarted processing:[39m  [36mCompressing to 32 CRF[39m                                                     
+[90m [39m [90m-[39m  [90mFinished processing:[39m [36m/github/workspace/weird-urls-cypress/videos/index.js.mp4[39m        [90m(1 second)[39m
+
+
+[90m====================================================================================================[39m
+
+[0m  ([4m[1mRun Finished[22m[24m)[0m
+
+
+[90m   [39m    [90mSpec[39m                                              [90mTests[39m  [90mPassing[39m  [90mFailing[39m  [90mPending[39m  [90mSkipped[39m [90m [39m
+[90m  ┌[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m┐[39m
+[90m  │[39m [32m✔[39m  [0mindex.js[0m                                 [90m00:07[39m        [0m1[0m        [32m1[39m        [90m-[39m        [90m-[39m        [90m-[39m [90m│[39m
+[90m  └[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m┘[39m
+[90m   [39m [32m✔[39m  [32mAll specs passed![39m                        [90m00:07[39m        [0m1[0m        [32m1[39m        [90m-[39m        [90m-[39m        [90m-[39m [90m [39m
+

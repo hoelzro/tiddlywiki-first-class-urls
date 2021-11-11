@@ -1,0 +1,7 @@
+2021 11 11 13:13:18.971: fetching URL https://twitter.com/johnnyrodgersis/status/1458144306884083713
+2021 11 11 13:13:19.186: successfully fetched https://twitter.com/johnnyrodgersis/status/1458144306884083713
+2021 11 11 13:13:19.219: successfully parsed DOM for https://twitter.com/johnnyrodgersis/status/1458144306884083713
+2021 11 11 13:13:19.234: available extractors: fallback,github,goodreads
+2021 11 11 13:13:19.236: matching extractors against https://twitter.com/johnnyrodgersis/status/1458144306884083713
+2021 11 11 13:13:19.237: fallback is best extractor for https://twitter.com/johnnyrodgersis/status/1458144306884083713
+2021 11 11 13:13:19.240: got metadata for https://twitter.com/johnnyrodgersis/status/1458144306884083713: {}
