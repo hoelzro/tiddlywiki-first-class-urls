@@ -20,6 +20,7 @@ jobs:
         git submodule update
         npm install --production
         make build
+        make -C log-routes-plugin/ build
         ip addr show docker0 | perl -nle 'if(my ( $addr ) = /inet\s+([.\d]+)/) { print "TIDDLYWIKI_HOST=$addr"; last }' >> $GITHUB_ENV
         DEBUG=1 TIDDLYWIKI_HOST=0.0.0.0 bash serve-temp-wiki &
     - name: gather-the-weird
