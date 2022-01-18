@@ -1,1 +1,2 @@
 https://primecables.ca/
+https://golang.cafe/blog/golang-debugging-with-delve.html
