@@ -1,3 +1,4 @@
 https://primecables.ca/
 http://3dupndown.com/content/?page=&pcode=cont_view_new&mtype=au&idx=9579&chargeType=
 https://twitter.com/johnnyrodgersis/status/1458144306884083713
+https://golang.cafe/blog/golang-debugging-with-delve.html
