@@ -7,12 +7,13 @@ module-type: library
     let hash = require('$:/plugins/hoelzro/first-class-urls/sha1.js');
     let canonicalizeURL = require('$:/plugins/hoelzro/first-class-urls/canonicalize.js')
     let weHaveURLTiddler = require('$:/plugins/hoelzro/first-class-urls/url-check.js');
+    let logger = require('$:/plugins/hoelzro/first-class-urls/logger.js');
 
     const ALREADY_HAVE_URL = Symbol('ALREADY_HAVE_URL');
     const NO_METADATA_TITLE = Symbol('NO_METADATA_TITLE');
 
     function doRequest(url, httpRequest) {
-        console.log('url: ', url);
+        logger.log('url: ', url);
         // XXX what about timeouts?
         return new Promise(function(resolve, reject) {
             httpRequest({
@@ -46,6 +47,7 @@ module-type: library
             } else {
                 let urlHash = hash(canonicalURL);
                 let placeholderTitle = `Link: ${urlHash}`;
+                logger.debug(`temporary title for ${canonicalURL} while we fetch metadata: ${placeholderTitle}`);
 
                 let tiddler = new $tw.Tiddler({
                     title: placeholderTitle,
@@ -64,6 +66,7 @@ module-type: library
                         if('description' in metadata) {
                             text += '\n\n' + metadata.description;
                         }
+                        logger.debug(`Successful fetch for ${canonicalURL}; adding tiddler ${title}`);
                         // XXX set field for latest fetch time?
                         wiki.addTiddler(new $tw.Tiddler(
                             extraFields,
@@ -76,6 +79,7 @@ module-type: library
                                 location: link // XXX or canonicalURL?
                             }
                         ));
+                        logger.debug(`Deleting ${placeholderTitle}`);
                         wiki.deleteTiddler(placeholderTitle);
 
                         return title;

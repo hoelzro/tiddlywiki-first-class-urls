@@ -1,3 +1,10 @@
+! 1.0.6
+
+!! Features
+
+  * Fixed GitHub extractor to handle changes to GitHub pages
+  * Added support for Brotli encoded responses
+
 ! 1.0.5
 
 !! Features

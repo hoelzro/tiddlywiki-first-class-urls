@@ -16,9 +16,9 @@ jobs:
         - 15
         - 16
         tiddlywiki:
-        - tiddlywiki@5.1.21
         - tiddlywiki@5.1.22
         - tiddlywiki@5.1.23
+        - tiddlywiki@5.2
         - https://github.com/Jermolene/TiddlyWiki5.git
     steps:
     - uses: actions/checkout@v2
@@ -36,7 +36,7 @@ jobs:
     permissions:
       contents: none
     runs-on: ubuntu-20.04
-    timeout-minutes: 3
+    timeout-minutes: 5
     strategy:
       matrix:
         node:
@@ -44,9 +44,9 @@ jobs:
         - 15
         - 16
         tiddlywiki:
-        - tiddlywiki@5.1.21
         - tiddlywiki@5.1.22
         - tiddlywiki@5.1.23
+        - tiddlywiki@5.2
         - https://github.com/Jermolene/TiddlyWiki5.git
     steps:
     - name: install-jq
@@ -72,3 +72,13 @@ jobs:
       uses: docker://cypress/included:5.6.0
       with:
         entrypoint: ./run-cypress-tests.sh
+  eslint:
+    permissions:
+      contents: none
+    runs-on: ubuntu-20.04
+    timeout-minutes: 3
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+    - run: |-
+        npx eslint@7.32.0 .

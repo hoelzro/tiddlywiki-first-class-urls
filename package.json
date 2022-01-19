@@ -2,7 +2,7 @@
     "dependencies": {
         "css-select": "2.1.0",
         "htmlparser2": "4.1.0",
-        "tiddlywiki": "5.1.21"
+        "tiddlywiki": "5.1.22"
     },
     "devDependencies": {
         "cypress": "^5.0.0"

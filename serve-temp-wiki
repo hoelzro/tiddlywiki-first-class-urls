@@ -4,4 +4,18 @@ tempdir=$(mktemp -d)
 trap 'rm -rf "$tempdir"' EXIT
 
 ./node_modules/.bin/tiddlywiki "$tempdir" --init server
-./node_modules/.bin/tiddlywiki ++"$(pwd)" "$tempdir" --listen port=9091 host=${TIDDLYWIKI_HOST:-127.0.0.1}
+
+PLUGINS=(++"$(pwd)")
+
+if [[ -n "$DEBUG" ]] ; then
+    mkdir "$tempdir/tiddlers"
+    cat > "$tempdir/tiddlers/plugin-debug.tid" <<EOF
+title: $:/plugins/hoelzro/first-class-urls/config/debugging
+type: text/vnd.tiddlywiki
+
+yes
+EOF
+    PLUGINS=(++"$(pwd)" ++"$(pwd)/log-routes-plugin")
+fi
+
+./node_modules/.bin/tiddlywiki ${PLUGINS[@]} "$tempdir" --listen port=9091 host=${TIDDLYWIKI_HOST:-127.0.0.1}
