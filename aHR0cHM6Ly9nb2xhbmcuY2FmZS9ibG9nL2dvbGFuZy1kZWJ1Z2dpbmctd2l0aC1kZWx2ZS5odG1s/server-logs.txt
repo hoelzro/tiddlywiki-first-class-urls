@@ -1,0 +1,7 @@
+2022 1 20 01:18:37.913: fetching URL https://golang.cafe/blog/golang-debugging-with-delve.html
+2022 1 20 01:18:38.408: successfully fetched https://golang.cafe/blog/golang-debugging-with-delve.html
+2022 1 20 01:18:38.421: successfully parsed DOM for https://golang.cafe/blog/golang-debugging-with-delve.html
+2022 1 20 01:18:38.431: available extractors: fallback,github,goodreads
+2022 1 20 01:18:38.433: matching extractors against https://golang.cafe/blog/golang-debugging-with-delve.html
+2022 1 20 01:18:38.433: fallback is best extractor for https://golang.cafe/blog/golang-debugging-with-delve.html
+2022 1 20 01:18:38.436: got metadata for https://golang.cafe/blog/golang-debugging-with-delve.html: {"title":"Golang Debugging with Delve - [Step by Step]","description":"Golang Debugging with Delve - [Step by Step]"}

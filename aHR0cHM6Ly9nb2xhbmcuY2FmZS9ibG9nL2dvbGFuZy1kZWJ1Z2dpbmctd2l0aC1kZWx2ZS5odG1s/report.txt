@@ -1,0 +1,89 @@
+[47:0120/011831.270998:ERROR:bus.cc(393)] Failed to connect to the bus: Failed to connect to socket /var/run/dbus/system_bus_socket: No such file or directory
+
+[90m====================================================================================================[39m
+
+[0m  ([4m[1mRun Starting[22m[24m)[0m
+
+[90m  ┌[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m┐[39m
+[90m  │[39m [90mCypress:[39m    5.6.0                                                                              [90m│[39m
+[90m  │[39m [90mBrowser:[39m    Electron 85 [90m(headless)[39m                                                             [90m│[39m
+[90m  │[39m [90mSpecs:[39m      [0m1 found (index.js)[0m                                                                 [90m│[39m
+[90m  └[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m┘[39m
+
+
+[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m
+                                                                                                    
+  Running:  [90mindex.js[39m                                                                        [90m(1 of 1)[39m
+[47:0120/011834.243989:ERROR:bus.cc(393)] Failed to connect to the bus: Address does not contain a colon
+Browserslist: caniuse-lite is outdated. Please run:
+npx browserslist@latest --update-db
+
+Why you should do it regularly:
+https://github.com/browserslist/browserslist#browsers-data-updating
+
+[0m[0m
+[0m  testing https://golang.cafe/blog/golang-debugging-with-delve.html[0m
+[47:0120/011837.549584:INFO:CONSOLE(52)] " performance: Execute $tw.perf.log(); to see filter execution timings ", source: $:/core/modules/utils/logger.js (52)
+[47:0120/011837.598966:INFO:CONSOLE(52)] " TiddlyWebAdaptor: Getting status ", source: $:/core/modules/utils/logger.js (52)
+[47:0120/011837.858181:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Checking dirty status ", source: $:/core/modules/utils/logger.js (52)
+[47:0120/011837.899847:INFO:CONSOLE(52)] " first-class-urls: import tiddler changed ", source: $:/core/modules/utils/logger.js (52)
+[47:0120/011837.900827:INFO:CONSOLE(52)] " first-class-urls: import tiddler status: pending ", source: $:/core/modules/utils/logger.js (52)
+[47:0120/011837.900906:INFO:CONSOLE(52)] " first-class-urls: found Untitled in import data ", source: $:/core/modules/utils/logger.js (52)
+[47:0120/011837.900948:INFO:CONSOLE(52)] " first-class-urls: found URL data for Untitled ", source: $:/core/modules/utils/logger.js (52)
+[47:0120/011837.900982:INFO:CONSOLE(52)] " first-class-urls: canonical URL: https://golang.cafe/blog/golang-debugging-with-delve.html ", source: $:/core/modules/utils/logger.js (52)
+[47:0120/011837.902139:INFO:CONSOLE(52)] " first-class-urls: No existing tiddler found for https://golang.cafe/blog/golang-debugging-with-delve.html - fetching ", source: $:/core/modules/utils/logger.js (52)
+[47:0120/011837.903561:INFO:CONSOLE(52)] " first-class-urls: temporary title for https://golang.cafe/blog/golang-debugging-with-delve.html while we fetch metadata: Link: c6f6c895ed29ed28e23c227d1cc6c5dddeb4bd6a ", source: $:/core/modules/utils/logger.js (52)
+[47:0120/011837.904341:INFO:CONSOLE(52)] " first-class-urls: url:  https://golang.cafe/blog/golang-debugging-with-delve.html ", source: $:/core/modules/utils/logger.js (52)
+[47:0120/011837.911734:INFO:CONSOLE(52)] " TiddlyWebAdaptor: Status: {"username":"","anonymous":true,"read_only":false,"space":{"recipe":"default"},"tiddlywiki_version":"5.1.22"} ", source: $:/core/modules/utils/logger.js (52)
+[47:0120/011837.911793:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Retrieving skinny tiddler list ", source: $:/core/modules/utils/logger.js (52)
+[47:0120/011837.965052:INFO:CONSOLE(52)] " first-class-urls: import tiddler changed ", source: $:/core/modules/utils/logger.js (52)
+[47:0120/011837.965159:INFO:CONSOLE(52)] " first-class-urls: import tiddler status: pending ", source: $:/core/modules/utils/logger.js (52)
+[47:0120/011837.968747:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Dispatching 'save' task: $:/StoryList ", source: $:/core/modules/utils/logger.js (52)
+[47:0120/011838.005186:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Checking dirty status ", source: $:/core/modules/utils/logger.js (52)
+[47:0120/011838.005630:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Dispatching 'load' task: $:/HistoryList ", source: $:/core/modules/utils/logger.js (52)
+[47:0120/011838.063953:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Checking dirty status ", source: $:/core/modules/utils/logger.js (52)
+[47:0120/011838.064057:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Checking dirty status ", source: $:/core/modules/utils/logger.js (52)
+[47:0120/011838.441069:INFO:CONSOLE(52)] " first-class-urls: Successful fetch for https://golang.cafe/blog/golang-debugging-with-delve.html; adding tiddler Golang Debugging with Delve - Step by Step] ", source: $:/core/modules/utils/logger.js (52)
+[47:0120/011838.441988:INFO:CONSOLE(52)] " first-class-urls: Deleting Link: c6f6c895ed29ed28e23c227d1cc6c5dddeb4bd6a ", source: $:/core/modules/utils/logger.js (52)
+[47:0120/011838.442092:INFO:CONSOLE(52)] " first-class-urls: Processing fetch result for Untitled - Golang Debugging with Delve - Step by Step] ", source: $:/core/modules/utils/logger.js (52)
+[47:0120/011838.443006:INFO:CONSOLE(52)] " first-class-urls: import data for Golang Debugging with Delve - Step by Step]: {"title":"Golang Debugging with Delve - Step by Step]","type":"text/vnd.tiddlywiki","location":"https://golang.cafe/blog/golang-debugging-with-delve.html","url_tiddler":"true","created":"20220120011837903","modified":"20220120011837903","text":"https://golang.cafe/blog/golang-debugging-with-delve.html\n\nGolang Debugging with Delve - [Step by Step]","description":"Golang Debugging with Delve - [Step by Step]","url_extractor":"fallback"} ", source: $:/core/modules/utils/logger.js (52)
+[47:0120/011838.458695:INFO:CONSOLE(52)] " first-class-urls: import tiddler changed ", source: $:/core/modules/utils/logger.js (52)
+[47:0120/011838.458895:INFO:CONSOLE(52)] " first-class-urls: import tiddler status: pending ", source: $:/core/modules/utils/logger.js (52)
+  [32m  ✓[0m[90m shenanigans[0m[31m (5725ms)[0m
+
+
+[92m [0m[32m 1 passing[0m[90m (7s)[0m
+
+
+[32m  ([4m[1mResults[22m[24m)[39m
+
+[90m  ┌[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m┐[39m
+[90m  │[39m [90mTests:[39m        [32m1[39m                                                                                [90m│[39m
+[90m  │[39m [90mPassing:[39m      [32m1[39m                                                                                [90m│[39m
+[90m  │[39m [90mFailing:[39m      [32m0[39m                                                                                [90m│[39m
+[90m  │[39m [90mPending:[39m      [32m0[39m                                                                                [90m│[39m
+[90m  │[39m [90mSkipped:[39m      [32m0[39m                                                                                [90m│[39m
+[90m  │[39m [90mScreenshots:[39m  [32m0[39m                                                                                [90m│[39m
+[90m  │[39m [90mVideo:[39m        [32mtrue[39m                                                                             [90m│[39m
+[90m  │[39m [90mDuration:[39m     [32m6 seconds[39m                                                                        [90m│[39m
+[90m  │[39m [90mSpec Ran:[39m     [32m[32mindex.js[32m[39m                                                                         [90m│[39m
+[90m  └[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m┘[39m
+
+
+[36m  ([4m[1mVideo[22m[24m)[39m
+
+[90m [39m [90m-[39m  [90mStarted processing:[39m  [36mCompressing to 32 CRF[39m                                                     
+[90m [39m [90m-[39m  [90mFinished processing:[39m [36m/github/workspace/weird-urls-cypress/videos/index.js.mp4[39m        [90m(1 second)[39m
+
+
+[90m====================================================================================================[39m
+
+[0m  ([4m[1mRun Finished[22m[24m)[0m
+
+
+[90m   [39m    [90mSpec[39m                                              [90mTests[39m  [90mPassing[39m  [90mFailing[39m  [90mPending[39m  [90mSkipped[39m [90m [39m
+[90m  ┌[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m┐[39m
+[90m  │[39m [32m✔[39m  [0mindex.js[0m                                 [90m00:06[39m        [0m1[0m        [32m1[39m        [90m-[39m        [90m-[39m        [90m-[39m [90m│[39m
+[90m  └[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m┘[39m
+[90m   [39m [32m✔[39m  [32mAll specs passed![39m                        [90m00:06[39m        [0m1[0m        [32m1[39m        [90m-[39m        [90m-[39m        [90m-[39m [90m [39m
+
