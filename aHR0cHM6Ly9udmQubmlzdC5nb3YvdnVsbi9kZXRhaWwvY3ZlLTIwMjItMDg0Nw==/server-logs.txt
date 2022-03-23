@@ -1,0 +1,7 @@
+2022 3 23 21:48:09.225: fetching URL https://nvd.nist.gov/vuln/detail/cve-2022-0847
+2022 3 23 21:48:09.320: successfully fetched https://nvd.nist.gov/vuln/detail/cve-2022-0847
+2022 3 23 21:48:09.344: successfully parsed DOM for https://nvd.nist.gov/vuln/detail/cve-2022-0847
+2022 3 23 21:48:09.359: available extractors: fallback,github,goodreads
+2022 3 23 21:48:09.361: matching extractors against https://nvd.nist.gov/vuln/detail/cve-2022-0847
+2022 3 23 21:48:09.361: fallback is best extractor for https://nvd.nist.gov/vuln/detail/cve-2022-0847
+2022 3 23 21:48:09.365: got metadata for https://nvd.nist.gov/vuln/detail/cve-2022-0847: {"title":"NVD - cve-2022-0847"}

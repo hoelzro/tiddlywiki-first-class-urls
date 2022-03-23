@@ -1,0 +1,93 @@
+[52:0323/214800.659697:ERROR:bus.cc(393)] Failed to connect to the bus: Failed to connect to socket /var/run/dbus/system_bus_socket: No such file or directory
+
+[90m====================================================================================================[39m
+
+[0m  ([4m[1mRun Starting[22m[24m)[0m
+
+[90m  ┌[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m┐[39m
+[90m  │[39m [90mCypress:[39m    5.6.0                                                                              [90m│[39m
+[90m  │[39m [90mBrowser:[39m    Electron 85 [90m(headless)[39m                                                             [90m│[39m
+[90m  │[39m [90mSpecs:[39m      [0m1 found (index.js)[0m                                                                 [90m│[39m
+[90m  └[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m┘[39m
+
+
+[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m
+                                                                                                    
+  Running:  [90mindex.js[39m                                                                        [90m(1 of 1)[39m
+[52:0323/214803.874125:ERROR:bus.cc(393)] Failed to connect to the bus: Address does not contain a colon
+Browserslist: caniuse-lite is outdated. Please run:
+npx browserslist@latest --update-db
+
+Why you should do it regularly:
+https://github.com/browserslist/browserslist#browsers-data-updating
+
+[0m[0m
+[0m  testing https://nvd.nist.gov/vuln/detail/cve-2022-0847[0m
+[52:0323/214808.670262:INFO:CONSOLE(52)] " performance: Execute $tw.perf.log(); to see filter execution timings ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214808.777052:INFO:CONSOLE(52)] " TiddlyWebAdaptor: Getting status ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214809.033311:INFO:CONSOLE(52)] " TiddlyWebAdaptor: Status: {"username":"","anonymous":true,"read_only":false,"space":{"recipe":"default"},"tiddlywiki_version":"5.1.22"} ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214809.033420:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Retrieving skinny tiddler list ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214809.063694:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Dispatching 'save' task: $:/StoryList ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214809.114323:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Checking dirty status ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214809.139191:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Checking dirty status ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214809.139299:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Dispatching 'load' task: $:/HistoryList ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214809.171492:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Checking dirty status ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214809.209843:INFO:CONSOLE(52)] " first-class-urls: import tiddler changed ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214809.210613:INFO:CONSOLE(52)] " first-class-urls: import tiddler status: pending ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214809.211343:INFO:CONSOLE(52)] " first-class-urls: found Untitled in import data ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214809.212016:INFO:CONSOLE(52)] " first-class-urls: found URL data for Untitled ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214809.212659:INFO:CONSOLE(52)] " first-class-urls: canonical URL: https://nvd.nist.gov/vuln/detail/cve-2022-0847 ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214809.214642:INFO:CONSOLE(52)] " first-class-urls: No existing tiddler found for https://nvd.nist.gov/vuln/detail/cve-2022-0847 - fetching ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214809.216107:INFO:CONSOLE(52)] " first-class-urls: temporary title for https://nvd.nist.gov/vuln/detail/cve-2022-0847 while we fetch metadata: Link: 85e26b63825d07a701c7d299616ee2dad93487c2 ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214809.216962:INFO:CONSOLE(52)] " first-class-urls: url:  https://nvd.nist.gov/vuln/detail/cve-2022-0847 ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214809.242102:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Checking dirty status ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214809.242200:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Checking dirty status ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214809.245754:INFO:CONSOLE(52)] " first-class-urls: import tiddler changed ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214809.245851:INFO:CONSOLE(52)] " first-class-urls: import tiddler status: pending ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214809.377020:INFO:CONSOLE(52)] " first-class-urls: Successful fetch for https://nvd.nist.gov/vuln/detail/cve-2022-0847; adding tiddler NVD - cve-2022-0847 ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214809.377114:INFO:CONSOLE(52)] " first-class-urls: Deleting Link: 85e26b63825d07a701c7d299616ee2dad93487c2 ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214809.377160:INFO:CONSOLE(52)] " first-class-urls: Processing fetch result for Untitled - NVD - cve-2022-0847 ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214809.377204:INFO:CONSOLE(52)] " first-class-urls: import data for NVD - cve-2022-0847: {"title":"NVD - cve-2022-0847","type":"text/vnd.tiddlywiki","location":"https://nvd.nist.gov/vuln/detail/cve-2022-0847","url_tiddler":"true","created":"20220323214809216","modified":"20220323214809216","text":"https://nvd.nist.gov/vuln/detail/cve-2022-0847","url_extractor":"fallback"} ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214809.390817:INFO:CONSOLE(52)] " first-class-urls: import tiddler changed ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214809.393013:INFO:CONSOLE(52)] " first-class-urls: import tiddler status: pending ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214810.226370:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Dispatching 'save' task: $:/StoryList ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214810.243638:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Checking dirty status ", source: $:/core/modules/utils/logger.js (52)
+[52:0323/214810.243730:INFO:CONSOLE(52)] " syncer-browser-tiddlyweb: Checking dirty status ", source: $:/core/modules/utils/logger.js (52)
+  [32m  ✓[0m[90m shenanigans[0m[31m (6133ms)[0m
+
+
+[92m [0m[32m 1 passing[0m[90m (8s)[0m
+
+
+[32m  ([4m[1mResults[22m[24m)[39m
+
+[90m  ┌[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m┐[39m
+[90m  │[39m [90mTests:[39m        [32m1[39m                                                                                [90m│[39m
+[90m  │[39m [90mPassing:[39m      [32m1[39m                                                                                [90m│[39m
+[90m  │[39m [90mFailing:[39m      [32m0[39m                                                                                [90m│[39m
+[90m  │[39m [90mPending:[39m      [32m0[39m                                                                                [90m│[39m
+[90m  │[39m [90mSkipped:[39m      [32m0[39m                                                                                [90m│[39m
+[90m  │[39m [90mScreenshots:[39m  [32m0[39m                                                                                [90m│[39m
+[90m  │[39m [90mVideo:[39m        [32mtrue[39m                                                                             [90m│[39m
+[90m  │[39m [90mDuration:[39m     [32m7 seconds[39m                                                                        [90m│[39m
+[90m  │[39m [90mSpec Ran:[39m     [32m[32mindex.js[32m[39m                                                                         [90m│[39m
+[90m  └[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m┘[39m
+
+
+[36m  ([4m[1mVideo[22m[24m)[39m
+
+[90m [39m [90m-[39m  [90mStarted processing:[39m  [36mCompressing to 32 CRF[39m                                                     
+[90m [39m [90m-[39m  [90mFinished processing:[39m [36m/github/workspace/weird-urls-cypress/videos/index.js.mp4[39m        [90m(1 second)[39m
+
+
+[90m====================================================================================================[39m
+
+[0m  ([4m[1mRun Finished[22m[24m)[0m
+
+
+[90m   [39m    [90mSpec[39m                                              [90mTests[39m  [90mPassing[39m  [90mFailing[39m  [90mPending[39m  [90mSkipped[39m [90m [39m
+[90m  ┌[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m┐[39m
+[90m  │[39m [32m✔[39m  [0mindex.js[0m                                 [90m00:07[39m        [0m1[0m        [32m1[39m        [90m-[39m        [90m-[39m        [90m-[39m [90m│[39m
+[90m  └[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m─[39m[90m┘[39m
+[90m   [39m [32m✔[39m  [32mAll specs passed![39m                        [90m00:07[39m        [0m1[0m        [32m1[39m        [90m-[39m        [90m-[39m        [90m-[39m [90m [39m
+
