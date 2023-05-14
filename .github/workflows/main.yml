@@ -3,6 +3,10 @@ on:
   push:
     branches:
     - main
+    - action-test
+  schedule:
+  - cron: '40 * * * *'
+  workflow_dispatch: {}
 jobs:
   test:
     permissions:
