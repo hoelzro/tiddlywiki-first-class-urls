@@ -3,6 +3,7 @@ on:
   push:
     branches:
     - main
+    - actions-upgrade
 jobs:
   gather-the-weird:
     permissions:

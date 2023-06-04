@@ -3,6 +3,7 @@ on:
   push:
     branches:
     - main
+    - actions-upgrade
   schedule:
   - cron: '15 12 * * 0'
   workflow_dispatch: {}
