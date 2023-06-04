@@ -25,8 +25,8 @@ jobs:
         - tiddlywiki@5.2
         - https://github.com/Jermolene/TiddlyWiki5.git
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node }}
     - run: |-
@@ -59,8 +59,8 @@ jobs:
         curl -s -Lo $HOME/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
         chmod 755 $HOME/bin/jq
         echo "$HOME/bin" >> $GITHUB_PATH
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node }}
     - name: run-server
@@ -82,7 +82,7 @@ jobs:
     runs-on: ubuntu-20.04
     timeout-minutes: 3
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
     - run: |-
         npx eslint@7.32.0 .
