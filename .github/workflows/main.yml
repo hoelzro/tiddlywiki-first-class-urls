@@ -11,7 +11,7 @@ jobs:
   test:
     permissions:
       contents: none
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     timeout-minutes: 3
     strategy:
       matrix:
@@ -39,7 +39,7 @@ jobs:
   cypress-test:
     permissions:
       contents: none
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     timeout-minutes: 5
     strategy:
       matrix:
@@ -79,7 +79,7 @@ jobs:
   eslint:
     permissions:
       contents: none
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
     - uses: actions/checkout@v3
