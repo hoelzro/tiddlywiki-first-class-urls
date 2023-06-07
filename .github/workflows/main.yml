@@ -42,8 +42,6 @@ jobs:
         - 16
         tiddlywiki:
         - tiddlywiki@5.1.23
-        - tiddlywiki@5.2
-        - https://github.com/Jermolene/TiddlyWiki5.git
     steps:
     - name: install-jq
       run: |-
