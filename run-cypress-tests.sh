@@ -12,4 +12,4 @@ if [[ $i -eq 20 ]] ; then
     exit 1
 fi
 
-CYPRESS_TIDDLYWIKI_HOST=$TIDDLYWIKI_HOST cypress run --browser=chromium --headless
+CYPRESS_TIDDLYWIKI_HOST=$TIDDLYWIKI_HOST cypress run --browser=chrome --headless
