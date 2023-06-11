@@ -39,11 +39,15 @@ jobs:
     strategy:
       matrix:
         node:
+        - 14
+        - 15
         - 16
+        - 17
+        - 18
+        - 19
+        - 20
         tiddlywiki:
         - tiddlywiki@5.1.23
-        - tiddlywiki@5.2
-        - https://github.com/Jermolene/TiddlyWiki5.git
     steps:
     - name: install-jq
       run: |-
